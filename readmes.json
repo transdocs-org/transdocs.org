@@ -2,85 +2,85 @@
   "readmes": [
     {
       "url": "https://github.com/binance/binance-connector-js/tree/master/clients/spot",
-      "name": "Binance Connector Js Spot",
-      "category": "blockchain",
+      "name": "Binance Connector Js 现货交易",
+      "category": "区块链",
       "categoryId": "blockchain",
       "tags": [
         "javascript",
         "api",
-        "client",
-        "binance",
-        "spot trading"
+        "客户端",
+        "币安",
+        "现货交易"
       ],
       "filename": "Binance-Connector-Js-Spot"
     },
     {
       "url": "https://github.com/binance/binance-connector-python/tree/master/clients/spot",
-      "name": "Binance Connector Python Spot",
-      "category": "blockchain",
+      "name": "Binance Connector Python 现货交易",
+      "category": "区块链",
       "categoryId": "blockchain",
       "tags": [
         "python",
         "api",
-        "client",
-        "binance",
-        "spot trading"
+        "客户端",
+        "币安",
+        "现货交易"
       ],
       "filename": "Binance-Connector-Python-Spot"
     },
     {
       "url": "https://github.com/binance/binance-connector-python/tree/master/clients/margin_trading",
-      "name": "Binance Connector Python Margin Trading",
-      "category": "blockchain",
+      "name": "Binance Connector Python 杠杆交易",
+      "category": "区块链",
       "categoryId": "blockchain",
       "tags": [
         "python",
         "api",
-        "client",
-        "binance",
-        "margin trading"
+        "客户端",
+        "币安",
+        "杠杆交易"
       ],
       "filename": "Binance-Connector-Python-Margin-Trading"
     },
     {
       "url": "https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading",
-      "name": "Binance Connector Js Margin Trading",
-      "category": "blockchain",
+      "name": "Binance Connector Js 杠杆交易",
+      "category": "区块链",
       "categoryId": "blockchain",
       "tags": [
         "javascript",
         "api",
-        "client",
-        "binance",
-        "margin trading"
+        "客户端",
+        "币安",
+        "杠杆交易"
       ],
       "filename": "Binance-Connector-Js-Margin-Trading"
     },
     {
       "url": "https://github.com/langchain-ai/langchainjs/tree/main/libs/langchain-community",
-      "name": "Langchainjs Community",
-      "category": "ai",
+      "name": "Langchainjs 社区",
+      "category": "人工智能",
       "categoryId": "ai",
       "tags": [
         "javascript",
-        "ai",
+        "人工智能",
         "langchain",
-        "community",
-        "machine learning"
+        "社区",
+        "机器学习"
       ],
       "filename": "Langchainjs-Community"
     },
     {
       "url": "https://github.com/langchain-ai/langchain-community/tree/main/libs/community",
-      "name": "Langchain Community",
-      "category": "ai",
+      "name": "Langchain 社区",
+      "category": "人工智能",
       "categoryId": "ai",
       "tags": [
         "python",
-        "ai",
+        "人工智能",
         "langchain",
-        "community",
-        "machine learning"
+        "社区",
+        "机器学习"
       ],
       "filename": "Langchain-Community"
     }

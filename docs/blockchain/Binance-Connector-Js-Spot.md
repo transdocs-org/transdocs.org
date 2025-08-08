@@ -1,62 +1,62 @@
-# Binance JavaScript SPOT Connector
+# Binance JavaScript 现货交易连接器
 
-[![Open Issues](https://img.shields.io/github/issues/binance/binance-connector-js)](https://github.com/binance/binance-connector-js/issues)
-[![Code Style: Prettier](https://img.shields.io/badge/code%20style-prettier-ff69b4)](https://prettier.io/)
-[![npm version](https://badge.fury.io/js/@binance%2Fspot.svg)](https://badge.fury.io/js/@binance%2Fspot)
-[![npm Downloads](https://img.shields.io/npm/dm/@binance/spot.svg)](https://www.npmjs.com/package/@binance/spot)
-![Node.js Version](https://img.shields.io/badge/Node.js-%3E=22.12.0-brightgreen)
-[![Known Vulnerabilities](https://snyk.io/test/github/binance/binance-connector-js/badge.svg)](https://snyk.io/test/github/binance/binance-connector-js)
-[![Docs](https://img.shields.io/badge/docs-online-blue?style=flat-square)](https://binance.github.io/binance-connector-js/modules/_binance_spot.html)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![开放的问题](https://img.shields.io/github/issues/binance/binance-connector-js)](https://github.com/binance/binance-connector-js/issues)
+[![代码风格: Prettier](https://img.shields.io/badge/code%20style-prettier-ff69b4)](https://prettier.io/)
+[![npm 版本](https://badge.fury.io/js/@binance%2Fspot.svg)](https://badge.fury.io/js/@binance%2Fspot)
+[![npm 下载量](https://img.shields.io/npm/dm/@binance/spot.svg)](https://www.npmjs.com/package/@binance/spot)
+![Node.js 版本](https://img.shields.io/badge/Node.js-%3E=22.12.0-brightgreen)
+[![已知漏洞](https://snyk.io/test/github/binance/binance-connector-js/badge.svg)](https://snyk.io/test/github/binance/binance-connector-js)
+[![文档](https://img.shields.io/badge/docs-online-blue?style=flat-square)](https://binance.github.io/binance-connector-js/modules/_binance_spot.html)
+[![许可协议: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This is a client library for the Binance SPOT API, enabling developers to interact programmatically with Binance's SPOT trading platform. The library provides tools for retrieving market data, executing trades, and managing orders through three distinct endpoints:
+这是一个用于 Binance SPOT API 的客户端库，使开发者能够通过编程方式与 Binance 的现货交易平台进行交互。该库通过以下三个不同的端点提供获取市场数据、执行交易和管理订单的工具：
 
 - [REST API](https://github.com/binance/binance-connector-js/tree/master/clients/spot/src/rest-api/rest-api.ts)
 - [Websocket API](https://github.com/binance/binance-connector-js/tree/master/clients/spot/src/websocket-api/websocket-api-connection.ts)
 - [Websocket Stream](https://github.com/binance/binance-connector-js/tree/master/clients/spot/src/websocket-streams/websocket-streams-connection.ts)
 
-## Table of Contents
+## 目录
 
-- [Supported Features](#supported-features)
-- [Installation](#installation)
-- [Documentation](#documentation)
-- [REST APIs](#rest-apis)
-- [Websocket APIs](#websocket-apis)
+- [支持的功能](#支持的功能)
+- [安装](#安装)
+- [文档](#文档)
+- [REST API](#rest-api)
+- [Websocket API](#websocket-api)
 - [Websocket Streams](#websocket-streams)
-- [Testing](#testing)
-- [Migration Guide](#migration-guide)
-- [Contributing](#contributing)
-- [Licence](#licence)
+- [测试](#测试)
+- [迁移指南](#迁移指南)
+- [贡献](#贡献)
+- [许可协议](#许可协议)
 
-## Supported Features
+## 支持的功能
 
-- REST API Endpoints:
+- REST API 端点：
   - `/api/*`
-- WebSocket Endpoints: Real-time data streaming and request-response communication.
-- Inclusion of test cases and examples for quick onboarding.
+- WebSocket 端点：实时数据流和请求-响应通信。
+- 包含测试用例和示例，便于快速上手。
 
-## Installation
+## 安装
 
-To use this library, ensure your environment is running Node.js version **22.12.0** or later. If you're using `nvm` (Node Version Manager), you can set the correct version as follows:
+要使用该库，请确保您的环境运行的是 **Node.js 22.12.0** 或更高版本。如果您使用的是 `nvm`（Node 版本管理器），可以通过以下命令设置正确的版本：
 
 ```bash
 nvm install 22.12.0
 nvm use 22.12.0
 ```
 
-Then install the library using `npm`:
+然后使用 `npm` 安装库：
 
 ```bash
 npm install @binance/spot
 ```
 
-## Documentation
+## 文档
 
-For detailed information, refer to the [Binance API Documentation](https://developers.binance.com/docs/binance-spot-api-docs/README).
+有关详细信息，请参考 [Binance API 文档](https://developers.binance.com/docs/binance-spot-api-docs/README)。
 
-### REST APIs
+### REST API
 
-All REST API endpoints are available through the [`rest-api`](https://github.com/binance/binance-connector-js/tree/master/clients/spot/src/rest-api/rest-api.ts) module. The REST API enables you to fetch market data, manage trades, and access account information. Note that some endpoints require authentication using your Binance API credentials.
+所有 REST API 端点都可以通过 [`rest-api`](https://github.com/binance/binance-connector-js/tree/master/clients/spot/src/rest-api/rest-api.ts) 模块访问。REST API 可用于获取市场数据、管理交易和访问账户信息。请注意，某些端点需要使用您的 Binance API 凭证进行身份验证。
 
 ```typescript
 import { Spot, SpotRestAPI } from '@binance/spot';
@@ -74,85 +74,85 @@ client.restAPI
     .catch((err) => console.error(err));
 ```
 
-More examples can be found in the [`examples/rest-api`](https://github.com/binance/binance-connector-js/tree/master/clients/spot/examples/rest-api/) folder.
+更多示例可以在 [`examples/rest-api`](https://github.com/binance/binance-connector-js/tree/master/clients/spot/examples/rest-api/) 文件夹中找到。
 
-#### Configuration Options
+#### 配置选项
 
-The REST API supports the following advanced configuration options:
+REST API 支持以下高级配置选项：
 
-- `timeout`: Timeout for requests in milliseconds (default: 1000 ms).
-- `proxy`: Proxy configuration:
-  - `host`: Proxy server hostname.
-  - `port`: Proxy server port.
-  - `protocol`: Proxy protocol (http or https).
-  - `auth`: Proxy authentication credentials:
-    - `username`: Proxy username.
-    - `password`: Proxy password.
-- `keepAlive`: Enable HTTP keep-alive (default: true).
-- `compression`: Enable response compression (default: true).
-- `retries`: Number of retry attempts for failed requests (default: 3).
-- `backoff`: Delay in milliseconds between retries (default: 1000 ms).
-- `httpsAgent`: Custom HTTPS agent for advanced TLS configuration.
-- `privateKey`: RSA or ED25519 private key for authentication.
-- `privateKeyPassphrase`: Passphrase for the private key, if encrypted.
-- `timeUnit`: Specify the time unit for timestamps (e.g., milliseconds or microseconds).
+- `timeout`: 请求超时时间（单位：毫秒，默认：1000 毫秒）。
+- `proxy`: 代理配置：
+  - `host`: 代理服务器主机名。
+  - `port`: 代理服务器端口。
+  - `protocol`: 代理协议（http 或 https）。
+  - `auth`: 代理身份验证凭证：
+    - `username`: 代理用户名。
+    - `password`: 代理密码。
+- `keepAlive`: 启用 HTTP 持久连接（默认：true）。
+- `compression`: 启用响应压缩（默认：true）。
+- `retries`: 请求失败时的重试次数（默认：3 次）。
+- `backoff`: 重试之间的延迟时间（单位：毫秒，默认：1000 毫秒）。
+- `httpsAgent`: 自定义 HTTPS 代理以进行高级 TLS 配置。
+- `privateKey`: 用于身份验证的 RSA 或 ED25519 私钥。
+- `privateKeyPassphrase`: 如果私钥加密了，提供对应的密码短语。
+- `timeUnit`: 指定时间戳的时间单位（例如毫秒或微秒）。
 
-##### Timeout
+##### 超时
 
-You can configure a timeout for requests in milliseconds. If the request exceeds the specified timeout, it will be aborted. See the [Timeout example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/timeout.md) for detailed usage.
+您可以配置请求的超时时间（单位：毫秒）。如果请求超过指定的超时时间，将被中止。请参见 [超时示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/timeout.md) 了解详细用法。
 
-##### Proxy
+##### 代理
 
-The REST API supports HTTP/HTTPS proxy configurations. See the [Proxy example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/proxy.md) for detailed usage.
+REST API 支持 HTTP/HTTPS 代理配置。请参见 [代理示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/proxy.md) 了解详细用法。
 
-##### Keep-Alive
+##### 持久连接
 
-Enable HTTP keep-alive for persistent connections. See the [Keep-Alive example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/keepAlive.md) for detailed usage.
+启用 HTTP 持久连接以保持连接。请参见 [持久连接示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/keepAlive.md) 了解详细用法。
 
-##### Compression
+##### 压缩
 
-Enable or disable response compression. See the [Compression example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/compression.md) for detailed usage.
+启用或禁用响应压缩。请参见 [压缩示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/compression.md) 了解详细用法。
 
-##### Retries
+##### 重试
 
-Configure the number of retry attempts and delay in milliseconds between retries for failed requests. See the [Retries example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/retries.md) for detailed usage.
+配置请求失败时的重试次数和重试之间的延迟时间（单位：毫秒）。请参见 [重试示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/retries.md) 了解详细用法。
 
-##### HTTPS Agent
+##### HTTPS 代理
 
-Customize the HTTPS agent for advanced TLS configurations. See the [HTTPS Agent example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/httpsAgent.md) for detailed usage.
+自定义 HTTPS 代理以进行高级 TLS 配置。请参见 [HTTPS 代理示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/httpsAgent.md) 了解详细用法。
 
-##### Key Pair Based Authentication
+##### 基于密钥对的身份验证
 
-The REST API supports key pair-based authentication for secure communication. You can use `RSA` or `ED25519` keys for signing requests. See the [Key Pair Based Authentication example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/key-pair-authentication.md) for detailed usage.
+REST API 支持基于密钥对的身份验证以确保通信安全。您可以使用 `RSA` 或 `ED25519` 密钥来签署请求。请参见 [基于密钥对的身份验证示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/key-pair-authentication.md) 了解详细用法。
 
-##### Time Unit
+##### 时间单位
 
-The REST API supports different time units for timestamp values. See the [Time Unit example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/time-unit.md) for more details.
+REST API 支持不同时间单位的时间戳值。请参见 [时间单位示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/time-unit.md) 了解更多信息。
 
-##### Certificate Pinning
+##### 证书固定
 
-To enhance security, you can use certificate pinning with the `httpsAgent` option in the configuration. This ensures the client only communicates with servers using specific certificates. See the [Certificate Pinning example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/certificate-pinning.md) for detailed usage.
+为了增强安全性，您可以在配置中使用 `httpsAgent` 选项进行证书固定。这确保客户端仅与使用特定证书的服务器通信。请参见 [证书固定示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/certificate-pinning.md) 了解详细用法。
 
-#### Error Handling
+#### 错误处理
 
-The REST API provides detailed error types to help you handle issues effectively:
+REST API 提供了详细的错误类型，帮助您有效处理问题：
 
-- `ConnectorClientError`: General client error.
-- `RequiredError`: Thrown when a required parameter is missing.
-- `UnauthorizedError`: Indicates missing or invalid authentication credentials.
-- `ForbiddenError`: Access to the requested resource is forbidden.
-- `TooManyRequestsError`: Rate limit exceeded.
-- `RateLimitBanError`: IP address banned for exceeding rate limits.
-- `ServerError`: Internal server error.
-- `NetworkError`: Issues with network connectivity.
-- `NotFoundError`: Resource not found.
-- `BadRequestError`: Invalid request.
+- `ConnectorClientError`: 一般客户端错误。
+- `RequiredError`: 当缺少必需参数时抛出。
+- `UnauthorizedError`: 表示缺少或无效的身份验证凭证。
+- `ForbiddenError`: 对请求资源的访问被拒绝。
+- `TooManyRequestsError`: 超出速率限制。
+- `RateLimitBanError`: 因超出速率限制而被禁止 IP 地址。
+- `ServerError`: 内部服务器错误。
+- `NetworkError`: 网络连接问题。
+- `NotFoundError`: 资源未找到。
+- `BadRequestError`: 请求无效。
 
-See the [Error Handling example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/error-handling.md) for detailed usage.
+请参见 [错误处理示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/rest-api/error-handling.md) 了解详细用法。
 
-#### Testnet
+#### 测试网络
 
-For testing purposes, `/api/*` endpoints can be used in the [Spot Testnet](https://testnet.binance.vision/). Update the `basePath` in your configuration:
+为了测试目的，`/api/*` 端点可以在 [Spot Testnet](https://testnet.binance.vision/) 上使用。更新配置中的 `basePath`：
 
 ```typescript
 import { Spot, SpotRestAPI, SPOT_REST_API_TESTNET_URL } from '@binance/spot';
@@ -165,11 +165,11 @@ const configurationRestAPI = {
 const client = new Spot({ configurationRestAPI });
 ```
 
-If `basePath` is not provided, it defaults to `https://api.binance.com`.
+如果未提供 `basePath`，则默认为 `https://api.binance.com`。
 
-### Websocket APIs
+### Websocket API
 
-The WebSocket API provides request-response communication for market data and trading actions. Use the [`websocket-api`](https://github.com/binance/binance-connector-js/tree/master/clients/spot/src/websocket-api/websocket-api.ts) module to interact with these endpoints.
+WebSocket API 提供市场数据和交易操作的请求-响应通信。使用 [`websocket-api`](https://github.com/binance/binance-connector-js/tree/master/clients/spot/src/websocket-api/websocket-api.ts) 模块与这些端点进行交互。
 
 ```typescript
 import { Spot, SpotWebsocketAPI } from '@binance/spot';
@@ -191,59 +191,59 @@ client.websocketAPI
     .catch((err) => console.error(err));
 ```
 
-More examples are available in the [`examples/websocket-api`](https://github.com/binance/binance-connector-js/tree/master/clients/spot/examples/websocket-api/) folder.
+更多示例可在 [`examples/websocket-api`](https://github.com/binance/binance-connector-js/tree/master/clients/spot/examples/websocket-api/) 文件夹中找到。
 
-#### Configuration Options
+#### 配置选项
 
-The WebSocket API supports the following advanced configuration options:
+WebSocket API 支持以下高级配置选项：
 
-- `timeout`: Set the timeout for WebSocket requests (default: 5000 ms).
-- `reconnectDelay`: Specify the delay between reconnection attempts (default: 5000 ms).
-- `compression`: Enable or disable compression for WebSocket messages (default: true).
-- `agent`: Customize the WebSocket agent for advanced configurations.
-- `mode`: Choose between `single` and `pool` connection modes.
-  - `single`: A single WebSocket connection.
-  - `pool`: A pool of WebSocket connections.
-- `poolSize`: Define the number of WebSocket connections in pool mode.
-- `privateKey`: RSA or ED25519 private key for authentication.
-- `privateKeyPassphrase`: Passphrase for the private key, if encrypted.
-- `timeUnit`: Specify the time unit for timestamps (e.g., milliseconds or microseconds).
+- `timeout`: 设置 WebSocket 请求的超时时间（默认：5000 毫秒）。
+- `reconnectDelay`: 指定重新连接尝试之间的延迟时间（默认：5000 毫秒）。
+- `compression`: 启用或禁用 WebSocket 消息的压缩（默认：true）。
+- `agent`: 自定义 WebSocket 代理以进行高级配置。
+- `mode`: 在 `single` 和 `pool` 连接模式之间选择。
+  - `single`: 单个 WebSocket 连接。
+  - `pool`: WebSocket 连接池。
+- `poolSize`: 在池模式下定义 WebSocket 连接的数量。
+- `privateKey`: 用于身份验证的 RSA 或 ED25519 私钥。
+- `privateKeyPassphrase`: 如果私钥加密了，提供对应的密码短语。
+- `timeUnit`: 指定时间戳的时间单位（例如毫秒或微秒）。
 
-##### Timeout
+##### 超时
 
-Set the timeout for WebSocket API requests in milliseconds. See the [Timeout example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/timeout.md) for detailed usage.
+设置 WebSocket API 请求的超时时间（单位：毫秒）。请参见 [超时示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/timeout.md) 了解详细用法。
 
-##### Reconnect Delay
+##### 重连延迟
 
-Specify the delay in milliseconds between WebSocket reconnection attempts. See the [Reconnect Delay example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/reconnect-delay.md) for detailed usage.
+指定 WebSocket 重新连接尝试之间的延迟时间（单位：毫秒）。请参见 [重连延迟示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/reconnect-delay.md) 了解详细用法。
 
-##### Compression
+##### 压缩
 
-Enable or disable compression for WebSocket messages. See the [Compression example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/compression.md) for detailed usage.
+启用或禁用 WebSocket 消息的压缩。请参见 [压缩示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/compression.md) 了解详细用法。
 
-##### WebSocket Agent
+##### WebSocket 代理
 
-Customize the agent for advanced configurations. See the [WebSocket Agent example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/agent.md) for detailed usage.
+自定义代理以进行高级配置。请参见 [WebSocket 代理示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/agent.md) 了解详细用法。
 
-##### Connection Mode
+##### 连接模式
 
-Choose between `single` and `pool` connection modes for WebSocket connections. The `single` mode uses a single WebSocket connection, while the `pool` mode uses a pool of WebSocket connections. See the [Connection Mode example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/connection-mode.md) for detailed usage.
+在 WebSocket 连接的 `single` 和 `pool` 模式之间选择。`single` 模式使用单个 WebSocket 连接，而 `pool` 模式使用 WebSocket 连接池。请参见 [连接模式示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/connection-mode.md) 了解详细用法。
 
-##### Key Pair Based Authentication
+##### 基于密钥对的身份验证
 
-Use RSA or ED25519 private keys for WebSocket API authentication. See the [Key Pair Authentication example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/key-pair-authentication.md) for detailed usage.
+使用 RSA 或 ED25519 私钥进行 WebSocket API 身份验证。请参见 [密钥对身份验证示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/key-pair-authentication.md) 了解详细用法。
 
-##### Certificate Pinning
+##### 证书固定
 
-To enhance security, you can use certificate pinning with the `agent` option in the configuration. This ensures the client only communicates with servers using specific certificates. See the [Certificate Pinning example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/certificate-pinning.md) for detailed usage.
+为了增强安全性，您可以在配置中使用 `agent` 选项进行证书固定。这确保客户端仅与使用特定证书的服务器通信。请参见 [证书固定示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/certificate-pinning.md) 了解详细用法。
 
-##### Time Unit
+##### 时间单位
 
-Specify the time unit for WebSocket API timestamps (e.g., milliseconds or microseconds). See the [Time Unit example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/time-unit.md) for detailed usage.
+指定 WebSocket API 时间戳的时间单位（例如毫秒或微秒）。请参见 [时间单位示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-api/time-unit.md) 了解详细用法。
 
-#### Subscribe to User Data Streams
+#### 订阅用户数据流
 
-You can consume the user data stream, which sends account-level events such as account and order updates. First do a `logon` to the websocket connection via WebSocket API; then:
+您可以消费用户数据流，该流会发送账户级别的事件，如账户和订单更新。首先通过 WebSocket API 对 WebSocket 连接进行 `logon`；然后：
 
 ```typescript
 import { Spot, SpotWebsocketAPI } from '@binance/spot';
@@ -262,14 +262,14 @@ client.websocketAPI
         stream.on('message', (data) => {
             switch (data.e) {
                 case 'balanceUpdate':
-                    console.log('balance update stream', data);
+                    console.log('余额更新流', data);
                     break;
                 case 'outboundAccountPosition':
-                    console.log('outbound account position stream', data);
+                    console.log('出站账户仓位流', data);
                     break;
-                // …handle other variants…
+                // …处理其他变体…
                 default:
-                    console.log('unknown stream', data);
+                    console.log('未知流', data);
                     break;
             }
         });
@@ -277,9 +277,9 @@ client.websocketAPI
     .catch((err) => console.error(err));
 ```
 
-#### Testnet
+#### 测试网络
 
-For testing purposes, the Websocket API also supports a testnet environment. Update the `wsURL` in your configuration:
+为了测试目的，WebSocket API 也支持测试网络环境。更新配置中的 `wsURL`：
 
 ```typescript
 import { Spot, SpotWebsocketAPI, SPOT_WS_API_TESTNET_URL } from '@binance/spot';
@@ -292,11 +292,11 @@ const configurationWebsocketAPI = {
 const client = new Spot({ configurationWebsocketAPI });
 ```
 
-If `wsURL` is not provided, it defaults to `wss://ws-api.binance.com:443/ws-api/v3`.
+如果未提供 `wsURL`，则默认为 `wss://ws-api.binance.com:443/ws-api/v3`。
 
 ### Websocket Streams
 
-WebSocket Streams provide real-time data feeds for market trades, candlesticks, and more. Use the [websocket-streams](https://github.com/binance/binance-connector-js/tree/master/clients/spot/src/websocket-streams/websocket-streams.ts) module to subscribe to these streams.
+WebSocket Streams 提供实时数据流，包括市场交易、K 线图等。使用 [websocket-streams](https://github.com/binance/binance-connector-js/tree/master/clients/spot/src/websocket-streams/websocket-streams.ts) 模块订阅这些流。
 
 ```typescript
 import { Spot, SpotWebsocketStreams, SPOT_WS_STREAMS_PROD_URL } from '@binance/spot';
@@ -315,48 +315,48 @@ client.websocketStreams
     .catch((err) => console.error(err));
 ```
 
-More examples are available in the [`examples/websocket-streams`](https://github.com/binance/binance-connector-js/tree/master/clients/spot/examples/websocket-streams/) folder.
+更多示例可在 [`examples/websocket-streams`](https://github.com/binance/binance-connector-js/tree/master/clients/spot/examples/websocket-streams/) 文件夹中找到。
 
-#### Configuration Options
+#### 配置选项
 
-The WebSocket Streams API supports the following advanced configuration options:
+WebSocket Streams API 支持以下高级配置选项：
 
-- `reconnectDelay`: Specify the delay between reconnection attempts (default: 5000 ms).
-- `compression`: Enable or disable compression for WebSocket messages (default: true).
-- `agent`: Customize the WebSocket agent for advanced configurations.
-- `mode`: Choose between `single` and `pool` connection modes.
-  - `single`: A single WebSocket connection.
-  - `pool`: A pool of WebSocket connections.
-- `poolSize`: Define the number of WebSocket connections in pool mode.
-- `timeUnit`: Specify the time unit for timestamps (e.g., milliseconds or microseconds).
+- `reconnectDelay`: 指定重新连接尝试之间的延迟时间（默认：5000 毫秒）。
+- `compression`: 启用或禁用 WebSocket 消息的压缩（默认：true）。
+- `agent`: 自定义 WebSocket 代理以进行高级配置。
+- `mode`: 在 `single` 和 `pool` 连接模式之间选择。
+  - `single`: 单个 WebSocket 连接。
+  - `pool`: WebSocket 连接池。
+- `poolSize`: 在池模式下定义 WebSocket 连接的数量。
+- `timeUnit`: 指定时间戳的时间单位（例如毫秒或微秒）。
 
-##### Reconnect Delay
+##### 重连延迟
 
-Specify the delay in milliseconds between WebSocket reconnection attempts for streams. See the [Reconnect Delay example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-streams/reconnect-delay.md) for detailed usage.
+指定 WebSocket 流重新连接尝试之间的延迟时间（单位：毫秒）。请参见 [重连延迟示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-streams/reconnect-delay.md) 了解详细用法。
 
-##### Compression
+##### 压缩
 
-Enable or disable compression for WebSocket Streams messages. See the [Compression example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-streams/compression.md) for detailed usage.
+启用或禁用 WebSocket Streams 消息的压缩。请参见 [压缩示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-streams/compression.md) 了解详细用法。
 
-##### WebSocket Agent
+##### WebSocket 代理
 
-Customize the agent for advanced configurations. See the [WebSocket Agent example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-streams/agent.md) for detailed usage.
+自定义代理以进行高级配置。请参见 [WebSocket 代理示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-streams/agent.md) 了解详细用法。
 
-##### Connection Mode
+##### 连接模式
 
-Choose between `single` and `pool` connection modes for WebSocket Streams. The `single` mode uses a single WebSocket connection, while the `pool` mode uses a pool of WebSocket connections. See the [Connection Mode example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-streams/connection-mode.md) for detailed usage.
+在 `single` 和 `pool` 模式之间选择 WebSocket Streams 的连接模式。`single` 模式使用单个 WebSocket 连接，而 `pool` 模式使用 WebSocket 连接池。请参见 [连接模式示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-streams/connection-mode.md) 了解详细用法。
 
-##### Certificate Pinning
+##### 证书固定
 
-To enhance security, you can use certificate pinning with the `agent` option in the configuration. This ensures the client only communicates with servers using specific certificates. See the [Certificate Pinning example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-streams/certificate-pinning.md) for detailed usage.
+为了增强安全性，您可以在配置中使用 `agent` 选项进行证书固定。这确保客户端仅与使用特定证书的服务器通信。请参见 [证书固定示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-streams/certificate-pinning.md) 了解详细用法。
 
-##### Time Unit
+##### 时间单位
 
-Specify the time unit for WebSocket Streams timestamps (e.g., milliseconds or microseconds). See the [Time Unit example](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-streams/time-unit.md) for detailed usage.
+指定 WebSocket Streams 时间戳的时间单位（例如毫秒或微秒）。请参见 [时间单位示例](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/websocket-streams/time-unit.md) 了解详细用法。
 
-#### Unsubscribing from Streams
+#### 取消订阅流
 
-You can unsubscribe from specific WebSocket streams using the `unsubscribe` method. This is useful for managing active subscriptions without closing the connection.
+您可以使用 `unsubscribe` 方法取消订阅特定的 WebSocket 流。这对于在不关闭连接的情况下管理活动订阅非常有用。
 
 ```typescript
 import { Spot, SpotWebsocketStreams, SPOT_WS_STREAMS_PROD_URL } from '@binance/spot';
@@ -374,15 +374,15 @@ client.websocketStreams
 
         setTimeout(() => {
             stream.unsubscribe();
-            console.log('Unsubscribed from BNBUSDT trade stream');
+            console.log('已取消订阅 BNBUSDT 交易流');
         }, 10000);
     })
     .catch((err) => console.error(err));
 ```
 
-#### Testnet
+#### 测试网络
 
-Websocket Streams also support a testnet environment for development and testing. Update the `wsURL` in your configuration:
+WebSocket Streams 也支持开发和测试使用的测试网络环境。更新配置中的 `wsURL`：
 
 ```typescript
 import { Spot, SpotWebsocketStreams, SPOT_WS_STREAMS_TESTNET_URL } from '@binance/spot';
@@ -393,15 +393,15 @@ const configurationWebsocketStreams = {
 const client = new Spot({ configurationWebsocketStreams });
 ```
 
-If `wsURL` is not provided, it defaults to `wss://stream.binance.com:9443`.
+如果未提供 `wsURL`，则默认为 `wss://stream.binance.com:9443`。
 
-### Automatic Connection Renewal
+### 自动连接续订
 
-The WebSocket connection is automatically renewed for both WebSocket API and WebSocket Streams connections, before the 24 hours expiration of the API key. This ensures continuous connectivity.
+WebSocket 连接会在 API 密钥过期（24 小时）之前自动续订，适用于 WebSocket API 和 WebSocket Streams 连接。这确保了持续的连接性。
 
-## Testing
+## 测试
 
-To run the tests:
+运行测试：
 
 ```bash
 npm install
@@ -409,27 +409,30 @@ npm install
 npm run test
 ```
 
-The tests cover: - REST API endpoints - WebSocket API and Streams - Error handling and edge cases
+测试涵盖内容：
+- REST API 端点
+- WebSocket API 和 Streams
+- 错误处理和边界情况
 
-## Migration Guide
+## 迁移指南
 
-If you are upgrading to the new modularized structure, refer to the [Migration Guide](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/migration_guide_spot_connector.md) for detailed steps.
+如果您正在升级到新的模块化结构，请参阅 [迁移指南](https://github.com/binance/binance-connector-js/tree/master/clients/spot/docs/migration_guide_spot_connector.md) 以获取详细步骤。
 
-## Contributing
+## 贡献
 
-Contributions are welcome!
+欢迎贡献！
 
-Since this repository contains auto-generated code, we encourage you to start by opening a GitHub issue to discuss your ideas or suggest improvements. This helps ensure that changes align with the project's goals and auto-generation processes.
+由于此仓库包含自动生成的代码，我们鼓励您首先在 GitHub 上打开一个 issue 来讨论您的想法或提出改进建议。这有助于确保更改符合项目的目标和自动生成流程。
 
-To contribute:
+要贡献：
 
-1. Open a GitHub issue describing your suggestion or the bug you've identified.
-2. If it's determined that changes are necessary, the maintainers will merge the changes into the main branch.
+1. 打开一个 GitHub issue，描述您的建议或发现的 bug。
+2. 如果确定需要更改，维护者将把更改合并到主分支。
 
-Please ensure that all tests pass if you're making a direct contribution. Submit a pull request only after discussing and confirming the change.
+请确保在直接贡献时所有测试都通过。只有在讨论和确认更改后才提交 pull request。
 
-Thank you for your contributions!
+感谢您的贡献！
 
-## Licence
+## 许可协议
 
-This project is licensed under the MIT License. See the [LICENCE](https://github.com/binance/binance-connector-js/tree/master/clients/spot/LICENCE) file for details.
+该项目使用 MIT 许可协议。详情请参见 [LICENCE](https://github.com/binance/binance-connector-js/tree/master/clients/spot/LICENCE) 文件。

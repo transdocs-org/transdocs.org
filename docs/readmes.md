@@ -1,3 +1,3 @@
 ---
-layout: readmes-page # no translation needed
+layout: readmes-page # 无需翻译
 ---

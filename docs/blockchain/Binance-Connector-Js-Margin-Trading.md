@@ -1,61 +1,61 @@
-# Binance JavaScript Margin Trading Connector
+# Binance JavaScript 杠杆交易连接器
 
 [![Open Issues](https://img.shields.io/github/issues/binance/binance-connector-js)](https://github.com/binance/binance-connector-js/issues)
-[![Code Style: Prettier](https://img.shields.io/badge/code%20style-prettier-ff69b4)](https://prettier.io/)
-[![npm version](https://badge.fury.io/js/@binance%2Fmargin-trading.svg)](https://badge.fury.io/js/@binance%2Fmargin-trading)
-[![npm Downloads](https://img.shields.io/npm/dm/@binance/margin-trading.svg)](https://www.npmjs.com/package/@binance/margin-trading)
-![Node.js Version](https://img.shields.io/badge/Node.js-%3E=22.12.0-brightgreen)
-[![Known Vulnerabilities](https://snyk.io/test/github/binance/binance-connector-js/badge.svg)](https://snyk.io/test/github/binance/binance-connector-js)
-[![Docs](https://img.shields.io/badge/docs-online-blue?style=flat-square)](https://binance.github.io/binance-connector-js/modules/_binance_margin-trading.html)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![代码风格: Prettier](https://img.shields.io/badge/code%20style-prettier-ff69b4)](https://prettier.io/)
+[![npm 版本](https://badge.fury.io/js/@binance%2Fmargin-trading.svg)](https://badge.fury.io/js/@binance%2Fmargin-trading)
+[![npm 下载量](https://img.shields.io/npm/dm/@binance/margin-trading.svg)](https://www.npmjs.com/package/@binance/margin-trading)
+![Node.js 版本](https://img.shields.io/badge/Node.js-%3E=22.12.0-brightgreen)
+[![已知漏洞](https://snyk.io/test/github/binance/binance-connector-js/badge.svg)](https://snyk.io/test/github/binance/binance-connector-js)
+[![文档](https://img.shields.io/badge/docs-online-blue?style=flat-square)](https://binance.github.io/binance-connector-js/modules/_binance_margin-trading.html)
+[![许可证: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This is a client library for the Binance Margin Trading API, enabling developers to interact programmatically with Binance's Margin Trading trading platform. The library provides tools to use funds provided by a third party to conduct asset transactions through the REST API:
+这是一个用于 Binance 杠杆交易 API 的客户端库，允许开发者通过编程方式与 Binance 的杠杆交易平台进行交互。该库通过 REST API 提供使用第三方资金进行资产交易的工具：
 
 - [REST API](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/src/rest-api/rest-api.ts)
-- [Websocket Stream](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/src/websocket-streams/websocket-streams-connection.ts)
+- [WebSocket 流](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/src/websocket-streams/websocket-streams-connection.ts)
 
-## Table of Contents
+## 目录
 
-- [Supported Features](#supported-features)
-- [Installation](#installation)
-- [Documentation](#documentation)
-- [REST APIs](#rest-apis)
-- [Websocket Streams](#websocket-streams)
-- [Testing](#testing)
-- [Migration Guide](#migration-guide)
-- [Contributing](#contributing)
-- [Licence](#licence)
+- [支持的功能](#支持的功能)
+- [安装](#安装)
+- [文档](#文档)
+- [REST API](#rest-api)
+- [WebSocket 流](#websocket-流)
+- [测试](#测试)
+- [迁移指南](#迁移指南)
+- [贡献](#贡献)
+- [许可证](#许可证)
 
-## Supported Features
+## 支持的功能
 
-- REST API Endpoints:
+- REST API 接口：
   - `/sapi/v1/margin/*`
   - `/sapi/v1/bnbBurn/*`
   - `/sapi/v1/userDataStream/*`
-- Inclusion of test cases and examples for quick onboarding.
+- 包含测试用例和示例以实现快速上手。
 
-## Installation
+## 安装
 
-To use this library, ensure your environment is running Node.js version **22.12.0** or later. If you're using `nvm` (Node Version Manager), you can set the correct version as follows:
+要使用此库，请确保你的环境运行 **Node.js 22.12.0** 或更高版本。如果你使用 `nvm`（Node 版本管理器），可以按如下方式设置正确版本：
 
 ```bash
 nvm install 22.12.0
 nvm use 22.12.0
 ```
 
-Then install the library using `npm`:
+然后使用 `npm` 安装该库：
 
 ```bash
 npm install @binance/margin-trading
 ```
 
-## Documentation
+## 文档
 
-For detailed information, refer to the [Binance API Documentation](https://developers.binance.com/docs/margin_trading).
+有关详细信息，请参考 [Binance API 文档](https://developers.binance.com/docs/margin_trading)。
 
-### REST APIs
+### REST API
 
-All REST API endpoints are available through the [`rest-api`](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/src/rest-api/rest-api.ts) module. Note that some endpoints require authentication using your Binance API credentials.
+所有 REST API 接口都可以通过 [`rest-api`](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/src/rest-api/rest-api.ts) 模块访问。请注意，某些接口需要使用你的 Binance API 凭据进行身份验证。
 
 ```typescript
 import { MarginTrading, MarginTradingRestAPI } from '@binance/margin-trading';
@@ -73,98 +73,98 @@ client.restAPI
     .catch((err) => console.error(err));
 ```
 
-More examples can be found in the [`examples/rest-api`](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/examples/rest-api/) folder.
+更多示例可以在 [`examples/rest-api`](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/examples/rest-api/) 文件夹中找到。
 
-#### Configuration Options
+#### 配置选项
 
-The REST API supports the following advanced configuration options:
+REST API 支持以下高级配置选项：
 
-- `timeout`: Timeout for requests in milliseconds (default: 1000 ms).
-- `proxy`: Proxy configuration:
-  - `host`: Proxy server hostname.
-  - `port`: Proxy server port.
-  - `protocol`: Proxy protocol (http or https).
-  - `auth`: Proxy authentication credentials:
-    - `username`: Proxy username.
-    - `password`: Proxy password.
-- `keepAlive`: Enable HTTP keep-alive (default: true).
-- `compression`: Enable response compression (default: true).
-- `retries`: Number of retry attempts for failed requests (default: 3).
-- `backoff`: Delay in milliseconds between retries (default: 1000 ms).
-- `httpsAgent`: Custom HTTPS agent for advanced TLS configuration.
-- `privateKey`: RSA or ED25519 private key for authentication.
-- `privateKeyPassphrase`: Passphrase for the private key, if encrypted.
+- `timeout`：请求的超时时间（毫秒），默认值为 1000 毫秒。
+- `proxy`：代理配置：
+  - `host`：代理服务器主机名。
+  - `port`：代理服务器端口。
+  - `protocol`：代理协议（http 或 https）。
+  - `auth`：代理身份验证凭据：
+    - `username`：代理用户名。
+    - `password`：代理密码。
+- `keepAlive`：启用 HTTP 长连接（默认值：true）。
+- `compression`：启用响应压缩（默认值：true）。
+- `retries`：失败请求的重试次数（默认值：3）。
+- `backoff`：重试之间的延迟（毫秒）（默认值：1000 毫秒）。
+- `httpsAgent`：自定义 HTTPS 代理以进行高级 TLS 配置。
+- `privateKey`：用于身份验证的 RSA 或 ED25519 私钥。
+- `privateKeyPassphrase`：加密私钥的密码（如果加密）。
 
-##### Timeout
+##### 超时
 
-You can configure a timeout for requests in milliseconds. If the request exceeds the specified timeout, it will be aborted. See the [Timeout example](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/timeout.md) for detailed usage.
+你可以配置请求的超时时间（毫秒）。如果请求超过指定超时时间，将被中止。请参阅 [超时示例](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/timeout.md) 了解详细用法。
 
-##### Proxy
+##### 代理
 
-The REST API supports HTTP/HTTPS proxy configurations. See the [Proxy example](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/proxy.md) for detailed usage.
+REST API 支持 HTTP/HTTPS 代理配置。请参阅 [代理示例](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/proxy.md) 了解详细用法。
 
-##### Keep-Alive
+##### 长连接
 
-Enable HTTP keep-alive for persistent connections. See the [Keep-Alive example](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/keepAlive.md) for detailed usage.
+启用 HTTP 长连接以保持持久连接。请参阅 [长连接示例](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/keepAlive.md) 了解详细用法。
 
-##### Compression
+##### 压缩
 
-Enable or disable response compression. See the [Compression example](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/compression.md) for detailed usage.
+启用或禁用响应压缩。请参阅 [压缩示例](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/compression.md) 了解详细用法。
 
-##### Retries
+##### 重试
 
-Configure the number of retry attempts and delay in milliseconds between retries for failed requests. See the [Retries example](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/retries.md) for detailed usage.
+配置失败请求的重试次数和每次重试之间的延迟（毫秒）。请参阅 [重试示例](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/retries.md) 了解详细用法。
 
-##### HTTPS Agent
+##### HTTPS 代理
 
-Customize the HTTPS agent for advanced TLS configurations. See the [HTTPS Agent example](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/httpsAgent.md) for detailed usage.
+自定义 HTTPS 代理以进行高级 TLS 配置。请参阅 [HTTPS 代理示例](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/httpsAgent.md) 了解详细用法。
 
-##### Key Pair Based Authentication
+##### 基于密钥对的身份验证
 
-The REST API supports key pair-based authentication for secure communication. You can use `RSA` or `ED25519` keys for signing requests. See the [Key Pair Based Authentication example](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/key-pair-authentication.md) for detailed usage.
+REST API 支持基于密钥对的身份验证以确保通信安全。你可以使用 `RSA` 或 `ED25519` 密钥对请求进行签名。请参阅 [基于密钥对的身份验证示例](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/key-pair-authentication.md) 了解详细用法。
 
-##### Certificate Pinning
+##### 证书锁定
 
-To enhance security, you can use certificate pinning with the `httpsAgent` option in the configuration. This ensures the client only communicates with servers using specific certificates. See the [Certificate Pinning example](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/certificate-pinning.md) for detailed usage.
+为增强安全性，你可以在配置中使用 `httpsAgent` 选项启用证书锁定。这确保客户端仅与使用特定证书的服务器通信。请参阅 [证书锁定示例](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/certificate-pinning.md) 了解详细用法。
 
-#### Error Handling
+#### 错误处理
 
-The REST API provides detailed error types to help you handle issues effectively:
+REST API 提供详细的错误类型，帮助你有效处理问题：
 
-- `ConnectorClientError`: General client error.
-- `RequiredError`: Thrown when a required parameter is missing.
-- `UnauthorizedError`: Indicates missing or invalid authentication credentials.
-- `ForbiddenError`: Access to the requested resource is forbidden.
-- `TooManyRequestsError`: Rate limit exceeded.
-- `RateLimitBanError`: IP address banned for exceeding rate limits.
-- `ServerError`: Internal server error.
-- `NetworkError`: Issues with network connectivity.
-- `NotFoundError`: Resource not found.
-- `BadRequestError`: Invalid request.
+- `ConnectorClientError`：通用客户端错误。
+- `RequiredError`：缺少必需参数时抛出。
+- `UnauthorizedError`：表示缺少或无效的身份验证凭据。
+- `ForbiddenError`：禁止访问请求的资源。
+- `TooManyRequestsError`：超出速率限制。
+- `RateLimitBanError`：IP 地址因超出速率限制而被封禁。
+- `ServerError`：内部服务器错误。
+- `NetworkError`：网络连接问题。
+- `NotFoundError`：资源未找到。
+- `BadRequestError`：无效请求。
 
-See the [Error Handling example](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/error-handling.md) for detailed usage.
+请参阅 [错误处理示例](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/rest-api/error-handling.md) 了解详细用法。
 
-If `basePath` is not provided, it defaults to `https://api.binance.com`.
+如果未提供 `basePath`，则默认为 `https://api.binance.com`。
 
-### Websocket Streams
+### WebSocket 流
 
-WebSocket Streams in `margin-trading` is used for subscribing to risk and trade data streams. Use the [websocket-streams](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/src/websocket-streams/websocket-streams.ts) module to interact with it.
+`margin-trading` 中的 WebSocket 流用于订阅风险和交易数据流。使用 [websocket-streams](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/src/websocket-streams/websocket-streams.ts) 模块与其交互。
 
-#### Configuration Options
+#### 配置选项
 
-The WebSocket Streams API supports the following advanced configuration options:
+WebSocket 流 API 支持以下高级配置选项：
 
-- `reconnectDelay`: Specify the delay between reconnection attempts (default: 5000 ms).
-- `compression`: Enable or disable compression for WebSocket messages (default: true).
-- `agent`: Customize the WebSocket agent for advanced configurations.
-- `mode`: Choose between `single` and `pool` connection modes.
-  - `single`: A single WebSocket connection.
-  - `pool`: A pool of WebSocket connections.
-- `poolSize`: Define the number of WebSocket connections in pool mode.
+- `reconnectDelay`：指定重新连接尝试之间的延迟（默认值：5000 毫秒）。
+- `compression`：启用或禁用 WebSocket 消息的压缩（默认值：true）。
+- `agent`：自定义 WebSocket 代理以进行高级配置。
+- `mode`：选择 `single` 或 `pool` 连接模式。
+  - `single`：单个 WebSocket 连接。
+  - `pool`：一组 WebSocket 连接。
+- `poolSize`：池模式下的 WebSocket 连接数。
 
-#### Subscribe to Risk and Trade Data Streams
+#### 订阅风险和交易数据流
 
-You can consume the risk and trade data stream, which sends account-level events such as account and order updates. First create a listen-key via REST API; then:
+你可以消费风险和交易数据流，它会发送账户级别的事件，如账户和订单更新。首先通过 REST API 创建一个 listen-key；然后：
 
 ```typescript
 import { MarginTrading, MARGIN_TRADING_WS_STREAMS_PROD_URL } from '@binance/margin-trading';
@@ -181,14 +181,14 @@ client.websocketStreams
       tradeStream.on('message', (data) => {
           switch (data.e) {
               case 'balanceUpdate':
-                  console.log('balance update stream', data);
+                  console.log('余额更新流', data);
                   break;
               case 'outboundAccountPosition':
-                  console.log('outbound account position stream', data);
+                  console.log('出账账户位置流', data);
                   break;
-              // …handle other variants…
+              // …处理其他变体…
               default:
-                  console.log('unknown stream', data);
+                  console.log('未知流', data);
                   break;
           }
       });
@@ -211,13 +211,13 @@ client.websocketStreams
       riskStream.on('message', (data) => {
           switch (data.e) {
               case 'MARGIN_LEVEL_STATUS_CHANGE':
-                  console.log('risk level change stream', data);
+                  console.log('风险等级变化流', data);
                   break;
               case 'USER_LIABILITY_CHANGE':
-                  console.log('risk level change stream', data);
+                  console.log('风险等级变化流', data);
                   break;
               default:
-                  console.log('unknown stream', data);
+                  console.log('未知流', data);
                   break;
           }
       });
@@ -225,9 +225,9 @@ client.websocketStreams
   .catch((err) => console.error(err));
 ```
 
-#### Unsubscribing from Streams
+#### 取消订阅流
 
-You can unsubscribe from the risk and trade data streams using the `unsubscribe` method. This is useful for managing active subscriptions without closing the connection.
+你可以使用 `unsubscribe` 方法取消订阅风险和交易数据流。这对于在不关闭连接的情况下管理活动订阅非常有用。
 
 ```typescript
 import { MarginTrading, MARGIN_TRADING_WS_STREAMS_PROD_URL } from '@binance/margin-trading';
@@ -244,34 +244,34 @@ client.websocketStreams
       tradeStream.on('message', (data) => {
           switch (data.e) {
               case 'balanceUpdate':
-                  console.log('balance update stream', data);
+                  console.log('余额更新流', data);
                   break;
               case 'outboundAccountPosition':
-                  console.log('outbound account position stream', data);
+                  console.log('出账账户位置流', data);
                   break;
               default:
-                  console.log('unknown stream', data);
+                  console.log('未知流', data);
                   break;
           }
       });
 
       setTimeout(() => {
         stream.unsubscribe();
-        console.log('Unsubscribed from trade data streams');
+        console.log('已取消订阅交易数据流');
       }, 10000);
   })
   .catch((err) => console.error(err));
 ```
 
-If `wsURL` is not provided, it defaults to `wss://stream.binance.com:9443`.
+如果未提供 `wsURL`，则默认为 `wss://stream.binance.com:9443`。
 
-### Automatic Connection Renewal
+### 自动连接续订
 
-The WebSocket connection is automatically renewed for both WebSocket API and WebSocket Streams connections, before the 24 hours expiration of the API key. This ensures continuous connectivity.
+在 API 密钥的 24 小时过期之前，WebSocket 连接会自动为 WebSocket API 和 WebSocket 流连接续订。这确保了持续的连接性。
 
-## Testing
+## 测试
 
-To run the tests:
+要运行测试：
 
 ```bash
 npm install
@@ -279,30 +279,30 @@ npm install
 npm run test
 ```
 
-The tests cover:
+测试涵盖：
 
-- REST API endpoints
-- Error handling and edge cases
+- REST API 接口
+- 错误处理和边界情况
 
-## Migration Guide
+## 迁移指南
 
-If you are upgrading to the new modularized structure, refer to the [Migration Guide](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/migration_guide_margin_trading_connector.md) for detailed steps.
+如果你正在升级到新的模块化结构，请参阅 [迁移指南](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/docs/migration_guide_margin_trading_connector.md) 了解详细步骤。
 
-## Contributing
+## 贡献
 
-Contributions are welcome!
+欢迎贡献！
 
-Since this repository contains auto-generated code, we encourage you to start by opening a GitHub issue to discuss your ideas or suggest improvements. This helps ensure that changes align with the project's goals and auto-generation processes.
+由于此仓库包含自动生成的代码，我们鼓励你先通过 GitHub 提交问题来讨论你的想法或建议改进。这有助于确保更改符合项目的开发目标和自动生成流程。
 
-To contribute:
+要贡献：
 
-1. Open a GitHub issue describing your suggestion or the bug you've identified.
-2. If it's determined that changes are necessary, the maintainers will merge the changes into the main branch.
+1. 提交一个 GitHub 问题，描述你的建议或发现的 bug。
+2. 如果确定需要更改，维护者会将更改合并到主分支。
 
-Please ensure that all tests pass if you're making a direct contribution. Submit a pull request only after discussing and confirming the change.
+请确保如果你直接贡献代码，所有测试都通过。在讨论并确认更改后才提交 Pull Request。
 
-Thank you for your contributions!
+感谢你的贡献！
 
-## Licence
+## 许可证
 
-This project is licensed under the MIT License. See the [LICENCE](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/LICENCE) file for details.
+该项目采用 MIT 许可证。请参阅 [LICENCE](https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading/LICENCE) 文件了解详细信息。
