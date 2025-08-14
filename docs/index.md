@@ -11,10 +11,10 @@ hero:
     alt: TransDocs
   actions:
     - theme: brand
-      text: Translated Sites
+      text: 已完成翻译站点
       link: /sites
     - theme: alt
-      text: Translated Readmes
+      text: 翻译的Readmes
       link: /readmes
 
 features:
@@ -34,4 +34,3 @@ features:
     link: /update-strategy
     linkText: 更新策略
 ---
-

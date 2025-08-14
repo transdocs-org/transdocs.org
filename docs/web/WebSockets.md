@@ -1,122 +1,91 @@
-# ws: a Node.js WebSocket library
+# ws：一个 Node.js WebSocket 库
 
-[![Version npm](https://img.shields.io/npm/v/ws.svg?logo=npm)](https://www.npmjs.com/package/ws)
+[![版本 npm](https://img.shields.io/npm/v/ws.svg?logo=npm)](https://www.npmjs.com/package/ws)
 [![CI](https://img.shields.io/github/actions/workflow/status/websockets/ws/ci.yml?branch=master\&label=CI\&logo=github)](https://github.com/websockets/ws/actions?query=workflow%3ACI+branch%3Amaster)
-[![Coverage Status](https://img.shields.io/coveralls/websockets/ws/master.svg?logo=coveralls)](https://coveralls.io/github/websockets/ws)
+[![覆盖率状态](https://img.shields.io/coveralls/websockets/ws/master.svg?logo=coveralls)](https://coveralls.io/github/websockets/ws)
 
-ws is a simple to use, blazing fast, and thoroughly tested WebSocket client and
-server implementation.
+ws 是一个简单易用、极速且经过全面测试的 WebSocket 客户端和服务器实现。
 
-Passes the quite extensive Autobahn test suite: [server][server-report],
-[client][client-report].
+通过了相当广泛的 Autobahn 测试套件：[服务器][server-report]、[客户端][client-report]。
 
-**Note**: This module does not work in the browser. The client in the docs is a
-reference to a backend with the role of a client in the WebSocket communication.
-Browser clients must use the native
-[`WebSocket`](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
-object. To make the same code work seamlessly on Node.js and the browser, you
-can use one of the many wrappers available on npm, like
-[isomorphic-ws](https://github.com/heineiuo/isomorphic-ws).
+**注意**：此模块无法在浏览器中使用。文档中的客户端指的是在 WebSocket 通信中充当客户端角色的后端。浏览器客户端必须使用原生的 [`WebSocket`](https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket) 对象。为了使同一份代码能够在 Node.js 和浏览器中无缝运行，你可以使用 npm 上提供的许多封装模块之一，例如 [isomorphic-ws](https://github.com/heineiuo/isomorphic-ws)。
 
-## Table of Contents
+## 目录
 
-* [Protocol support](#protocol-support)
-* [Installing](#installing)
-  * [Opt-in for performance](#opt-in-for-performance)
-    * [Legacy opt-in for performance](#legacy-opt-in-for-performance)
-* [API docs](#api-docs)
-* [WebSocket compression](#websocket-compression)
-* [Usage examples](#usage-examples)
-  * [Sending and receiving text data](#sending-and-receiving-text-data)
-  * [Sending binary data](#sending-binary-data)
-  * [Simple server](#simple-server)
-  * [External HTTP/S server](#external-https-server)
-  * [Multiple servers sharing a single HTTP/S server](#multiple-servers-sharing-a-single-https-server)
-  * [Client authentication](#client-authentication)
-  * [Server broadcast](#server-broadcast)
-  * [Round-trip time](#round-trip-time)
-  * [Use the Node.js streams API](#use-the-nodejs-streams-api)
-  * [Other examples](#other-examples)
-* [FAQ](#faq)
-  * [How to get the IP address of the client?](#how-to-get-the-ip-address-of-the-client)
-  * [How to detect and close broken connections?](#how-to-detect-and-close-broken-connections)
-  * [How to connect via a proxy?](#how-to-connect-via-a-proxy)
-* [Changelog](#changelog)
-* [License](#license)
+* [协议支持](#协议支持)
+* [安装](#安装)
+  * [性能优化选项](#性能优化选项)
+    * [旧版性能优化选项](#旧版性能优化选项)
+* [API 文档](#api-文档)
+* [WebSocket 压缩](#websocket-压缩)
+* [使用示例](#使用示例)
+  * [发送和接收文本数据](#发送和接收文本数据)
+  * [发送二进制数据](#发送二进制数据)
+  * [简单服务器](#简单服务器)
+  * [外部 HTTP/S 服务器](#外部-https-服务器)
+  * [多个服务器共享一个 HTTP/S 服务器](#多个服务器共享一个-https-服务器)
+  * [客户端认证](#客户端认证)
+  * [服务器广播](#服务器广播)
+  * [往返时间](#往返时间)
+  * [使用 Node.js 流 API](#使用-nodejs-流-api)
+  * [其他示例](#其他示例)
+* [常见问题](#常见问题)
+  * [如何获取客户端的 IP 地址？](#如何获取客户端的-ip-地址)
+  * [如何检测和关闭断开的连接？](#如何检测和关闭断开的连接)
+  * [如何通过代理连接？](#如何通过代理连接)
+* [变更日志](#变更日志)
+* [许可证](#许可证)
 
-## Protocol support
+## 协议支持
 
-* **HyBi drafts 07-12** (Use the option `protocolVersion: 8`)
-* **HyBi drafts 13-17** (Current default, alternatively option
-  `protocolVersion: 13`)
+* **HyBi drafts 07-12** (使用选项 `protocolVersion: 8`)
+* **HyBi drafts 13-17** (当前默认值，也可以使用选项 `protocolVersion: 13`)
 
-## Installing
+## 安装
 
 ```
 npm install ws
 ```
 
-### Opt-in for performance
+### 性能优化选项
 
-[bufferutil][] is an optional module that can be installed alongside the ws
-module:
+[bufferutil][] 是一个可选模块，可以与 ws 模块一起安装：
 
 ```
 npm install --save-optional bufferutil
 ```
 
-This is a binary addon that improves the performance of certain operations such
-as masking and unmasking the data payload of the WebSocket frames. Prebuilt
-binaries are available for the most popular platforms, so you don't necessarily
-need to have a C++ compiler installed on your machine.
+这是一个二进制插件，可以提升某些操作的性能，比如 WebSocket 帧的数据载荷的掩码和解掩码。对于大多数流行的平台，都提供了预编译的二进制文件，因此你不一定需要在机器上安装 C++ 编译器。
 
-To force ws to not use bufferutil, use the
-[`WS_NO_BUFFER_UTIL`](https://github.com/websockets/ws/blob/master/doc/ws.md#ws_no_buffer_util) environment variable. This
-can be useful to enhance security in systems where a user can put a package in
-the package search path of an application of another user, due to how the
-Node.js resolver algorithm works.
+要强制 ws 不使用 bufferutil，请使用 [`WS_NO_BUFFER_UTIL`](https://github.com/websockets/ws/blob/master/doc/ws.md#ws_no_buffer_util) 环境变量。这在某些系统中可以增强安全性，因为在这些系统中，用户可以将包放置在其他用户的应用程序的包搜索路径中，这是由于 Node.js 解析器算法的工作方式所致。
 
-#### Legacy opt-in for performance
+#### 旧版性能优化选项
 
-If you are running on an old version of Node.js (prior to v18.14.0), ws also
-supports the [utf-8-validate][] module:
+如果你使用的是较旧版本的 Node.js（早于 v18.14.0），ws 还支持 [utf-8-validate][] 模块：
 
 ```
 npm install --save-optional utf-8-validate
 ```
 
-This contains a binary polyfill for [`buffer.isUtf8()`][].
+这个模块包含了 [`buffer.isUtf8()`][] 的二进制 polyfill。
 
-To force ws not to use utf-8-validate, use the
-[`WS_NO_UTF_8_VALIDATE`](https://github.com/websockets/ws/blob/master/doc/ws.md#ws_no_utf_8_validate) environment variable.
+要强制 ws 不使用 utf-8-validate，请使用 [`WS_NO_UTF_8_VALIDATE`](https://github.com/websockets/ws/blob/master/doc/ws.md#ws_no_utf_8_validate) 环境变量。
 
-## API docs
+## API 文档
 
-See [`/doc/ws.md`](https://github.com/websockets/ws/blob/master/doc/ws.md) for Node.js-like documentation of ws classes and
-utility functions.
+Node.js 风格的 ws 类和实用函数的文档请参见 [`/doc/ws.md`](https://github.com/websockets/ws/blob/master/doc/ws.md)。
 
-## WebSocket compression
+## WebSocket 压缩
 
-ws supports the [permessage-deflate extension][permessage-deflate] which enables
-the client and server to negotiate a compression algorithm and its parameters,
-and then selectively apply it to the data payloads of each WebSocket message.
+ws 支持 [permessage-deflate 扩展][permessage-deflate]，该扩展允许客户端和服务器协商压缩算法及其参数，然后有选择地将其应用于每个 WebSocket 消息的数据载荷。
 
-The extension is disabled by default on the server and enabled by default on the
-client. It adds a significant overhead in terms of performance and memory
-consumption so we suggest to enable it only if it is really needed.
+默认情况下，该扩展在服务器端是禁用的，在客户端是启用的。它在性能和内存消耗方面增加了显著的开销，因此我们建议仅在确实需要时才启用它。
 
-Note that Node.js has a variety of issues with high-performance compression,
-where increased concurrency, especially on Linux, can lead to [catastrophic
-memory fragmentation][node-zlib-bug] and slow performance. If you intend to use
-permessage-deflate in production, it is worthwhile to set up a test
-representative of your workload and ensure Node.js/zlib will handle it with
-acceptable performance and memory usage.
+请注意，Node.js 在高性能压缩方面存在各种问题，尤其是在 Linux 上，增加并发量可能导致 [灾难性的内存碎片][node-zlib-bug] 和缓慢的性能。如果你打算在生产环境中使用 permessage-deflate，值得设置一个代表你的工作负载的测试，并确保 Node.js/zlib 能够以可接受的性能和内存使用来处理它。
 
-Tuning of permessage-deflate can be done via the options defined below. You can
-also use `zlibDeflateOptions` and `zlibInflateOptions`, which is passed directly
-into the creation of [raw deflate/inflate streams][node-zlib-deflaterawdocs].
+可以通过以下选项定义对 permessage-deflate 进行调优。你还可以使用 `zlibDeflateOptions` 和 `zlibInflateOptions`，它们将直接传递到 [原始 deflate/inflate 流][node-zlib-deflaterawdocs] 的创建中。
 
-See [the docs][ws-server-options] for more options.
+有关更多选项，请参见 [文档][ws-server-options]。
 
 ```js
 import WebSocket, { WebSocketServer } from 'ws';
@@ -125,7 +94,7 @@ const wss = new WebSocketServer({
   port: 8080,
   perMessageDeflate: {
     zlibDeflateOptions: {
-      // See zlib defaults.
+      // 参见 zlib 默认值。
       chunkSize: 1024,
       memLevel: 7,
       level: 3
@@ -133,21 +102,18 @@ const wss = new WebSocketServer({
     zlibInflateOptions: {
       chunkSize: 10 * 1024
     },
-    // Other options settable:
-    clientNoContextTakeover: true, // Defaults to negotiated value.
-    serverNoContextTakeover: true, // Defaults to negotiated value.
-    serverMaxWindowBits: 10, // Defaults to negotiated value.
-    // Below options specified as default values.
-    concurrencyLimit: 10, // Limits zlib concurrency for perf.
-    threshold: 1024 // Size (in bytes) below which messages
-    // should not be compressed if context takeover is disabled.
+    // 其他可设置的选项：
+    clientNoContextTakeover: true, // 默认为协商的值。
+    serverNoContextTakeover: true, // 默认为协商的值。
+    serverMaxWindowBits: 10, // 默认为协商的值。
+    // 下列选项指定为默认值。
+    concurrencyLimit: 10, // 限制 zlib 并发以提高性能。
+    threshold: 1024 // 在上下文接管被禁用的情况下，小于该大小（字节）的消息不应被压缩。
   }
 });
 ```
 
-The client will only use the extension if it is supported and enabled on the
-server. To always disable the extension on the client, set the
-`perMessageDeflate` option to `false`.
+只有在服务器端支持并启用了该扩展时，客户端才会使用它。要始终在客户端禁用该扩展，请将 `perMessageDeflate` 选项设置为 `false`。
 
 ```js
 import WebSocket from 'ws';
@@ -157,9 +123,9 @@ const ws = new WebSocket('ws://www.host.com/path', {
 });
 ```
 
-## Usage examples
+## 使用示例
 
-### Sending and receiving text data
+### 发送和接收文本数据
 
 ```js
 import WebSocket from 'ws';
@@ -173,11 +139,11 @@ ws.on('open', function open() {
 });
 
 ws.on('message', function message(data) {
-  console.log('received: %s', data);
+  console.log('收到: %s', data);
 });
 ```
 
-### Sending binary data
+### 发送二进制数据
 
 ```js
 import WebSocket from 'ws';
@@ -197,7 +163,7 @@ ws.on('open', function open() {
 });
 ```
 
-### Simple server
+### 简单服务器
 
 ```js
 import { WebSocketServer } from 'ws';
@@ -208,14 +174,14 @@ wss.on('connection', function connection(ws) {
   ws.on('error', console.error);
 
   ws.on('message', function message(data) {
-    console.log('received: %s', data);
+    console.log('收到: %s', data);
   });
 
   ws.send('something');
 });
 ```
 
-### External HTTP/S server
+### 外部 HTTP/S 服务器
 
 ```js
 import { createServer } from 'https';
@@ -232,7 +198,7 @@ wss.on('connection', function connection(ws) {
   ws.on('error', console.error);
 
   ws.on('message', function message(data) {
-    console.log('received: %s', data);
+    console.log('收到: %s', data);
   });
 
   ws.send('something');
@@ -241,7 +207,7 @@ wss.on('connection', function connection(ws) {
 server.listen(8080);
 ```
 
-### Multiple servers sharing a single HTTP/S server
+### 多个服务器共享一个 HTTP/S 服务器
 
 ```js
 import { createServer } from 'http';
@@ -282,7 +248,7 @@ server.on('upgrade', function upgrade(request, socket, head) {
 server.listen(8080);
 ```
 
-### Client authentication
+### 客户端认证
 
 ```js
 import { createServer } from 'http';
@@ -299,14 +265,14 @@ wss.on('connection', function connection(ws, request, client) {
   ws.on('error', console.error);
 
   ws.on('message', function message(data) {
-    console.log(`Received message ${data} from user ${client}`);
+    console.log(`收到消息 ${data} 来自用户 ${client}`);
   });
 });
 
 server.on('upgrade', function upgrade(request, socket, head) {
   socket.on('error', onSocketError);
 
-  // This function is not defined on purpose. Implement it with your own logic.
+  // 此函数故意未定义。请使用你自己的逻辑实现它。
   authenticate(request, function next(err, client) {
     if (err || !client) {
       socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n');
@@ -325,12 +291,11 @@ server.on('upgrade', function upgrade(request, socket, head) {
 server.listen(8080);
 ```
 
-Also see the provided [example][session-parse-example] using `express-session`.
+另请参见提供的 [示例][session-parse-example] 使用 `express-session`。
 
-### Server broadcast
+### 服务器广播
 
-A client WebSocket broadcasting to all connected WebSocket clients, including
-itself.
+客户端 WebSocket 向所有已连接的 WebSocket 客户端广播，包括它自己。
 
 ```js
 import WebSocket, { WebSocketServer } from 'ws';
@@ -350,8 +315,7 @@ wss.on('connection', function connection(ws) {
 });
 ```
 
-A client WebSocket broadcasting to every other connected WebSocket clients,
-excluding itself.
+客户端 WebSocket 向所有其他已连接的 WebSocket 客户端广播，排除它自己。
 
 ```js
 import WebSocket, { WebSocketServer } from 'ws';
@@ -371,7 +335,7 @@ wss.on('connection', function connection(ws) {
 });
 ```
 
-### Round-trip time
+### 往返时间
 
 ```js
 import WebSocket from 'ws';
@@ -381,16 +345,16 @@ const ws = new WebSocket('wss://websocket-echo.com/');
 ws.on('error', console.error);
 
 ws.on('open', function open() {
-  console.log('connected');
+  console.log('已连接');
   ws.send(Date.now());
 });
 
 ws.on('close', function close() {
-  console.log('disconnected');
+  console.log('已断开连接');
 });
 
 ws.on('message', function message(data) {
-  console.log(`Round-trip time: ${Date.now() - data} ms`);
+  console.log(`往返时间: ${Date.now() - data} ms`);
 
   setTimeout(function timeout() {
     ws.send(Date.now());
@@ -398,7 +362,7 @@ ws.on('message', function message(data) {
 });
 ```
 
-### Use the Node.js streams API
+### 使用 Node.js 流 API
 
 ```js
 import WebSocket, { createWebSocketStream } from 'ws';
@@ -413,18 +377,17 @@ duplex.pipe(process.stdout);
 process.stdin.pipe(duplex);
 ```
 
-### Other examples
+### 其他示例
 
-For a full example with a browser client communicating with a ws server, see the
-examples folder.
+关于浏览器客户端与 ws 服务器通信的完整示例，请参见示例文件夹。
 
-Otherwise, see the test cases.
+否则，请参见测试用例。
 
-## FAQ
+## 常见问题
 
-### How to get the IP address of the client?
+### 如何获取客户端的 IP 地址？
 
-The remote IP address can be obtained from the raw socket.
+远程 IP 地址可以从原始套接字中获取。
 
 ```js
 import { WebSocketServer } from 'ws';
@@ -438,8 +401,7 @@ wss.on('connection', function connection(ws, req) {
 });
 ```
 
-When the server runs behind a proxy like NGINX, the de-facto standard is to use
-the `X-Forwarded-For` header.
+当服务器运行在像 NGINX 这样的代理后面时，事实上的标准是使用 `X-Forwarded-For` 头。
 
 ```js
 wss.on('connection', function connection(ws, req) {
@@ -449,14 +411,11 @@ wss.on('connection', function connection(ws, req) {
 });
 ```
 
-### How to detect and close broken connections?
+### 如何检测和关闭断开的连接？
 
-Sometimes, the link between the server and the client can be interrupted in a
-way that keeps both the server and the client unaware of the broken state of the
-connection (e.g. when pulling the cord).
+有时，服务器和客户端之间的连接可能会以保持服务器和客户端都未察觉连接断开状态的方式中断（例如，拔掉网线）。
 
-In these cases, ping messages can be used as a means to verify that the remote
-endpoint is still responsive.
+在这种情况下，ping 消息可以用来验证远程端点是否仍然有响应。
 
 ```js
 import { WebSocketServer } from 'ws';
@@ -487,12 +446,9 @@ wss.on('close', function close() {
 });
 ```
 
-Pong messages are automatically sent in response to ping messages as required by
-the spec.
+根据规范，Pong 消息会自动响应 Ping 消息发送。
 
-Just like the server example above, your clients might as well lose connection
-without knowing it. You might want to add a ping listener on your clients to
-prevent that. A simple implementation would be:
+就像上面的服务器示例一样，你的客户端可能也会在不知情的情况下失去连接。你可能希望在客户端添加一个 Ping 监听器以防止这种情况。一个简单的实现如下：
 
 ```js
 import WebSocket from 'ws';
@@ -500,10 +456,9 @@ import WebSocket from 'ws';
 function heartbeat() {
   clearTimeout(this.pingTimeout);
 
-  // Use `WebSocket#terminate()`, which immediately destroys the connection,
-  // instead of `WebSocket#close()`, which waits for the close timer.
-  // Delay should be equal to the interval at which your server
-  // sends out pings plus a conservative assumption of the latency.
+  // 使用 `WebSocket#terminate()`，它会立即销毁连接，
+  // 而不是 `WebSocket#close()`，它会等待关闭计时器。
+  // 延迟应等于你的服务器发送 Ping 的间隔时间加上对延迟的保守估计。
   this.pingTimeout = setTimeout(() => {
     this.terminate();
   }, 30000 + 1000);
@@ -519,16 +474,15 @@ client.on('close', function clear() {
 });
 ```
 
-### How to connect via a proxy?
+### 如何通过代理连接？
 
-Use a custom `http.Agent` implementation like [https-proxy-agent][] or
-[socks-proxy-agent][].
+使用自定义的 `http.Agent` 实现，例如 [https-proxy-agent][] 或 [socks-proxy-agent][]。
 
-## Changelog
+## 变更日志
 
-We're using the GitHub [releases][changelog] for changelog entries.
+我们使用 GitHub [发布][changelog] 来记录变更日志条目。
 
-## License
+## 许可证
 
 [MIT](https://github.com/websockets/ws/blob/master/LICENSE)
 
