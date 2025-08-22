@@ -1,54 +1,49 @@
 # MCP Kotlin SDK
 
 [![Kotlin Multiplatform](https://img.shields.io/badge/Kotlin-Multiplatform-blueviolet?logo=kotlin)](https://kotlinlang.org/docs/multiplatform.html)
-[![Platforms](https://img.shields.io/badge/Platforms-JVM%20%7C%20Wasm%2FJS%20%7C%20Native%20\(iOS%2FiOS%20Simulator\)-blue)](https://kotlinlang.org/docs/multiplatform.html)
+[![平台](https://img.shields.io/badge/平台-JVM%20%7C%20Wasm%2FJS%20%7C%20Native%20\(iOS%2FiOS%20模拟器\)-blue)](https://kotlinlang.org/docs/multiplatform.html)
 [![Maven Central](https://img.shields.io/maven-central/v/io.modelcontextprotocol/kotlin-sdk.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:io.modelcontextprotocol%20a:kotlin-sdk)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/LICENSE)
+[![许可证](https://img.shields.io/badge/许可证-MIT-yellow.svg)](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/LICENSE)
 
-Kotlin Multiplatform implementation of the [Model Context Protocol](https://modelcontextprotocol.io) (MCP),
-providing both client and server capabilities for integrating with LLM surfaces across various platforms.
+这是 [Model Context Protocol](https://modelcontextprotocol.io)（MCP）的 Kotlin Multiplatform 实现，
+提供客户端和服务器功能，可用于在各种平台上集成 LLM 接口。
 
-## Overview
+## 概述
 
-The Model Context Protocol allows applications to provide context for LLMs in a standardized way,
-separating the concerns of providing context from the actual LLM interaction.
-This SDK implements the MCP specification for Kotlin,
-enabling you to build applications that can communicate using MCP on the JVM, WebAssembly and iOS.
+Model Context Protocol 允许应用程序以标准化的方式为 LLM 提供上下文，
+将提供上下文与实际的 LLM 交互分离开来。
+该 SDK 实现了适用于 Kotlin 的 MCP 规范，
+使你能够在 JVM、WebAssembly 和 iOS 上构建使用 MCP 通信的应用程序。
 
-* Build MCP clients that can connect to any MCP server
-* Create MCP servers that expose resources, prompts and tools
-* Use standard transports like stdio, SSE, and WebSocket
-* Handle all MCP protocol messages and lifecycle events
+* 构建能够连接到任意 MCP 服务器的客户端
+* 创建暴露资源、提示和工具的 MCP 服务器
+* 使用标准传输协议如 stdio、SSE 和 WebSocket
+* 处理所有 MCP 协议消息和生命周期事件
 
-## Samples
+## 示例
 
-* [kotlin-mcp-server](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/samples/kotlin-mcp-server): demonstrates a multiplatform (JVM, Wasm) MCP server setup with various features and transports.
-* [weather-stdio-server](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/samples/weather-stdio-server): shows how to build a Kotlin MCP server providing weather forecast and alerts using STDIO transport.
-* [kotlin-mcp-client](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/samples/kotlin-mcp-client): demonstrates building an interactive Kotlin MCP client that connects to an MCP server via STDIO and integrates with Anthropic’s API.
+* [kotlin-mcp-server](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/samples/kotlin-mcp-server)：演示了使用多平台（JVM、Wasm）设置 MCP 服务器，包含各种功能和传输方式。
+* [weather-stdio-server](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/samples/weather-stdio-server)：展示了如何使用 STDIO 传输方式构建提供天气预报和警报的 Kotlin MCP 服务器。
+* [kotlin-mcp-client](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/samples/kotlin-mcp-client)：演示了如何构建交互式 Kotlin MCP 客户端，通过 STDIO 连接到 MCP 服务器，并与 Anthropic 的 API 集成。
 
-## Installation
+## 安装
 
-Add the new repository to your build file:
-
+将新的仓库添加到你的构建文件中：
 ```kotlin
-repositories {
+仓库 {
     mavenCentral()
 }
 ```
-
-Add the dependency:
-
+添加依赖项：
 ```kotlin
 dependencies {
-    // Use the badge above for the latest version
+    // 使用上面的徽章获取最新版本
     implementation("io.modelcontextprotocol:kotlin-sdk:$mcpVersion")
 }
 ```
+## 快速开始
 
-## Quick Start
-
-### Creating a Client
-
+### 创建客户端
 ```kotlin
 import io.modelcontextprotocol.kotlin.sdk.client.Client
 import io.modelcontextprotocol.kotlin.sdk.client.StdioClientTransport
@@ -56,7 +51,7 @@ import io.modelcontextprotocol.kotlin.sdk.Implementation
 
 val client = Client(
     clientInfo = Implementation(
-        name = "example-client",
+        name = "示例客户端",
         version = "1.0.0"
     )
 )
@@ -66,20 +61,18 @@ val transport = StdioClientTransport(
     outputStream = processOutputStream
 )
 
-// Connect to server
+// 连接到服务器
 client.connect(transport)
 
-// List available resources
+// 列出可用资源
 val resources = client.listResources()
 
-// Read a specific resource
+// 读取特定资源
 val resourceContent = client.readResource(
     ReadResourceRequest(uri = "file:///example.txt")
 )
 ```
-
-### Creating a Server
-
+### 创建服务器
 ```kotlin
 import io.modelcontextprotocol.kotlin.sdk.server.Server
 import io.modelcontextprotocol.kotlin.sdk.server.ServerOptions
@@ -101,17 +94,17 @@ val server = Server(
     )
 )
 
-// Add a resource
+// 添加资源
 server.addResource(
     uri = "file:///example.txt",
-    name = "Example Resource",
-    description = "An example text file",
+    name = "示例资源",
+    description = "一个示例文本文件",
     mimeType = "text/plain"
 ) { request ->
     ReadResourceResult(
         contents = listOf(
             TextResourceContents(
-                text = "This is the content of the example resource.",
+                text = "这是示例资源的内容。",
                 uri = request.uri,
                 mimeType = "text/plain"
             )
@@ -119,15 +112,13 @@ server.addResource(
     )
 }
 
-// Start server with stdio transport
+// 使用标准输入输出传输启动服务器
 val transport = StdioServerTransport()
 server.connect(transport)
 ```
+### 使用 SSE 传输
 
-### Using SSE Transport
-
-Directly in Ktor's `Application`:
-
+直接在 Ktor 的 `Application` 中：
 ```kotlin
 import io.ktor.server.application.*
 import io.modelcontextprotocol.kotlin.sdk.server.mcp
@@ -149,9 +140,7 @@ fun Application.module() {
     }
 }
 ```
-
-Inside a custom Ktor's `Route`:
-
+在自定义的 Ktor `Route` 内部：
 ```kotlin
 import io.ktor.server.application.*
 import io.ktor.server.sse.SSE
@@ -180,11 +169,10 @@ fun Application.module() {
     }
 }
 ```
+## 贡献指南
 
-## Contributing
+在进行贡献之前，请查看[贡献指南](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/CONTRIBUTING.md)和[行为准则](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/CODE_OF_CONDUCT.md)。
 
-Please see the [contribution guide](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/CONTRIBUTING.md) and the [Code of conduct](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/CODE_OF_CONDUCT.md) before contributing.
+## 许可证
 
-## License
-
-This project is licensed under the MIT License—see the [LICENSE](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/LICENSE) file for details.
+本项目采用 MIT 许可证进行授权——详情请参阅[许可证文件](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/LICENSE)。

@@ -1,232 +1,206 @@
 # MCP Swift SDK
 
-Official Swift SDK for the [Model Context Protocol][mcp] (MCP).
+[Model Context Protocol][mcp]（MCP）的官方 Swift SDK。
 
-## Overview
+## 概览
 
-The Model Context Protocol (MCP) defines a standardized way
-for applications to communicate with AI and ML models.
-This Swift SDK implements both client and server components
-according to the [2025-03-26][mcp-spec-2025-03-26] (latest) version
-of the MCP specification.
+Model Context Protocol（MCP）定义了一种标准化的方式，供应用程序与 AI 和 ML 模型进行通信。本 Swift SDK 根据 [2025-03-26][mcp-spec-2025-03-26]（最新版）MCP 规范，实现了客户端与服务端组件。
 
-## Requirements
+## 要求
 
-* Swift 6.0+ (Xcode 16+)
+* Swift 6.0+（Xcode 16+）
 
-See the [Platform Availability](#platform-availability) section below
-for platform-specific requirements.
+有关特定平台的要求，请参阅下方的 [平台可用性](#platform-availability) 章节。
 
-## Installation
+## 安装
 
-### Swift Package Manager
+### Swift 包管理器
 
-Add the following to your `Package.swift` file:
-
+将以下内容添加到你的 `Package.swift` 文件中：
 ```swift
-dependencies: [
+依赖项：[
     .package(url: "https://github.com/modelcontextprotocol/swift-sdk.git", from: "0.10.0")
 ]
 ```
-
-Then add the dependency to your target:
-
+然后向你的目标添加依赖项：
 ```swift
 .target(
-    name: "YourTarget",
+    name: "你的目标",
     dependencies: [
         .product(name: "MCP", package: "swift-sdk")
     ]
 )
 ```
+## 客户端使用
 
-## Client Usage
+客户端组件允许你的应用程序连接到 MCP 服务器。
 
-The client component allows your application to connect to MCP servers.
-
-### Basic Client Setup
-
+### 基础客户端设置
 ```swift
 import MCP
 
-// Initialize the client
+// 初始化客户端
 let client = Client(name: "MyApp", version: "1.0.0")
 
-// Create a transport and connect
+// 创建传输通道并连接
 let transport = StdioTransport()
 let result = try await client.connect(transport: transport)
 
-// Check server capabilities
+// 检查服务器功能
 if result.capabilities.tools != nil {
-    // Server supports tools (implicitly including tool calling if the 'tools' capability object is present)
+    // 服务器支持工具（如果存在 'tools' 功能对象，则隐式包括工具调用）
 }
 ```
+> \[!NOTE]  
+> `Client.connect(transport:)` 方法会返回初始化结果。  
+> 此返回值可以被丢弃，  
+> 因此如果你不需要检查服务器功能，可以忽略它。
 
-> \[!NOTE]
-> The `Client.connect(transport:)` method returns the initialization result.
-> This return value is discardable,
-> so you can ignore it if you don't need to check server capabilities.
+### 客户端的传输选项
 
-### Transport Options for Clients
+#### 标准输入/输出传输
 
-#### Stdio Transport
-
-For local subprocess communication:
-
+用于本地子进程通信：
 ```swift
-// Create a stdio transport (simplest option)
+// 创建一个标准输入输出传输（最简单的选项）
 let transport = StdioTransport()
 try await client.connect(transport: transport)
 ```
+#### HTTP 传输
 
-#### HTTP Transport
-
-For remote server communication:
-
+用于与远程服务器通信：
 ```swift
-// Create a streaming HTTP transport
+// 创建一个流式 HTTP 传输
 let transport = HTTPClientTransport(
     endpoint: URL(string: "http://localhost:8080")!,
-    streaming: true  // Enable Server-Sent Events for real-time updates
+    streaming: true  // 启用服务器发送事件（SSE）以实现实时更新
 )
 try await client.connect(transport: transport)
 ```
+### 工具
 
-### Tools
-
-Tools represent functions that can be called by the client:
-
+工具表示客户端可以调用的功能：
 ```swift
-// List available tools
+// 列出可用工具
 let (tools, cursor) = try await client.listTools()
-print("Available tools: \(tools.map { $0.name }.joined(separator: ", "))")
+print("可用工具：\(tools.map { $0.name }.joined(separator: ", "))")
 
-// Call a tool with arguments
+// 调用工具并传入参数
 let (content, isError) = try await client.callTool(
     name: "image-generator",
     arguments: [
-        "prompt": "A serene mountain landscape at sunset",
+        "prompt": "夕阳下的宁静山景",
         "style": "photorealistic",
         "width": 1024,
         "height": 768
     ]
 )
 
-// Handle tool content
+// 处理工具返回内容
 for item in content {
     switch item {
     case .text(let text):
-        print("Generated text: \(text)")
+        print("生成的文本：\(text)")
     case .image(let data, let mimeType, let metadata):
         if let width = metadata?["width"] as? Int,
            let height = metadata?["height"] as? Int {
-            print("Generated \(width)x\(height) image of type \(mimeType)")
-            // Save or display the image data
+            print("生成的图片尺寸为 \(width)x\(height)，类型为 \(mimeType)")
+            // 保存或显示图片数据
         }
     case .audio(let data, let mimeType):
-        print("Received audio data of type \(mimeType)")
+        print("接收到的音频类型为 \(mimeType)")
     case .resource(let uri, let mimeType, let text):
-        print("Received resource from \(uri) of type \(mimeType)")
+        print("从 \(uri) 接收到的资源类型为 \(mimeType)")
         if let text = text {
-            print("Resource text: \(text)")
+            print("资源文本：\(text)")
         }
     }
 }
 ```
+### 资源
 
-### Resources
-
-Resources represent data that can be accessed and potentially subscribed to:
-
+资源表示可以访问且可能被订阅的数据：
 ```swift
-// List available resources
+// 列出可用资源
 let (resources, nextCursor) = try await client.listResources()
-print("Available resources: \(resources.map { $0.uri }.joined(separator: ", "))")
+print("可用资源：\(resources.map { $0.uri }.joined(separator: ", "))")
 
-// Read a resource
+// 读取资源
 let contents = try await client.readResource(uri: "resource://example")
-print("Resource content: \(contents)")
+print("资源内容：\(contents)")
 
-// Subscribe to resource updates if supported
+// 如果支持的话，订阅资源更新
 if result.capabilities.resources.subscribe {
     try await client.subscribeToResource(uri: "resource://example")
 
-    // Register notification handler
+    // 注册通知处理程序
     await client.onNotification(ResourceUpdatedNotification.self) { message in
         let uri = message.params.uri
-        print("Resource \(uri) updated with new content")
+        print("资源 \(uri) 已更新为新内容")
 
-        // Fetch the updated resource content
+        // 获取更新后的资源内容
         let updatedContents = try await client.readResource(uri: uri)
-        print("Updated resource content received")
+        print("已收到更新的资源内容")
     }
 }
 ```
+### 提示
 
-### Prompts
-
-Prompts represent templated conversation starters:
-
+提示表示模板化的对话开场白：
 ```swift
-// List available prompts
+// 列出可用的提示
 let (prompts, nextCursor) = try await client.listPrompts()
-print("Available prompts: \(prompts.map { $0.name }.joined(separator: ", "))")
+print("可用提示：\(prompts.map { $0.name }.joined(separator: ", "))")
 
-// Get a prompt with arguments
+// 获取带有参数的提示
 let (description, messages) = try await client.getPrompt(
     name: "customer-service",
     arguments: [
         "customerName": "Alice",
         "orderNumber": "ORD-12345",
-        "issue": "delivery delay"
+        "issue": "配送延迟"
     ]
 )
 
-// Use the prompt messages in your application
-print("Prompt description: \(description)")
+// 在应用程序中使用提示消息
+print("提示描述：\(description)")
 for message in messages {
     if case .text(text: let text) = message.content {
         print("\(message.role): \(text)")
     }
 }
 ```
+### 采样
 
-### Sampling
+采样功能允许服务器通过客户端请求大语言模型（LLM）的推理结果，从而在保持人工参与控制的同时实现智能代理行为。客户端需注册一个处理程序来处理来自服务器的采样请求。
 
-Sampling allows servers to request LLM completions through the client,
-enabling agentic behaviors while maintaining human-in-the-loop control.
-Clients register a handler to process incoming sampling requests from servers.
-
-> \[!TIP]
-> Sampling requests flow from **server to client**,
-> not client to server.
-> This enables servers to request AI assistance
-> while clients maintain control over model access and user approval.
-
+> \[!提示]  
+> 采样请求的流向是从 **服务器到客户端**，而非客户端到服务器。  
+> 这使得服务器可以请求人工智能辅助，同时客户端仍能控制模型访问和用户审批。
 ```swift
-// Register a sampling handler in the client
-await client.withSamplingHandler { parameters in
-    // Review the sampling request (human-in-the-loop step 1)
-    print("Server requests completion for: \(parameters.messages)")
+// 在客户端注册一个采样处理器
+await client.withSamplingHandler { 参数 in
+    // 查看采样请求（人工介入步骤1）
+    print("服务器请求补全内容：\$参数.messages)")
     
-    // Optionally modify the request based on user input
-    var messages = parameters.messages
-    if let systemPrompt = parameters.systemPrompt {
-        print("System prompt: \(systemPrompt)")
+    // 可根据用户输入选择性地修改请求
+    var messages = 参数.messages
+    if let systemPrompt = 参数.systemPrompt {
+        print("系统提示词：\$systemPrompt)")
     }
     
-    // Sample from your LLM (this is where you'd call your AI service)
+    // 从你的LLM中进行采样（此处应调用你的AI服务）
     let completion = try await callYourLLMService(
         messages: messages,
-        maxTokens: parameters.maxTokens,
-        temperature: parameters.temperature
+        maxTokens: 参数.maxTokens,
+        temperature: 参数.temperature
     )
     
-    // Review the completion (human-in-the-loop step 2)
-    print("LLM generated: \(completion)")
-    // User can approve, modify, or reject the completion here
+    // 查看补全结果（人工介入步骤2）
+    print("LLM生成结果：\$completion)")
+    // 用户可以在此批准、修改或拒绝生成结果
     
-    // Return the result to the server
+    // 将结果返回给服务器
     return CreateSamplingMessage.Result(
         model: "your-model-name",
         stopReason: .endTurn,
@@ -235,111 +209,103 @@ await client.withSamplingHandler { parameters in
     )
 }
 ```
-
-The sampling flow follows these steps:
-
+采样流程遵循以下步骤：
 ```mermaid
 sequenceDiagram
-    participant S as MCP Server
-    participant C as MCP Client
-    participant U as User/Human
-    participant L as LLM Service
+    participant S as MCP 服务器
+    participant C as MCP 客户端
+    participant U as 用户/人工
+    participant L as 大语言模型服务
 
-    Note over S,L: Server-initiated sampling request
-    S->>C: sampling/createMessage request
-    Note right of S: Server needs AI assistance<br/>for decision or content
+    Note over S,L: 服务器发起的采样请求
+    S->>C: sampling/createMessage 请求
+    Note right of S: 服务器需要AI辅助<br/>进行决策或生成内容
 
-    Note over C,U: Human-in-the-loop review #1
-    C->>U: Show sampling request
-    U->>U: Review & optionally modify<br/>messages, system prompt
-    U->>C: Approve request
+    Note over C,U: 人工审核流程 #1
+    C->>U: 显示采样请求
+    U->>U: 审核并可选地修改<br/>消息、系统提示词
+    U->>C: 批准请求
 
-    Note over C,L: Client handles LLM interaction
-    C->>L: Send messages to LLM
-    L->>C: Return completion
+    Note over C,L: 客户端处理与大语言模型的交互
+    C->>L: 将消息发送给大语言模型
+    L->>C: 返回生成结果
 
-    Note over C,U: Human-in-the-loop review #2
-    C->>U: Show LLM completion
-    U->>U: Review & optionally modify<br/>or reject completion
-    U->>C: Approve completion
+    Note over C,U: 人工审核流程 #2
+    C->>U: 显示大语言模型生成结果
+    U->>U: 审核并可选地修改<br/>或拒绝生成结果
+    U->>C: 批准生成结果
 
-    Note over C,S: Return result to server
-    C->>S: sampling/createMessage response
-    Note left of C: Contains model used,<br/>stop reason, final content
+    Note over C,S: 将结果返回服务器
+    C->>S: sampling/createMessage 响应
+    Note left of C: 包含所用模型、<br/>停止原因、最终内容
 
-    Note over S: Server continues with<br/>AI-assisted result
+    Note over S: 服务器继续使用<br/>AI辅助的结果
 ```
+这种人机协同的设计确保了用户
+能够控制大语言模型（LLM）所看到和生成的内容，
+即使请求是由服务器发起的。
 
-This human-in-the-loop design ensures that users
-maintain control over what the LLM sees and generates,
-even when servers initiate the requests.
+### 错误处理
 
-### Error Handling
-
-Handle common client errors:
-
+处理常见的客户端错误：
 ```swift
 do {
     try await client.connect(transport: transport)
-    // Success
+    // 成功
 } catch let error as MCPError {
-    print("MCP Error: \(error.localizedDescription)")
+    print("MCP 错误: \(error.localizedDescription)")
 } catch {
-    print("Unexpected error: \(error)")
+    print("未知错误: \(error)")
 }
 ```
+### 高级客户端功能
 
-### Advanced Client Features
+#### 严格模式与非严格模式配置
 
-#### Strict vs Non-Strict Configuration
-
-Configure client behavior for capability checking:
-
+配置客户端的能力检查行为：
 ```swift
-// Strict configuration - fail fast if a capability is missing
+// 严格配置 - 如果缺少某个功能，则立即失败
 let strictClient = Client(
     name: "StrictClient",
     version: "1.0.0",
     configuration: .strict
 )
 
-// With strict configuration, calling a method for an unsupported capability
-// will throw an error immediately without sending a request
+// 在严格配置下，调用不支持的功能的方法时
+// 会立即抛出错误，而不会发送请求
 do {
-    // This will throw an error if resources.list capability is not available
+    // 如果 resources.list 功能不可用，则会抛出错误
     let resources = try await strictClient.listResources()
 } catch let error as MCPError {
-    print("Capability not available: \(error.localizedDescription)")
+    print("功能不可用: \(error.localizedDescription)")
 }
 
-// Default (non-strict) configuration - attempt the request anyway
+// 默认（非严格）配置 - 即使功能未被服务器声明，也会尝试发送请求
 let client = Client(
     name: "FlexibleClient",
     version: "1.0.0",
     configuration: .default
 )
 
-// With default configuration, the client will attempt the request
-// even if the capability wasn't advertised by the server
+// 在默认配置下，即使服务器未声明某个功能，
+// 客户端仍会尝试发送请求
 do {
     let resources = try await client.listResources()
 } catch let error as MCPError {
-    // Still handle the error if the server rejects the request
-    print("Server rejected request: \(error.localizedDescription)")
+    // 如果服务器拒绝了请求，仍然需要处理错误
+    print("服务器拒绝了请求: \(error.localizedDescription)")
 }
 ```
+#### 请求批处理
 
-#### Request Batching
-
-Improve performance by sending multiple requests in a single batch:
-
+通过在单个批次中发送多个请求来提高性能：
 ```swift
-// Array to hold tool call tasks
+// 用于保存工具调用任务的数组
 var toolTasks: [Task<CallTool.Result, Swift.Error>] = []
 
-// Send a batch of requests
+// 发送一批请求
 try await client.withBatch { batch in
-    // Add multiple tool calls to the batch
+    // 向批次中添加多个工具调用
     for i in 0..<10 {
         toolTasks.append(
             try await batch.addRequest(
@@ -349,26 +315,24 @@ try await client.withBatch { batch in
     }
 }
 
-// Process results after the batch is sent
-print("Processing \(toolTasks.count) tool results...")
+// 批次发送后处理结果
+print("正在处理 \(toolTasks.count) 个工具结果...")
 for (index, task) in toolTasks.enumerated() {
     do {
         let result = try await task.value
         print("\(index): \(result.content)")
     } catch {
-        print("\(index) failed: \(error)")
+        print("\(index) 失败: \(error)")
     }
 }
 ```
-
-You can also batch different types of requests:
-
+您还可以批量处理不同类型的请求：
 ```swift
-// Declare task variables
+// 声明任务变量
 var pingTask: Task<Ping.Result, Error>?
 var promptTask: Task<GetPrompt.Result, Error>?
 
-// Send a batch with different request types
+// 发送包含不同请求类型的批量请求
 try await client.withBatch { batch in
     pingTask = try await batch.addRequest(Ping.request())
     promptTask = try await batch.addRequest(
@@ -376,35 +340,33 @@ try await client.withBatch { batch in
     )
 }
 
-// Process individual results
+// 处理各个结果
 do {
     if let pingTask = pingTask {
         try await pingTask.value
-        print("Ping successful")
+        print("Ping 成功")
     }
 
     if let promptTask = promptTask {
         let promptResult = try await promptTask.value
-        print("Prompt: \(promptResult.description ?? "None")")
+        print("提示语：\(promptResult.description ?? "无")")
     }
 } catch {
-    print("Error processing batch results: \(error)")
+    print("处理批量结果时出错：\(error)")
 }
 ```
+> [!NOTE]  
+> `Server` 会自动处理来自 MCP 客户端的批量请求。
 
-> \[!NOTE]
-> `Server` automatically handles batch requests from MCP clients.
+## 服务器用法
 
-## Server Usage
+服务器组件允许您的应用程序托管模型功能并响应客户端请求。
 
-The server component allows your application to host model capabilities and respond to client requests.
-
-### Basic Server Setup
-
+### 基本服务器设置
 ```swift
 import MCP
 
-// Create a server with given capabilities
+// 使用给定的功能创建服务器
 let server = Server(
     name: "MyModelServer",
     version: "1.0.0",
@@ -415,37 +377,35 @@ let server = Server(
     )
 )
 
-// Create transport and start server
+// 创建传输通道并启动服务器
 let transport = StdioTransport()
 try await server.start(transport: transport)
 
-// Now register handlers for the capabilities you've enabled
+// 现在为你已启用的功能注册处理程序
 ```
+### 工具
 
-### Tools
-
-Register tool handlers to respond to client tool calls:
-
+注册工具处理程序以响应客户端的工具调用：
 ```swift
-// Register a tool list handler
+// 注册一个工具列表处理器
 await server.withMethodHandler(ListTools.self) { _ in
     let tools = [
         Tool(
             name: "weather",
-            description: "Get current weather for a location",
+            description: "获取某个地点的当前天气",
             inputSchema: .object([
                 "properties": .object([
-                    "location": .string("City name or coordinates"),
-                    "units": .string("Units of measurement, e.g., metric, imperial")
+                    "location": .string("城市名称或坐标"),
+                    "units": .string("度量单位，例如：metric、imperial")
                 ])
             ])
         ),
         Tool(
             name: "calculator",
-            description: "Perform calculations",
+            description: "执行计算",
             inputSchema: .object([
                 "properties": .object([
-                    "expression": .string("Mathematical expression to evaluate")
+                    "expression": .string("需要计算的数学表达式")
                 ])
             ])
         )
@@ -453,62 +413,60 @@ await server.withMethodHandler(ListTools.self) { _ in
     return .init(tools: tools)
 }
 
-// Register a tool call handler
+// 注册一个工具调用处理器
 await server.withMethodHandler(CallTool.self) { params in
     switch params.name {
     case "weather":
-        let location = params.arguments?["location"]?.stringValue ?? "Unknown"
+        let location = params.arguments?["location"]?.stringValue ?? "未知"
         let units = params.arguments?["units"]?.stringValue ?? "metric"
-        let weatherData = getWeatherData(location: location, units: units) // Your implementation
+        let weatherData = getWeatherData(location: location, units: units) // 你需要的实现
         return .init(
-            content: [.text("Weather for \(location): \(weatherData.temperature)°, \(weatherData.conditions)")],
+            content: [.text("天气信息 - 城市：\(location)，温度：\(weatherData.temperature)°，天气状况：\(weatherData.conditions)")],
             isError: false
         )
 
     case "calculator":
         if let expression = params.arguments?["expression"]?.stringValue {
-            let result = evaluateExpression(expression) // Your implementation
+            let result = evaluateExpression(expression) // 你需要的实现
             return .init(content: [.text("\(result)")], isError: false)
         } else {
-            return .init(content: [.text("Missing expression parameter")], isError: true)
+            return .init(content: [.text("缺少表达式参数")], isError: true)
         }
 
     default:
-        return .init(content: [.text("Unknown tool")], isError: true)
+        return .init(content: [.text("未知的工具")], isError: true)
     }
 }
 ```
+### 资源
 
-### Resources
-
-Implement resource handlers for data access:
-
+实现资源处理程序以进行数据访问：
 ```swift
-// Register a resource list handler
+// 注册资源列表处理器
 await server.withMethodHandler(ListResources.self) { params in
     let resources = [
         Resource(
-            name: "Knowledge Base Articles",
+            name: "知识库文章",
             uri: "resource://knowledge-base/articles",
-            description: "Collection of support articles and documentation"
+            description: "支持文章和文档的集合"
         ),
         Resource(
-            name: "System Status",
+            name: "系统状态",
             uri: "resource://system/status",
-            description: "Current system operational status"
+            description: "当前系统运行状态"
         )
     ]
     return .init(resources: resources, nextCursor: nil)
 }
 
-// Register a resource read handler
+// 注册资源读取处理器
 await server.withMethodHandler(ReadResource.self) { params in
     switch params.uri {
     case "resource://knowledge-base/articles":
-        return .init(contents: [Resource.Content.text("# Knowledge Base\n\nThis is the content of the knowledge base...", uri: params.uri)])
+        return .init(contents: [Resource.Content.text("# 知识库\n\n这是知识库的内容...", uri: params.uri)])
 
     case "resource://system/status":
-        let status = getCurrentSystemStatus() // Your implementation
+        let status = getCurrentSystemStatus() // 你的实现
         let statusJson = """
             {
                 "status": "\(status.overall)",
@@ -523,158 +481,146 @@ await server.withMethodHandler(ReadResource.self) { params in
         return .init(contents: [Resource.Content.text(statusJson, uri: params.uri, mimeType: "application/json")])
 
     default:
-        throw MCPError.invalidParams("Unknown resource URI: \(params.uri)")
+        throw MCPError.invalidParams("未知的资源URI: \(params.uri)")
     }
 }
 
-// Register a resource subscribe handler
+// 注册资源订阅处理器
 await server.withMethodHandler(ResourceSubscribe.self) { params in
-    // Store subscription for later notifications.
-    // Client identity for multi-client scenarios needs to be managed by the server application,
-    // potentially using information from the initialize handshake if the server handles one client post-init.
-    // addSubscription(clientID: /* some_client_identifier */, uri: params.uri)
-    print("Client subscribed to \(params.uri). Server needs to implement logic to track this subscription.")
+    // 存储订阅以便后续通知。
+    // 在多客户端场景中，服务器应用需要管理客户端身份标识，
+    // 可能需要使用初始化握手期间提供的信息（如果服务器在初始化后仅处理一个客户端）。
+    // addSubscription(clientID: /* 某个客户端标识符 */, uri: params.uri)
+    print("客户端订阅了 $params.uri)。服务器需要实现逻辑来跟踪该订阅。")
     return .init()
 }
 ```
+### 提示
 
-### Prompts
-
-Implement prompt handlers:
-
+实现提示处理程序：
 ```swift
-// Register a prompt list handler
+// 注册一个提示列表处理器
 await server.withMethodHandler(ListPrompts.self) { params in
     let prompts = [
         Prompt(
             name: "interview",
-            description: "Job interview conversation starter",
+            description: "求职面试对话开场白",
             arguments: [
-                .init(name: "position", description: "Job position", required: true),
-                .init(name: "company", description: "Company name", required: true),
-                .init(name: "interviewee", description: "Candidate name")
+                .init(name: "position", description: "职位名称", required: true),
+                .init(name: "company", description: "公司名称", required: true),
+                .init(name: "interviewee", description: "候选人姓名")
             ]
         ),
         Prompt(
             name: "customer-support",
-            description: "Customer support conversation starter",
+            description: "客户服务对话开场白",
             arguments: [
-                .init(name: "issue", description: "Customer issue", required: true),
-                .init(name: "product", description: "Product name", required: true)
+                .init(name: "issue", description: "客户问题", required: true),
+                .init(name: "product", description: "产品名称", required: true)
             ]
         )
     ]
     return .init(prompts: prompts, nextCursor: nil)
 }
 
-// Register a prompt get handler
+// 注册一个提示获取处理器
 await server.withMethodHandler(GetPrompt.self) { params in
     switch params.name {
     case "interview":
-        let position = params.arguments?["position"]?.stringValue ?? "Software Engineer"
-        let company = params.arguments?["company"]?.stringValue ?? "Acme Corp"
-        let interviewee = params.arguments?["interviewee"]?.stringValue ?? "Candidate"
+        let position = params.arguments?["position"]?.stringValue ?? "软件工程师"
+        let company = params.arguments?["company"]?.stringValue ?? "Acme 公司"
+        let interviewee = params.arguments?["interviewee"]?.stringValue ?? "候选人"
 
-        let description = "Job interview for \(position) position at \(company)"
+        let description = "应聘 \(company) 的 \(position) 职位的面试"
         let messages: [Prompt.Message] = [
-            .user("You are an interviewer for the \(position) position at \(company)."),
-            .user("Hello, I'm \(interviewee) and I'm here for the \(position) interview."),
-            .assistant("Hi \(interviewee), welcome to \(company)! I'd like to start by asking about your background and experience.")
+            .user("你正在担任 \(company) 的 \(position) 职位的面试官。"),
+            .user("你好，我是 \(interviewee)，我来参加 \(position) 职位的面试。"),
+            .assistant("你好，\(interviewee)，欢迎来到 \(company)! 我想先了解一下你的背景和经验。")
         ]
 
         return .init(description: description, messages: messages)
 
     case "customer-support":
-        // Similar implementation for customer support prompt
+        // 客户支持提示的类似实现
 
     default:
-        throw MCPError.invalidParams("Unknown prompt name: \(params.name)")
+        throw MCPError.invalidParams("未知的提示名称: \(params.name)")
     }
 }
 ```
+### 采样
 
-### Sampling
-
-Servers can request LLM completions from clients through sampling. This enables agentic behaviors where servers can ask for AI assistance while maintaining human oversight.
+服务器可以通过采样向客户端请求大语言模型（LLM）补全。这使得服务器在保持人工监督的同时，能够请求人工智能辅助，从而实现类似智能体的行为。
 
 > \[!NOTE]
-> The current implementation provides the correct API design for sampling, but requires bidirectional communication support in the transport layer. This feature will be fully functional when bidirectional transport support is added.
-
+> 当前的实现为采样提供了正确的 API 设计，但需要传输层支持双向通信。此功能将在传输层支持双向通信后完全可用。
 ```swift
-// Enable sampling capability in server
+// 在服务器中启用采样功能
 let server = Server(
     name: "MyModelServer",
     version: "1.0.0",
     capabilities: .init(
-        sampling: .init(),  // Enable sampling capability
+        sampling: .init(),  // 启用采样功能
         tools: .init(listChanged: true)
     )
 )
 
-// Request sampling from the client (conceptual - requires bidirectional transport)
+// 从客户端请求采样（概念性示例 - 需要双向传输）
 do {
     let result = try await server.requestSampling(
         messages: [
-            .user("Analyze this data and suggest next steps")
+            .user("分析这些数据并建议下一步操作")
         ],
-        systemPrompt: "You are a helpful data analyst",
+        systemPrompt: "你是一个有用的数据分析师",
         temperature: 0.7,
         maxTokens: 150
     )
     
-    // Use the LLM completion in your server logic
-    print("LLM suggested: \(result.content)")
+    // 在服务器逻辑中使用LLM的生成结果
+    print("LLM建议: \(result.content)")
     
 } catch {
-    print("Sampling request failed: \(error)")
+    print("采样请求失败: \(error)")
 }
 ```
+采样功能支持强大的智能体工作流程：
 
-Sampling enables powerful agentic workflows:
+* **决策制定**：要求大语言模型（LLM）在多个选项中进行选择
+* **内容生成**：请求生成内容草稿以供用户审批
+* **数据分析**：获取人工智能对复杂数据的洞察
+* **多步骤推理**：将人工智能补全结果与工具调用相结合
 
-* **Decision-making**: Ask the LLM to choose between options
-* **Content generation**: Request drafts for user approval
-* **Data analysis**: Get AI insights on complex data
-* **Multi-step reasoning**: Chain AI completions with tool calls
+#### 初始化钩子
 
-#### Initialize Hook
-
-Control client connections with an initialize hook:
-
+使用初始化钩子控制客户端连接：
 ```swift
-// Start the server with an initialize hook
+// 通过初始化钩子启动服务器
 try await server.start(transport: transport) { clientInfo, clientCapabilities in
-    // Validate client info
+    // 验证客户端信息
     guard clientInfo.name != "BlockedClient" else {
-        throw MCPError.invalidRequest("This client is not allowed")
+        throw MCPError.invalidRequest("此客户端不被允许")
     }
 
-    // You can also inspect client capabilities
+    // 你也可以检查客户端的功能
     if clientCapabilities.sampling == nil {
-        print("Client does not support sampling")
+        print("客户端不支持采样")
     }
 
-    // Perform any server-side setup based on client info
-    print("Client \(clientInfo.name) v\(clientInfo.version) connected")
+    // 根据客户端信息执行服务器端设置
+    print("客户端 \(clientInfo.name) v\(clientInfo.version) 已连接")
 
-    // If the hook completes without throwing, initialization succeeds
+    // 如果钩子执行完毕且未抛出错误，则初始化成功
 }
 ```
+### 优雅关闭
 
-### Graceful Shutdown
+我们建议使用 [Swift 服务生命周期](https://github.com/swift-server/swift-service-lifecycle) 来管理服务的启动和关闭。
 
-We recommend using
-[Swift Service Lifecycle](https://github.com/swift-server/swift-service-lifecycle)
-for managing startup and shutdown of services.
-
-First, add the dependency to your `Package.swift`:
-
+首先，在你的 `Package.swift` 中添加依赖项：
 ```swift
 .package(url: "https://github.com/swift-server/swift-service-lifecycle.git", from: "2.3.0"),
 ```
-
-Then implement the MCP server as a `Service`:
-
+然后将MCP服务器实现为一个`Service`：
 ```swift
 import MCP
 import ServiceLifecycle
@@ -690,22 +636,20 @@ struct MCPService: Service {
     }
 
     func run() async throws {
-        // Start the server
+        // 启动服务器
         try await server.start(transport: transport)
 
-        // Keep running until external cancellation
-        try await Task.sleep(for: .days(365 * 100))  // Effectively forever
+        // 持续运行直到外部取消
+        try await Task.sleep(for: .days(365 * 100))  // 实际上是永久运行
     }
 
     func shutdown() async throws {
-        // Gracefully shutdown the server
+        // 优雅地关闭服务器
         await server.stop()
     }
 }
 ```
-
-Then use it in your application:
-
+然后在你的应用程序中使用它：
 ```swift
 import MCP
 import ServiceLifecycle
@@ -713,7 +657,7 @@ import Logging
 
 let logger = Logger(label: "com.example.mcp-server")
 
-// Create the MCP server
+// 创建 MCP 服务器
 let server = Server(
     name: "MyModelServer",
     version: "1.0.0",
@@ -724,25 +668,25 @@ let server = Server(
     )
 )
 
-// Add handlers directly to the server
+// 直接向服务器添加处理程序
 await server.withMethodHandler(ListTools.self) { _ in
-    // Your implementation
+    // 你的实现
     return .init(tools: [
-        Tool(name: "example", description: "An example tool")
+        Tool(name: "example", description: "一个示例工具")
     ])
 }
 
 await server.withMethodHandler(CallTool.self) { params in
-    // Your implementation
-    return .init(content: [.text("Tool result")], isError: false)
+    // 你的实现
+    return .init(content: [.text("工具执行结果")], isError: false)
 }
 
-// Create MCP service and other services
+// 创建 MCP 服务及其他服务
 let transport = StdioTransport(logger: logger)
 let mcpService = MCPService(server: server, transport: transport)
-let databaseService = DatabaseService() // Your other services
+let databaseService = DatabaseService() // 你的其他服务
 
-// Create service group with signal handling
+// 创建包含信号处理的服务组
 let serviceGroup = ServiceGroup(
     services: [mcpService, databaseService],
     configuration: .init(
@@ -751,39 +695,35 @@ let serviceGroup = ServiceGroup(
     logger: logger
 )
 
-// Run the service group - this blocks until shutdown
+// 运行服务组 - 此调用会阻塞直到服务关闭
 try await serviceGroup.run()
 ```
+这种方法具有以下几个优势：
 
-This approach has several benefits:
-
-* **Signal handling**:
-  Automatically traps SIGINT, SIGTERM and triggers graceful shutdown
-* **Graceful shutdown**:
-  Properly shuts down your MCP server and other services
-* **Timeout-based shutdown**:
-  Configurable shutdown timeouts to prevent hanging processes
-* **Advanced service management**:
+* **信号处理**：
+  自动捕获 SIGINT、SIGTERM 并触发优雅关机
+* **优雅关机**：
+  正确关闭你的 MCP 服务器和其他服务
+* **基于超时的关机**：
+  可配置的关机超时时间以防止进程挂起
+* **高级服务管理**：
   [`ServiceLifecycle`](https://swiftpackageindex.com/swift-server/swift-service-lifecycle/documentation/servicelifecycle)
-  also supports service dependencies, conditional services,
-  and other useful features.
+  同样支持服务依赖、条件服务以及其他有用的特性。
 
-## Transports
+## 传输协议
 
-MCP's transport layer handles communication between clients and servers.
-The Swift SDK provides multiple built-in transports:
+MCP 的传输层负责处理客户端与服务器之间的通信。Swift SDK 提供了多种内置的传输协议：
 
-| Transport                                                                                         | Description                                                                                                                                                             | Platforms                         | Best for                                                     |
-| ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ------------------------------------------------------------ |
-| [`StdioTransport`](https://github.com/Sources/MCP/Base/Transports/StdioTransport.swift)           | Implements [stdio transport](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#stdio) using standard input/output streams                       | Apple platforms, Linux with glibc | Local subprocesses, CLI tools                                |
-| [`HTTPClientTransport`](https://github.com/Sources/MCP/Base/Transports/HTTPClientTransport.swift) | Implements [Streamable HTTP transport](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http) using Foundation's URL Loading System | All platforms with Foundation     | Remote servers, web applications                             |
-| [`InMemoryTransport`](https://github.com/Sources/MCP/Base/Transports/InMemoryTransport.swift)     | Custom in-memory transport for direct communication within the same process                                                                                             | All platforms                     | Testing, debugging, same-process client-server communication |
-| [`NetworkTransport`](https://github.com/Sources/MCP/Base/Transports/NetworkTransport.swift)       | Custom transport using Apple's Network framework for TCP/UDP connections                                                                                                | Apple platforms only              | Low-level networking, custom protocols                       |
+| 传输协议                                                                                         | 描述                                                                                                                                                             | 支持平台                         | 最适合的场景                                                     |
+| ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------- |
+| [`StdioTransport`](https://github.com/Sources/MCP/Base/Transports/StdioTransport.swift)           | 使用标准输入/输出流实现 [stdio 传输协议](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#stdio)                                               | Apple 平台、Linux with glibc    | 本地子进程、CLI 工具                                             |
+| [`HTTPClientTransport`](https://github.com/Sources/MCP/Base/Transports/HTTPClientTransport.swift) | 使用 Foundation 的 URL 加载系统实现 [可流式 HTTP 传输协议](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http)                | 所有支持 Foundation 的平台       | 远程服务器、Web 应用                                              |
+| [`InMemoryTransport`](https://github.com/Sources/MCP/Base/Transports/InMemoryTransport.swift)     | 自定义的内存内传输协议，用于同一进程内的直接通信                                                                                                                       | 所有平台                         | 测试、调试、同一进程内客户端-服务器通信                          |
+| [`NetworkTransport`](https://github.com/Sources/MCP/Base/Transports/NetworkTransport.swift)       | 使用 Apple 的 Network 框架实现 TCP/UDP 连接的自定义传输协议                                                                                                              | 仅 Apple 平台                    | 低级网络通信、自定义协议                                         |
 
-### Custom Transport Implementation
+### 自定义传输协议实现
 
-You can implement a custom transport by conforming to the `Transport` protocol:
-
+你可以通过实现 `Transport` 协议来创建一个自定义的传输协议：
 ```swift
 import MCP
 import Foundation
@@ -803,18 +743,18 @@ public actor MyCustomTransport: Transport {
     }
 
     public func connect() async throws {
-        // Implement your connection logic
+        // 实现你的连接逻辑
         isConnected = true
     }
 
     public func disconnect() async {
-        // Implement your disconnection logic
+        // 实现你的断开连接逻辑
         isConnected = false
         messageContinuation.finish()
     }
 
     public func send(_ data: Data) async throws {
-        // Implement your message sending logic
+        // 实现你的消息发送逻辑
     }
 
     public func receive() -> AsyncThrowingStream<Data, any Swift.Error> {
@@ -822,69 +762,65 @@ public actor MyCustomTransport: Transport {
     }
 }
 ```
+## 平台可用性
 
-## Platform Availability
+Swift SDK 具有以下平台要求：
 
-The Swift SDK has the following platform requirements:
+| 平台             | 最低版本要求                                                                            |
+| ---------------- | -------------------------------------------------------------------------------------- |
+| macOS            | 13.0+                                                                                  |
+| iOS / Mac Catalyst | 16.0+                                                                                 |
+| watchOS          | 9.0+                                                                                   |
+| tvOS             | 16.0+                                                                                  |
+| visionOS         | 1.0+                                                                                   |
+| Linux           | 支持 `glibc` 或 `musl` 的发行版，包括 Ubuntu、Debian、Fedora 和 Alpine Linux |
 
-| Platform           | Minimum Version                                                                          |
-| ------------------ | ---------------------------------------------------------------------------------------- |
-| macOS              | 13.0+                                                                                    |
-| iOS / Mac Catalyst | 16.0+                                                                                    |
-| watchOS            | 9.0+                                                                                     |
-| tvOS               | 16.0+                                                                                    |
-| visionOS           | 1.0+                                                                                     |
-| Linux              | Distributions with `glibc` or `musl`, including Ubuntu, Debian, Fedora, and Alpine Linux |
+尽管核心库可以在任何支持 Swift 6 的平台（包括 Linux 和 Windows）上运行，
+但运行客户端或服务端需要一个兼容的传输协议。
 
-While the core library works on any platform supporting Swift 6
-(including Linux and Windows),
-running a client or server requires a compatible transport.
+我们正在努力添加 [Windows 支持](https://github.com/modelcontextprotocol/swift-sdk/pull/64)。
 
-We're working to add [Windows support](https://github.com/modelcontextprotocol/swift-sdk/pull/64).
+## 调试与日志
 
-## Debugging and Logging
-
-Enable logging to help troubleshoot issues:
-
+启用日志记录以帮助排查问题：
 ```swift
 import Logging
 import MCP
 
-// Configure Logger
+// 配置日志记录器
 LoggingSystem.bootstrap { label in
     var handler = StreamLogHandler.standardOutput(label: label)
     handler.logLevel = .debug
     return handler
 }
 
-// Create logger
+// 创建日志记录器
 let logger = Logger(label: "com.example.mcp")
 
-// Pass to client/server
+// 传递给客户端/服务端
 let client = Client(name: "MyApp", version: "1.0.0")
 
-// Pass to transport
+// 传递给传输层
 let transport = StdioTransport(logger: logger)
 ```
+## 其他资源
 
-## Additional Resources
+* [MCP 规范](https://modelcontextprotocol.io/specification/2025-03-26/)
+* [协议文档](https://modelcontextprotocol.io)
+* [GitHub 仓库](https://github.com/modelcontextprotocol/swift-sdk)
 
-* [MCP Specification](https://modelcontextprotocol.io/specification/2025-03-26/)
-* [Protocol Documentation](https://modelcontextprotocol.io)
-* [GitHub Repository](https://github.com/modelcontextprotocol/swift-sdk)
+## 更新日志
 
-## Changelog
+该项目遵循 [语义化版本控制](https://semver.org/)。
+对于 1.0 之前的版本，
+次版本号更新（0.X.0）可能包含破坏性变更。
 
-This project follows [Semantic Versioning](https://semver.org/).
-For pre-1.0 releases,
-minor version increments (0.X.0) may contain breaking changes.
+有关每个版本的详细变更信息，
+请参阅 [GitHub Releases 页面](https://github.com/modelcontextprotocol/swift-sdk/releases)。
 
-For details about changes in each release,
-see the [GitHub Releases page](https://github.com/modelcontextprotocol/swift-sdk/releases).
+## 许可证
 
-## License
-
-This project is licensed under the MIT License.
+该项目使用 MIT 许可证。
 
 [mcp]: https://modelcontextprotocol.io
 

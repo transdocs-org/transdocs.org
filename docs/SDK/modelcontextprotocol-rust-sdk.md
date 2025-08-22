@@ -12,34 +12,34 @@
 
 ![Coverage](https://raw.githubusercontent.com/modelcontextprotocol/rust-sdk/refs/heads/main/docs/coverage.svg)
 
-An official Rust Model Context Protocol SDK implementation with tokio async runtime.
+一个使用 tokio 异步运行时实现的官方 Rust Model Context Protocol（模型上下文协议） SDK。
 
-This repository contains the following crates:
+本仓库包含以下模块包（crates）：
 
-* [rmcp](https://github.com/modelcontextprotocol/rust-sdk/tree/main/crates/rmcp): The core crate providing the RMCP protocol implementation (If you want to get more information, please visit [rmcp](https://github.com/modelcontextprotocol/rust-sdk/tree/main/crates/rmcp/README.md))
-* [rmcp-macros](https://github.com/modelcontextprotocol/rust-sdk/tree/main/crates/rmcp-macros): A procedural macro crate for generating RMCP tool implementations (If you want to get more information, please visit [rmcp-macros](https://github.com/modelcontextprotocol/rust-sdk/tree/main/crates/rmcp-macros/README.md))
+* [rmcp](https://github.com/modelcontextprotocol/rust-sdk/tree/main/crates/rmcp)：核心模块包，提供 RMCP 协议的实现（如需了解更多，请访问 [rmcp](https://github.com/modelcontextprotocol/rust-sdk/tree/main/crates/rmcp/README.md)）
+* [rmcp-macros](https://github.com/modelcontextprotocol/rust-sdk/tree/main/crates/rmcp-macros)：用于生成 RMCP 工具实现的程序宏模块包（如需了解更多，请访问 [rmcp-macros](https://github.com/modelcontextprotocol/rust-sdk/tree/main/crates/rmcp-macros/README.md)）
 
-## Usage
+## 使用方法
 
-### Import the crate
+### 导入模块包
 
 ```toml
 rmcp = { version = "0.2.0", features = ["server"] }
-## or dev channel
+## 或者开发通道
 rmcp = { git = "https://github.com/modelcontextprotocol/rust-sdk", branch = "main" }
 ```
 
-### Third Dependencies
+### 第三方依赖
 
-Basic dependencies:
+基础依赖：
 
-* [tokio required](https://github.com/tokio-rs/tokio)
-* [serde required](https://github.com/serde-rs/serde)
+* [tokio 必需](https://github.com/tokio-rs/tokio)
+* [serde 必需](https://github.com/serde-rs/serde)
 
-### Build a Client
+### 构建客户端
 
 <details>
-<summary>Start a client</summary>
+<summary>启动客户端</summary>
 
 ```rust, ignore
 use rmcp::{ServiceExt, transport::{TokioChildProcess, ConfigureCommandExt}};
@@ -56,10 +56,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 </details>
 
-### Build a Server
+### 构建服务器
 
 <details>
-<summary>Build a transport</summary>
+<summary>构建传输层</summary>
 
 ```rust, ignore
 use tokio::io::{stdin, stdout};
@@ -69,76 +69,76 @@ let transport = (stdin(), stdout());
 </details>
 
 <details>
-<summary>Build a service</summary>
+<summary>构建一个服务</summary>
 
-You can easily build a service by using [`ServerHandler`](https://github.com/modelcontextprotocol/rust-sdk/tree/main/crates/rmcp/src/handler/server.rs) or [`ClientHandler`](https://github.com/modelcontextprotocol/rust-sdk/tree/main/crates/rmcp/src/handler/client.rs).
+你可以通过使用 [`ServerHandler`](https://github.com/modelcontextprotocol/rust-sdk/tree/main/crates/rmcp/src/handler/server.rs) 或 [`ClientHandler`](https://github.com/modelcontextprotocol/rust-sdk/tree/main/crates/rmcp/src/handler/client.rs) 轻松地构建一个服务。
 
 ```rust, ignore
 let service = common::counter::Counter::new();
 ```
 
 </details>
-
 <details>
-<summary>Start the server</summary>
+
+<summary>启动服务器</summary>
 
 ```rust, ignore
-// this call will finish the initialization process
+// 此调用将完成初始化过程
 let server = service.serve(transport).await?;
 ```
 
 </details>
 
 <details>
-<summary>Interact with the server</summary>
+<summary>与服务器交互</summary>
 
-Once the server is initialized, you can send requests or notifications:
+一旦服务器初始化完成，你就可以发送请求或通知：
 
 ```rust, ignore
-// request
-let roots = server.list_roots().await?;
+// 请求
+let roots = server.列出根目录().await?;
 
-// or send notification
-server.notify_cancelled(...).await?;
+// 或发送通知
+server.通知已取消(...).await?;
 ```
 
 </details>
 
 <details>
-<summary>Waiting for service shutdown</summary>
+<summary>等待服务关闭</summary>
 
 ```rust, ignore
 let quit_reason = server.waiting().await?;
-// or cancel it
+// 或者取消它
 let quit_reason = server.cancel().await?;
 ```
 
 </details>
 
-## Examples
+## 示例
 
-See [examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/README.md)
+请参阅 [示例](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/README.md)
 
-## OAuth Support
+## OAuth 支持
 
-See [oauth\_support](https://github.com/modelcontextprotocol/rust-sdk/tree/main/docs/OAUTH_SUPPORT.md) for details.
+详情请参阅 [oauth\_support](https://github.com/modelcontextprotocol/rust-sdk/tree/main/docs/OAUTH_SUPPORT.md)。
 
-## Related Resources
+## 相关资源
 
-* [MCP Specification](https://spec.modelcontextprotocol.io/specification/2024-11-05/)
+* [MCP 规范](https://spec.modelcontextprotocol.io/specification/2024-11-05/)
 * [Schema](https://github.com/modelcontextprotocol/specification/blob/main/schema/2024-11-05/schema.ts)
 
-## Related Projects
+## 相关项目
 
-* [rustfs-mcp](https://github.com/rustfs/rustfs/tree/main/crates/mcp) - High-performance MCP server providing S3-compatible object storage operations for AI/LLM integration
-* [containerd-mcp-server](https://github.com/jokemanfire/mcp-containerd) - A containerd-based MCP server implementation
+* [rustfs-mcp](https://github.com/rustfs/rustfs/tree/main/crates/mcp) - 高性能 MCP 服务器，为 AI/LLM 集成提供 S3 兼容的对象存储操作
+* [containerd-mcp-server](https://github.com/jokemanfire/mcp-containerd) - 基于 containerd 的 MCP 服务器实现
 
-## Development
+## 开发
 
-### Tips for Contributors
+### 贡献者建议
 
-See [docs/CONTRIBUTE.MD](https://github.com/modelcontextprotocol/rust-sdk/tree/main/docs/CONTRIBUTE.MD) to get some tips for contributing.
+请参阅 [docs/CONTRIBUTE.MD](https://github.com/modelcontextprotocol/rust-sdk/tree/main/docs/CONTRIBUTE.MD) 获取一些贡献建议。
 
-### Using Dev Container
+### 使用开发容器
 
-If you want to use dev container, see [docs/DEVCONTAINER.md](https://github.com/modelcontextprotocol/rust-sdk/tree/main/docs/DEVCONTAINER.md) for instructions on using Dev Container for development.
+如果你想使用开发容器，请参阅 [docs/DEVCONTAINER.md](https://github.com/modelcontextprotocol/rust-sdk/tree/main/docs/DEVCONTAINER.md) 获取有关使用 Dev Container 进行开发的说明。

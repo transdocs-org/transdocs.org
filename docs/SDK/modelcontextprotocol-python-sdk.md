@@ -2,61 +2,61 @@
 
 <div align="center">
 
-<strong>Python implementation of the Model Context Protocol (MCP)</strong>
+<strong>Model Context Protocol (MCP) 的 Python 实现</strong>
 
 [![PyPI][pypi-badge]][pypi-url]
-[![MIT licensed][mit-badge]][mit-url]
-[![Python Version][python-badge]][python-url]
-[![Documentation][docs-badge]][docs-url]
-[![Specification][spec-badge]][spec-url]
-[![GitHub Discussions][discussions-badge]][discussions-url]
+[![MIT 许可证][mit-badge]][mit-url]
+[![Python 版本][python-badge]][python-url]
+[![文档][docs-badge]][docs-url]
+[![规范][spec-badge]][spec-url]
+[![GitHub 讨论区][discussions-badge]][discussions-url]
 
 </div>
 
 <!-- omit in toc -->
 
-## Table of Contents
+## 目录
 
 * [MCP Python SDK](#mcp-python-sdk)
-  * [Overview](#overview)
-  * [Installation](#installation)
-    * [Adding MCP to your python project](#adding-mcp-to-your-python-project)
-    * [Running the standalone MCP development tools](#running-the-standalone-mcp-development-tools)
-  * [Quickstart](#quickstart)
-  * [What is MCP?](#what-is-mcp)
-  * [Core Concepts](#core-concepts)
-    * [Server](#server)
-    * [Resources](#resources)
-    * [Tools](#tools)
-      * [Structured Output](#structured-output)
-    * [Prompts](#prompts)
-    * [Images](#images)
-    * [Context](#context)
-    * [Completions](#completions)
-    * [Elicitation](#elicitation)
-    * [Sampling](#sampling)
-    * [Logging and Notifications](#logging-and-notifications)
-    * [Authentication](#authentication)
-    * [FastMCP Properties](#fastmcp-properties)
-    * [Session Properties](#session-properties-and-methods)
-    * [Request Context Properties](#request-context-properties)
-  * [Running Your Server](#running-your-server)
-    * [Development Mode](#development-mode)
-    * [Claude Desktop Integration](#claude-desktop-integration)
-    * [Direct Execution](#direct-execution)
-    * [Streamable HTTP Transport](#streamable-http-transport)
-    * [Mounting to an Existing ASGI Server](#mounting-to-an-existing-asgi-server)
-  * [Advanced Usage](#advanced-usage)
-    * [Low-Level Server](#low-level-server)
-    * [Writing MCP Clients](#writing-mcp-clients)
-    * [Client Display Utilities](#client-display-utilities)
-    * [OAuth Authentication for Clients](#oauth-authentication-for-clients)
-    * [Parsing Tool Results](#parsing-tool-results)
-    * [MCP Primitives](#mcp-primitives)
-    * [Server Capabilities](#server-capabilities)
-  * [Documentation](#documentation)
-  * [Contributing](#contributing)
-  * [License](#license)
+  * [概述](#概述)
+  * [安装](#安装)
+    * [将 MCP 添加到你的 Python 项目](#将-mcp-添加到你的-python-项目)
+    * [运行独立的 MCP 开发工具](#运行独立的-mcp-开发工具)
+  * [快速入门](#快速入门)
+  * [什么是 MCP？](#什么是-mcp)
+  * [核心概念](#核心概念)
+    * [服务器](#服务器)
+    * [资源](#资源)
+    * [工具](#工具)
+      * [结构化输出](#结构化输出)
+    * [提示](#提示)
+    * [图像](#图像)
+    * [上下文](#上下文)
+    * [补全](#补全)
+    * [引导](#引导)
+    * [采样](#采样)
+    * [日志和通知](#日志和通知)
+    * [身份验证](#身份验证)
+    * [FastMCP 属性](#fastmcp-属性)
+    * [会话属性](#会话属性和方法)
+    * [请求上下文属性](#请求上下文属性)
+  * [运行你的服务器](#运行你的服务器)
+    * [开发模式](#开发模式)
+    * [Claude 桌面集成](#claude-桌面集成)
+    * [直接执行](#直接执行)
+    * [可流式 HTTP 传输](#可流式-http-传输)
+    * [挂载到现有 ASGI 服务器](#挂载到现有-asgi-服务器)
+  * [高级用法](#高级用法)
+    * [底层服务器](#底层服务器)
+    * [编写 MCP 客户端](#编写-mcp-客户端)
+    * [客户端显示工具](#客户端显示工具)
+    * [客户端的 OAuth 身份验证](#客户端的-oauth-身份验证)
+    * [解析工具结果](#解析工具结果)
+    * [MCP 原语](#mcp-原语)
+    * [服务器能力](#服务器能力)
+  * [文档](#文档)
+  * [贡献](#贡献)
+  * [许可证](#许可证)
 
 [pypi-badge]: https://img.shields.io/pypi/v/mcp.svg
 
@@ -82,130 +82,115 @@
 
 [discussions-url]: https://github.com/modelcontextprotocol/python-sdk/discussions
 
-## Overview
+## 概述
 
-The Model Context Protocol allows applications to provide context for LLMs in a standardized way, separating the concerns of providing context from the actual LLM interaction. This Python SDK implements the full MCP specification, making it easy to:
+Model Context Protocol（模型上下文协议）允许应用程序以标准化方式为大语言模型（LLM）提供上下文，将提供上下文与实际的 LLM 交互分离开来。这个 Python SDK 实现了完整的 MCP 规范，使得可以轻松地：
 
-* Build MCP clients that can connect to any MCP server
-* Create MCP servers that expose resources, prompts and tools
-* Use standard transports like stdio, SSE, and Streamable HTTP
-* Handle all MCP protocol messages and lifecycle events
+* 构建能够连接到任意 MCP 服务器的 MCP 客户端
+* 创建暴露资源、提示和工具的 MCP 服务器
+* 使用标准传输方式，如 stdio、SSE 和可流式 HTTP
+* 处理所有 MCP 协议消息和生命周期事件
 
-## Installation
+## 安装
 
-### Adding MCP to your python project
+### 将 MCP 添加到你的 Python 项目
 
-We recommend using [uv](https://docs.astral.sh/uv/) to manage your Python projects.
+我们推荐使用 [uv](https://docs.astral.sh/uv/) 来管理你的 Python 项目。
 
-If you haven't created a uv-managed project yet, create one:
-
+如果你还没有创建一个由 uv 管理的项目，请先创建一个：
 ```bash
 uv init mcp-server-demo
 cd mcp-server-demo
 ```
-
-Then add MCP to your project dependencies:
-
+然后将 MCP 添加到你的项目依赖项中：
 ```bash
 uv add "mcp[cli]"
 ```
-
-Alternatively, for projects using pip for dependencies:
-
+或者，对于使用 pip 管理依赖的项目：
 ```bash
 pip install "mcp[cli]"
 ```
+### 运行独立的 MCP 开发工具
 
-### Running the standalone MCP development tools
-
-To run the mcp command with uv:
-
+使用 uv 运行 mcp 命令：
 ```bash
 uv run mcp
 ```
+## 快速开始
 
-## Quickstart
-
-Let's create a simple MCP server that exposes a calculator tool and some data:
+让我们创建一个简单的 MCP 服务器，该服务器提供一个计算器工具和一些数据：
 
 <!-- snippet-source examples/snippets/servers/fastmcp_quickstart.py -->
-
 ```python
 """
-FastMCP quickstart example.
+FastMCP 快速入门示例。
 
-cd to the `examples/snippets/clients` directory and run:
+进入 `examples/snippets/clients` 目录并运行：
     uv run server fastmcp_quickstart stdio
 """
 
 from mcp.server.fastmcp import FastMCP
 
-# Create an MCP server
-mcp = FastMCP("Demo")
+# 创建一个 MCP 服务器
+mcp = FastMCP("示例")
 
 
-# Add an addition tool
+# 添加一个加法工具
 @mcp.tool()
 def add(a: int, b: int) -> int:
-    """Add two numbers"""
+    """将两个数字相加"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# 添加一个动态问候资源
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
-    """Get a personalized greeting"""
-    return f"Hello, {name}!"
+    """获取个性化问候语"""
+    return f"你好，{name}！"
 
 
-# Add a prompt
+# 添加一个提示词模板
 @mcp.prompt()
-def greet_user(name: str, style: str = "friendly") -> str:
-    """Generate a greeting prompt"""
+def greet_user(name: str, style: str = "友好") -> str:
+    """生成一个问候提示词"""
     styles = {
-        "friendly": "Please write a warm, friendly greeting",
-        "formal": "Please write a formal, professional greeting",
-        "casual": "Please write a casual, relaxed greeting",
+        "友好": "请写一个温暖、友好的问候",
+        "正式": "请写一个正式、专业的问候",
+        "随意": "请写一个随意、轻松的问候",
     }
 
-    return f"{styles.get(style, styles['friendly'])} for someone named {name}."
+    return f"{styles.get(style, styles['友好'])}，对象名字是 {name}。"
 ```
-
-*Full example: [examples/snippets/servers/fastmcp\_quickstart.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/fastmcp_quickstart.py)*
+完整示例：[examples/snippets/servers/fastmcp_quickstart.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/fastmcp_quickstart.py)
 
 <!-- /snippet-source -->
 
-You can install this server in [Claude Desktop](https://claude.ai/download) and interact with it right away by running:
-
+你可以将此服务器安装到 [Claude Desktop](https://claude.ai/download) 中，通过运行以下命令立即与它交互：
 ```bash
 uv run mcp install server.py
 ```
-
-Alternatively, you can test it with the MCP Inspector:
-
+或者，你可以使用 MCP Inspector 进行测试：
 ```bash
 uv run mcp dev server.py
 ```
+## 什么是 MCP？
 
-## What is MCP?
+[模型上下文协议（MCP）](https://modelcontextprotocol.io) 让你可以构建服务器，以安全、标准化的方式向LLM应用程序公开数据和功能。你可以把它想象成一个Web API，但它是专门为LLM交互设计的。MCP服务器具备以下功能：
 
-The [Model Context Protocol (MCP)](https://modelcontextprotocol.io) lets you build servers that expose data and functionality to LLM applications in a secure, standardized way. Think of it like a web API, but specifically designed for LLM interactions. MCP servers can:
+* 通过 **资源（Resources）** 公开数据（可以将其理解为GET端点；它们用于将信息加载到LLM的上下文中）
+* 通过 **工具（Tools）** 提供功能（可以将其理解为POST端点；它们用于执行代码或产生其他副作用）
+* 通过 **提示（Prompts）** 定义交互模式（LLM交互的可重用模板）
+* 更多功能！
 
-* Expose data through **Resources** (think of these sort of like GET endpoints; they are used to load information into the LLM's context)
-* Provide functionality through **Tools** (sort of like POST endpoints; they are used to execute code or otherwise produce a side effect)
-* Define interaction patterns through **Prompts** (reusable templates for LLM interactions)
-* And more!
+## 核心概念
 
-## Core Concepts
+### 服务器
 
-### Server
-
-The FastMCP server is your core interface to the MCP protocol. It handles connection management, protocol compliance, and message routing:
+FastMCP服务器是你与MCP协议交互的核心接口。它负责连接管理、协议合规性和消息路由：
 
 <!-- snippet-source examples/snippets/servers/lifespan_example.py -->
-
 ```python
-"""Example showing lifespan support for startup/shutdown with strong typing."""
+"""一个示例，展示对具有强类型支持的启动/关闭生命周期管理。"""
 
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
@@ -215,189 +200,170 @@ from mcp.server.fastmcp import Context, FastMCP
 from mcp.server.session import ServerSession
 
 
-# Mock database class for example
+# 用于示例的模拟数据库类
 class Database:
-    """Mock database class for example."""
+    """模拟数据库类用于示例。"""
 
     @classmethod
     async def connect(cls) -> "Database":
-        """Connect to database."""
+        """连接到数据库。"""
         return cls()
 
     async def disconnect(self) -> None:
-        """Disconnect from database."""
+        """断开与数据库的连接。"""
         pass
 
     def query(self) -> str:
-        """Execute a query."""
-        return "Query result"
+        """执行查询。"""
+        return "查询结果"
 
 
 @dataclass
 class AppContext:
-    """Application context with typed dependencies."""
+    """包含类型化依赖项的应用程序上下文。"""
 
     db: Database
 
 
 @asynccontextmanager
 async def app_lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
-    """Manage application lifecycle with type-safe context."""
-    # Initialize on startup
+    """使用类型安全上下文管理应用程序生命周期。"""
+    # 启动时初始化
     db = await Database.connect()
     try:
         yield AppContext(db=db)
     finally:
-        # Cleanup on shutdown
+        # 关闭时清理
         await db.disconnect()
 
 
-# Pass lifespan to server
-mcp = FastMCP("My App", lifespan=app_lifespan)
+# 将生命周期管理器传递给服务器
+mcp = FastMCP("我的应用", lifespan=app_lifespan)
 
 
-# Access type-safe lifespan context in tools
+# 在工具中访问类型安全的生命周期上下文
 @mcp.tool()
 def query_db(ctx: Context[ServerSession, AppContext]) -> str:
-    """Tool that uses initialized resources."""
+    """使用已初始化资源的工具。"""
     db = ctx.request_context.lifespan_context.db
     return db.query()
 ```
-
-*Full example: [examples/snippets/servers/lifespan\_example.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/lifespan_example.py)*
+完整示例: [examples/snippets/servers/lifespan_example.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/lifespan_example.py)
 
 <!-- /snippet-source -->
 
-### Resources
+### 资源
 
-Resources are how you expose data to LLMs. They're similar to GET endpoints in a REST API - they provide data but shouldn't perform significant computation or have side effects:
+资源是向LLM公开数据的方式。它们类似于REST API中的GET端点 - 它们提供数据，但不应执行重要计算或产生副作用：
 
 <!-- snippet-source examples/snippets/servers/basic_resource.py -->
-
 ```python
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP(name="Resource Example")
+mcp = FastMCP(name="Resource 示例")
 
 
 @mcp.resource("file://documents/{name}")
 def read_document(name: str) -> str:
-    """Read a document by name."""
-    # This would normally read from disk
-    return f"Content of {name}"
+    """通过名称读取文档。"""
+    # 这里通常会从磁盘读取
+    return f"{name} 的内容"
 
 
 @mcp.resource("config://settings")
 def get_settings() -> str:
-    """Get application settings."""
+    """获取应用程序设置。"""
     return """{
   "theme": "dark",
   "language": "en",
   "debug": false
 }"""
 ```
-
-*Full example: [examples/snippets/servers/basic\_resource.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/basic_resource.py)*
+完整示例：[examples/snippets/servers/basic\_resource.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/basic_resource.py)
 
 <!-- /snippet-source -->
 
-### Tools
+### 工具
 
-Tools let LLMs take actions through your server. Unlike resources, tools are expected to perform computation and have side effects:
+工具允许大语言模型（LLMs）通过你的服务器执行操作。与资源不同，工具通常会执行计算并产生副作用：  
 
 <!-- snippet-source examples/snippets/servers/basic_tool.py -->
-
 ```python
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP(name="Tool Example")
+mcp = FastMCP(name="工具示例")
 
 
 @mcp.tool()
 def sum(a: int, b: int) -> int:
-    """Add two numbers together."""
+    """将两个数字相加。"""
     return a + b
 
 
 @mcp.tool()
 def get_weather(city: str, unit: str = "celsius") -> str:
-    """Get weather for a city."""
-    # This would normally call a weather API
-    return f"Weather in {city}: 22degrees{unit[0].upper()}"
+    """获取城市的天气。"""
+    # 这里通常会调用天气API
+    return f"{city}的天气：22度{unit[0].upper()}"
 ```
-
-*Full example: [examples/snippets/servers/basic\_tool.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/basic_tool.py)*
+完整示例：[examples/snippets/servers/basic_tool.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/basic_tool.py)
 
 <!-- /snippet-source -->
 
-Tools can optionally receive a Context object by including a parameter with the `Context` type annotation. This context is automatically injected by the FastMCP framework and provides access to MCP capabilities:
+工具可以选择通过包含带有 `Context` 类型注解的参数来接收一个 Context 对象。此上下文由 FastMCP 框架自动注入，并提供对 MCP 功能的访问权限：
 
 <!-- snippet-source examples/snippets/servers/tool_progress.py -->
-
 ```python
 from mcp.server.fastmcp import Context, FastMCP
 from mcp.server.session import ServerSession
 
-mcp = FastMCP(name="Progress Example")
+mcp = FastMCP(name="进度示例")
 
 
 @mcp.tool()
 async def long_running_task(task_name: str, ctx: Context[ServerSession, None], steps: int = 5) -> str:
-    """Execute a task with progress updates."""
-    await ctx.info(f"Starting: {task_name}")
+    """执行带有进度更新的任务。"""
+    await ctx.info(f"开始任务：{task_name}")
 
     for i in range(steps):
         progress = (i + 1) / steps
         await ctx.report_progress(
             progress=progress,
             total=1.0,
-            message=f"Step {i + 1}/{steps}",
+            message=f"步骤 {i + 1}/{steps}",
         )
-        await ctx.debug(f"Completed step {i + 1}")
+        await ctx.debug(f"已完成第 {i + 1} 步")
 
-    return f"Task '{task_name}' completed"
+    return f"任务 '{task_name}' 已完成"
 ```
-
-*Full example: [examples/snippets/servers/tool\_progress.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/tool_progress.py)*
+完整示例：[examples/snippets/servers/tool_progress.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/tool_progress.py)
 
 <!-- /snippet-source -->
 
-#### Structured Output
+#### 结构化输出
 
-Tools will return structured results by default, if their return type
-annotation is compatible. Otherwise, they will return unstructured results.
+如果工具的返回类型注解是兼容的，则默认返回结构化结果；否则将返回非结构化结果。
 
-Structured output supports these return types:
+结构化输出支持以下返回类型：
 
-* Pydantic models (BaseModel subclasses)
-* TypedDicts
-* Dataclasses and other classes with type hints
-* `dict[str, T]` (where T is any JSON-serializable type)
-* Primitive types (str, int, float, bool, bytes, None) - wrapped in `{"result": value}`
-* Generic types (list, tuple, Union, Optional, etc.) - wrapped in `{"result": value}`
+* Pydantic 模型（BaseModel 的子类）
+* TypedDict
+* 带有类型提示的数据类及其他类
+* `dict[str, T]`（其中 T 是任何可 JSON 序列化的类型）
+* 基础类型（str、int、float、bool、bytes、None）——将被封装在 `{"result": value}` 中
+* 泛型类型（list、tuple、Union、Optional 等）——将被封装在 `{"result": value}` 中
 
-Classes without type hints cannot be serialized for structured output. Only
-classes with properly annotated attributes will be converted to Pydantic models
-for schema generation and validation.
+没有类型提示的类无法被序列化以用于结构化输出。只有具有正确注解属性的类才会被转换为 Pydantic 模型，用于生成和验证模式。
 
-Structured results are automatically validated against the output schema
-generated from the annotation. This ensures the tool returns well-typed,
-validated data that clients can easily process.
+结构化结果会自动根据注解生成的输出模式进行验证。这确保了工具返回的是类型正确且经过验证的数据，客户端可以轻松处理。
 
-**Note:** For backward compatibility, unstructured results are also
-returned. Unstructured results are provided for backward compatibility
-with previous versions of the MCP specification, and are quirks-compatible
-with previous versions of FastMCP in the current version of the SDK.
+**注意：** 为了向后兼容，也会返回非结构化结果。非结构化结果是为了与 MCP 规范的早期版本兼容，并且当前版本的 SDK 中与旧版 FastMCP 的行为保持兼容。
 
-**Note:** In cases where a tool function's return type annotation
-causes the tool to be classified as structured *and this is undesirable*,
-the  classification can be suppressed by passing `structured_output=False`
-to the `@tool` decorator.
+**注意：** 如果某个工具函数的返回类型注解导致该工具被归类为结构化输出，而这不是期望的行为，可以通过向 `@tool` 装饰器传入 `structured_output=False` 来抑制该分类。
 
 <!-- snippet-source examples/snippets/servers/structured_output.py -->
-
 ```python
-"""Example showing structured output with tools."""
+"""展示工具使用结构化输出的示例。"""
 
 from typing import TypedDict
 
@@ -405,32 +371,32 @@ from pydantic import BaseModel, Field
 
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP("Structured Output Example")
+mcp = FastMCP("结构化输出示例")
 
 
-# Using Pydantic models for rich structured data
+# 使用 Pydantic 模型表示丰富的结构化数据
 class WeatherData(BaseModel):
-    """Weather information structure."""
+    """天气信息结构。"""
 
-    temperature: float = Field(description="Temperature in Celsius")
-    humidity: float = Field(description="Humidity percentage")
+    temperature: float = Field(description="摄氏度温度")
+    humidity: float = Field(description="湿度百分比")
     condition: str
     wind_speed: float
 
 
 @mcp.tool()
 def get_weather(city: str) -> WeatherData:
-    """Get weather for a city - returns structured data."""
-    # Simulated weather data
+    """获取城市的天气 - 返回结构化数据。"""
+    # 模拟的天气数据
     return WeatherData(
         temperature=72.5,
         humidity=45.0,
-        condition="sunny",
+        condition="晴天",
         wind_speed=5.2,
     )
 
 
-# Using TypedDict for simpler structures
+# 使用 TypedDict 表示更简单的结构
 class LocationInfo(TypedDict):
     latitude: float
     longitude: float
@@ -439,18 +405,18 @@ class LocationInfo(TypedDict):
 
 @mcp.tool()
 def get_location(address: str) -> LocationInfo:
-    """Get location coordinates"""
-    return LocationInfo(latitude=51.5074, longitude=-0.1278, name="London, UK")
+    """获取位置坐标"""
+    return LocationInfo(latitude=51.5074, longitude=-0.1278, name="英国伦敦")
 
 
-# Using dict[str, Any] for flexible schemas
+# 使用 dict[str, Any] 表示灵活的模式
 @mcp.tool()
 def get_statistics(data_type: str) -> dict[str, float]:
-    """Get various statistics"""
+    """获取各种统计数据"""
     return {"mean": 42.5, "median": 40.0, "std_dev": 5.2}
 
 
-# Ordinary classes with type hints work for structured output
+# 带类型提示的普通类可用于结构化输出
 class UserProfile:
     name: str
     age: int
@@ -464,11 +430,11 @@ class UserProfile:
 
 @mcp.tool()
 def get_user(user_id: str) -> UserProfile:
-    """Get user profile - returns structured data"""
+    """获取用户资料 - 返回结构化数据"""
     return UserProfile(name="Alice", age=30, email="alice@example.com")
 
 
-# Classes WITHOUT type hints cannot be used for structured output
+# 没有类型提示的类不能用于结构化输出
 class UntypedConfig:
     def __init__(self, setting1, setting2):  # type: ignore[reportMissingParameterType]
         self.setting1 = setting1
@@ -477,168 +443,156 @@ class UntypedConfig:
 
 @mcp.tool()
 def get_config() -> UntypedConfig:
-    """This returns unstructured output - no schema generated"""
+    """此方法返回非结构化输出 - 不生成模式"""
     return UntypedConfig("value1", "value2")
 
 
-# Lists and other types are wrapped automatically
+# 列表和其他类型会自动包装
 @mcp.tool()
 def list_cities() -> list[str]:
-    """Get a list of cities"""
+    """获取城市列表"""
     return ["London", "Paris", "Tokyo"]
-    # Returns: {"result": ["London", "Paris", "Tokyo"]}
+    # 返回: {"result": ["London", "Paris", "Tokyo"]}
 
 
 @mcp.tool()
 def get_temperature(city: str) -> float:
-    """Get temperature as a simple float"""
+    """获取温度，作为简单的浮点数返回"""
     return 22.5
-    # Returns: {"result": 22.5}
+    # 返回: {"result": 22.5}
 ```
-
-*Full example: [examples/snippets/servers/structured\_output.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/structured_output.py)*
+完整示例：[examples/snippets/servers/structured_output.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/structured_output.py)
 
 <!-- /snippet-source -->
 
-### Prompts
+### 提示词
 
-Prompts are reusable templates that help LLMs interact with your server effectively:
+提示词是可重复使用的模板，可帮助大语言模型（LLM）更有效地与你的服务器进行交互：
 
 <!-- snippet-source examples/snippets/servers/basic_prompt.py -->
-
 ```python
 from mcp.server.fastmcp import FastMCP
 from mcp.server.fastmcp.prompts import base
 
-mcp = FastMCP(name="Prompt Example")
+mcp = FastMCP(name="提示示例")
 
 
-@mcp.prompt(title="Code Review")
+@mcp.prompt(title="代码审查")
 def review_code(code: str) -> str:
-    return f"Please review this code:\n\n{code}"
+    return f"请审查这段代码：\n\n{code}"
 
 
-@mcp.prompt(title="Debug Assistant")
+@mcp.prompt(title="调试助手")
 def debug_error(error: str) -> list[base.Message]:
     return [
-        base.UserMessage("I'm seeing this error:"),
+        base.UserMessage("我遇到了这个错误："),
         base.UserMessage(error),
-        base.AssistantMessage("I'll help debug that. What have you tried so far?"),
+        base.AssistantMessage("我会帮您调试这个问题。您到目前为止尝试过哪些方法？"),
     ]
 ```
-
-*Full example: [examples/snippets/servers/basic\_prompt.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/basic_prompt.py)*
+完整示例：[examples/snippets/servers/basic_prompt.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/basic_prompt.py)
 
 <!-- /snippet-source -->
 
-### Images
+### 图像
 
-FastMCP provides an `Image` class that automatically handles image data:
+FastMCP 提供了一个 `Image` 类，可以自动处理图像数据：
 
 <!-- snippet-source examples/snippets/servers/images.py -->
-
 ```python
-"""Example showing image handling with FastMCP."""
+"""展示使用 FastMCP 进行图像处理的示例。"""
 
 from PIL import Image as PILImage
 
 from mcp.server.fastmcp import FastMCP, Image
 
-mcp = FastMCP("Image Example")
+mcp = FastMCP("图像示例")
 
 
 @mcp.tool()
 def create_thumbnail(image_path: str) -> Image:
-    """Create a thumbnail from an image"""
+    """根据图像创建缩略图"""
     img = PILImage.open(image_path)
     img.thumbnail((100, 100))
     return Image(data=img.tobytes(), format="png")
 ```
-
-*Full example: [examples/snippets/servers/images.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/images.py)*
+完整示例：[examples/snippets/servers/images.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/images.py)
 
 <!-- /snippet-source -->
 
-### Context
+### 上下文（Context）
 
-The Context object is automatically injected into tool and resource functions that request it via type hints. It provides access to MCP capabilities like logging, progress reporting, resource reading, user interaction, and request metadata.
+当工具（tool）和资源（resource）函数通过类型提示（type hints）请求时，上下文对象（Context）会被自动注入到这些函数中。它提供了对 MCP 能力的访问，例如日志记录、进度报告、资源读取、用户交互以及请求元数据。
 
-#### Getting Context in Functions
+#### 在函数中获取上下文（Context）
 
-To use context in a tool or resource function, add a parameter with the `Context` type annotation:
-
+要在工具或资源函数中使用上下文，只需添加一个类型为 `Context` 的参数即可：
 ```python
 from mcp.server.fastmcp import Context, FastMCP
 
-mcp = FastMCP(name="Context Example")
+mcp = FastMCP(name="上下文示例")
 
 
 @mcp.tool()
 async def my_tool(x: int, ctx: Context) -> str:
-    """Tool that uses context capabilities."""
-    # The context parameter can have any name as long as it's type-annotated
+    """使用上下文功能的工具。"""
+    # 上下文参数可以使用任何名称，只要其带有类型注解即可
     return await process_with_context(x, ctx)
 ```
+#### 上下文属性和方法
 
-#### Context Properties and Methods
+上下文（Context）对象提供了以下功能：
 
-The Context object provides the following capabilities:
-
-* `ctx.request_id` - Unique ID for the current request
-* `ctx.client_id` - Client ID if available
-* `ctx.fastmcp` - Access to the FastMCP server instance (see [FastMCP Properties](#fastmcp-properties))
-* `ctx.session` - Access to the underlying session for advanced communication (see [Session Properties and Methods](#session-properties-and-methods))
-* `ctx.request_context` - Access to request-specific data and lifespan resources (see [Request Context Properties](#request-context-properties))
-* `await ctx.debug(message)` - Send debug log message
-* `await ctx.info(message)` - Send info log message
-* `await ctx.warning(message)` - Send warning log message
-* `await ctx.error(message)` - Send error log message
-* `await ctx.log(level, message, logger_name=None)` - Send log with custom level
-* `await ctx.report_progress(progress, total=None, message=None)` - Report operation progress
-* `await ctx.read_resource(uri)` - Read a resource by URI
-* `await ctx.elicit(message, schema)` - Request additional information from user with validation
-
-<!-- snippet-source examples/snippets/servers/tool_progress.py -->
-
+* `ctx.request_id` - 当前请求的唯一ID
+* `ctx.client_id` - 如果可用的客户端ID
+* `ctx.fastmcp` - 访问FastMCP服务器实例（参见[FastMCP属性](#fastmcp-properties)）
+* `ctx.session` - 访问底层会话进行高级通信（参见[会话属性和方法](#session-properties-and-methods)）
+* `ctx.request_context` - 访问特定请求的数据和生命周期资源（参见[请求上下文属性](#request-context-properties)）
+* `await ctx.debug(message)` - 发送调试日志消息
+* `await ctx.info(message)` - 发送信息日志消息
+* `await ctx.warning(message)` - 发送警告日志消息
+* `await ctx.error(message)` - 发送错误日志消息
+* `await ctx.log(level, message, logger_name=None)` - 使用自定义级别发送日志
+* `await ctx.report_progress(progress, total=None, message=None)` - 报告操作进度
+* `await ctx.read_resource(uri)` - 通过URI读取资源
+* `await ctx.elicit(message, schema)` - 请求用户提供附加信息并进行验证
 ```python
 from mcp.server.fastmcp import Context, FastMCP
 from mcp.server.session import ServerSession
 
-mcp = FastMCP(name="Progress Example")
+mcp = FastMCP(name="进度示例")
 
 
 @mcp.tool()
 async def long_running_task(task_name: str, ctx: Context[ServerSession, None], steps: int = 5) -> str:
-    """Execute a task with progress updates."""
-    await ctx.info(f"Starting: {task_name}")
+    """执行带有进度更新的任务。"""
+    await ctx.info(f"开始任务：{task_name}")
 
     for i in range(steps):
         progress = (i + 1) / steps
         await ctx.report_progress(
             progress=progress,
             total=1.0,
-            message=f"Step {i + 1}/{steps}",
+            message=f"步骤 {i + 1}/{steps}",
         )
-        await ctx.debug(f"Completed step {i + 1}")
+        await ctx.debug(f"已完成步骤 {i + 1}")
 
-    return f"Task '{task_name}' completed"
+    return f"任务 '{task_name}' 已完成"
 ```
-
-*Full example: [examples/snippets/servers/tool\_progress.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/tool_progress.py)*
+完整示例：[examples/snippets/servers/tool_progress.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/tool_progress.py)
 
 <!-- /snippet-source -->
 
-### Completions
+### 补全功能
 
-MCP supports providing completion suggestions for prompt arguments and resource template parameters. With the context parameter, servers can provide completions based on previously resolved values:
+MCP 支持为提示参数和资源模板参数提供补全建议。通过使用上下文参数，服务器可以根据之前解析的值来提供补全建议：
 
-Client usage:
+客户端用法：
 
 <!-- snippet-source examples/snippets/clients/completion_client.py -->
-
 ```python
 """
-cd to the `examples/snippets` directory and run:
+转到 `examples/snippets` 目录并运行：
     uv run completion-client
 """
 
@@ -649,84 +603,82 @@ from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 from mcp.types import PromptReference, ResourceTemplateReference
 
-# Create server parameters for stdio connection
+# 为 stdio 连接创建服务器参数
 server_params = StdioServerParameters(
-    command="uv",  # Using uv to run the server
-    args=["run", "server", "completion", "stdio"],  # Server with completion support
+    command="uv",  # 使用 uv 运行服务器
+    args=["run", "server", "completion", "stdio"],  # 支持补全功能的服务器
     env={"UV_INDEX": os.environ.get("UV_INDEX", "")},
 )
 
 
 async def run():
-    """Run the completion client example."""
+    """运行补全客户端示例。"""
     async with stdio_client(server_params) as (read, write):
         async with ClientSession(read, write) as session:
-            # Initialize the connection
+            # 初始化连接
             await session.initialize()
 
-            # List available resource templates
+            # 列出可用的资源模板
             templates = await session.list_resource_templates()
-            print("Available resource templates:")
+            print("可用的资源模板：")
             for template in templates.resourceTemplates:
                 print(f"  - {template.uriTemplate}")
 
-            # List available prompts
+            # 列出可用的提示词
             prompts = await session.list_prompts()
-            print("\nAvailable prompts:")
+            print("\n可用的提示词：")
             for prompt in prompts.prompts:
                 print(f"  - {prompt.name}")
 
-            # Complete resource template arguments
+            # 补全资源模板参数
             if templates.resourceTemplates:
                 template = templates.resourceTemplates[0]
-                print(f"\nCompleting arguments for resource template: {template.uriTemplate}")
+                print(f"\n正在补全资源模板参数：{template.uriTemplate}")
 
-                # Complete without context
+                # 无上下文补全
                 result = await session.complete(
                     ref=ResourceTemplateReference(type="ref/resource", uri=template.uriTemplate),
                     argument={"name": "owner", "value": "model"},
                 )
-                print(f"Completions for 'owner' starting with 'model': {result.completion.values}")
+                print(f"'owner' 以 'model' 开头的补全结果：{result.completion.values}")
 
-                # Complete with context - repo suggestions based on owner
+                # 带上下文补全 - 根据 owner 提供 repo 建议
                 result = await session.complete(
                     ref=ResourceTemplateReference(type="ref/resource", uri=template.uriTemplate),
                     argument={"name": "repo", "value": ""},
                     context_arguments={"owner": "modelcontextprotocol"},
                 )
-                print(f"Completions for 'repo' with owner='modelcontextprotocol': {result.completion.values}")
+                print(f"'repo' 在 owner='modelcontextprotocol' 的补全结果：{result.completion.values}")
 
-            # Complete prompt arguments
+            # 补全提示词参数
             if prompts.prompts:
                 prompt_name = prompts.prompts[0].name
-                print(f"\nCompleting arguments for prompt: {prompt_name}")
+                print(f"\n正在补全提示词参数：{prompt_name}")
 
                 result = await session.complete(
                     ref=PromptReference(type="ref/prompt", name=prompt_name),
                     argument={"name": "style", "value": ""},
                 )
-                print(f"Completions for 'style' argument: {result.completion.values}")
+                print(f"'style' 参数的补全结果：{result.completion.values}")
 
 
 def main():
-    """Entry point for the completion client."""
+    """补全客户端的入口点。"""
     asyncio.run(run())
 
 
 if __name__ == "__main__":
     main()
 ```
-
-*Full example: [examples/snippets/clients/completion\_client.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/clients/completion_client.py)*
+完整示例：[examples/snippets/clients/completion\_client.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/clients/completion_client.py)
 
 <!-- /snippet-source -->
 
-### Elicitation
+### 信息获取
 
-Request additional information from users. This example shows an Elicitation during a Tool Call:
+向用户请求额外信息。以下示例展示在工具调用过程中进行信息获取的场景：
 
 <!-- snippet-source examples/snippets/servers/elicitation.py -->
-
 ```python
 from pydantic import BaseModel, Field
 
@@ -737,64 +689,62 @@ mcp = FastMCP(name="Elicitation Example")
 
 
 class BookingPreferences(BaseModel):
-    """Schema for collecting user preferences."""
+    """用于收集用户偏好的Schema。"""
 
-    checkAlternative: bool = Field(description="Would you like to check another date?")
+    checkAlternative: bool = Field(description="您是否想查看其他日期？")
     alternativeDate: str = Field(
         default="2024-12-26",
-        description="Alternative date (YYYY-MM-DD)",
+        description="替代日期（YYYY-MM-DD）",
     )
 
 
 @mcp.tool()
 async def book_table(date: str, time: str, party_size: int, ctx: Context[ServerSession, None]) -> str:
-    """Book a table with date availability check."""
-    # Check if date is available
+    """预订餐桌并检查日期可用性。"""
+    # 检查日期是否可用
     if date == "2024-12-25":
-        # Date unavailable - ask user for alternative
+        # 日期不可用 - 向用户请求替代日期
         result = await ctx.elicit(
-            message=(f"No tables available for {party_size} on {date}. Would you like to try another date?"),
+            message=(f"在 {date} 这一天没有适合 {party_size} 人的桌位。您想尝试其他日期吗？"),
             schema=BookingPreferences,
         )
 
         if result.action == "accept" and result.data:
             if result.data.checkAlternative:
-                return f"[SUCCESS] Booked for {result.data.alternativeDate}"
-            return "[CANCELLED] No booking made"
-        return "[CANCELLED] Booking cancelled"
+                return f"[SUCCESS] 已预订 {result.data.alternativeDate}"
+            return "[CANCELLED] 未进行预订"
+        return "[CANCELLED] 预订已取消"
 
-    # Date available
-    return f"[SUCCESS] Booked for {date} at {time}"
+    # 日期可用
+    return f"[SUCCESS] 已预订 {date} {time} 的桌位"
 ```
-
-*Full example: [examples/snippets/servers/elicitation.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/elicitation.py)*
+完整示例：[examples/snippets/servers/elicitation.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/elicitation.py)
 
 <!-- /snippet-source -->
 
-The `elicit()` method returns an `ElicitationResult` with:
+`elicit()` 方法返回一个 `ElicitationResult` 对象，包含以下内容：
 
-* `action`: "accept", "decline", or "cancel"
-* `data`: The validated response (only when accepted)
-* `validation_error`: Any validation error message
+* `action`: "accept"（接受）、"decline"（拒绝）或 "cancel"（取消）
+* `data`: 已验证的响应（仅在被接受时存在）
+* `validation_error`: 任何验证错误信息
 
-### Sampling
+### 抽样
 
-Tools can interact with LLMs through sampling (generating text):
+工具可以通过抽样（生成文本）与大语言模型（LLM）进行交互：
 
 <!-- snippet-source examples/snippets/servers/sampling.py -->
-
 ```python
 from mcp.server.fastmcp import Context, FastMCP
 from mcp.server.session import ServerSession
 from mcp.types import SamplingMessage, TextContent
 
-mcp = FastMCP(name="Sampling Example")
+mcp = FastMCP(name="Sampling 示例")
 
 
 @mcp.tool()
 async def generate_poem(topic: str, ctx: Context[ServerSession, None]) -> str:
-    """Generate a poem using LLM sampling."""
-    prompt = f"Write a short poem about {topic}"
+    """使用LLM采样生成一首诗。"""
+    prompt = f"写一首关于{topic}的短诗"
 
     result = await ctx.session.create_message(
         messages=[
@@ -810,56 +760,52 @@ async def generate_poem(topic: str, ctx: Context[ServerSession, None]) -> str:
         return result.content.text
     return str(result.content)
 ```
-
-*Full example: [examples/snippets/servers/sampling.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/sampling.py)*
+完整示例：[examples/snippets/servers/sampling.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/sampling.py)
 
 <!-- /snippet-source -->
 
-### Logging and Notifications
+### 日志和通知
 
-Tools can send logs and notifications through the context:
+工具可以通过上下文发送日志和通知：  
 
 <!-- snippet-source examples/snippets/servers/notifications.py -->
-
 ```python
 from mcp.server.fastmcp import Context, FastMCP
 from mcp.server.session import ServerSession
 
-mcp = FastMCP(name="Notifications Example")
+mcp = FastMCP(name="通知示例")
 
 
 @mcp.tool()
 async def process_data(data: str, ctx: Context[ServerSession, None]) -> str:
-    """Process data with logging."""
-    # Different log levels
-    await ctx.debug(f"Debug: Processing '{data}'")
-    await ctx.info("Info: Starting processing")
-    await ctx.warning("Warning: This is experimental")
-    await ctx.error("Error: (This is just a demo)")
+    """带日志记录的数据处理。"""
+    # 不同的日志级别
+    await ctx.debug(f"调试：正在处理 '{data}'")
+    await ctx.info("信息：开始处理")
+    await ctx.warning("警告：此功能为实验性功能")
+    await ctx.error("错误：（这只是一个演示）")
 
-    # Notify about resource changes
+    # 通知资源变更
     await ctx.session.send_resource_list_changed()
 
-    return f"Processed: {data}"
+    return f"已处理：{data}"
 ```
-
-*Full example: [examples/snippets/servers/notifications.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/notifications.py)*
+完整示例：[examples/snippets/servers/notifications.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/notifications.py)
 
 <!-- /snippet-source -->
 
-### Authentication
+### 身份验证
 
-Authentication can be used by servers that want to expose tools accessing protected resources.
+身份验证可用于希望暴露访问受保护资源工具的服务器。
 
-`mcp.server.auth` implements OAuth 2.1 resource server functionality, where MCP servers act as Resource Servers (RS) that validate tokens issued by separate Authorization Servers (AS). This follows the [MCP authorization specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) and implements RFC 9728 (Protected Resource Metadata) for AS discovery.
+`mcp.server.auth` 实现了 OAuth 2.1 资源服务器功能，其中 MCP 服务器作为资源服务器（RS），验证由独立的授权服务器（AS）颁发的令牌。这遵循 [MCP 授权规范](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)，并实现 RFC 9728（受保护资源元数据）以进行 AS 发现。
 
-MCP servers can use authentication by providing an implementation of the `TokenVerifier` protocol:
+MCP 服务器可以通过提供 `TokenVerifier` 协议的实现来使用身份验证：
 
 <!-- snippet-source examples/snippets/servers/oauth_server.py -->
-
 ```python
 """
-Run from the repository root:
+从仓库根目录运行：
     uv run examples/snippets/servers/oauth_server.py
 """
 
@@ -871,33 +817,33 @@ from mcp.server.fastmcp import FastMCP
 
 
 class SimpleTokenVerifier(TokenVerifier):
-    """Simple token verifier for demonstration."""
+    """用于演示的简单令牌验证器。"""
 
     async def verify_token(self, token: str) -> AccessToken | None:
-        pass  # This is where you would implement actual token validation
+        pass  # 这里应实现实际的令牌验证逻辑
 
 
-# Create FastMCP instance as a Resource Server
+# 创建 FastMCP 实例作为资源服务器
 mcp = FastMCP(
-    "Weather Service",
-    # Token verifier for authentication
+    "天气服务",
+    # 用于身份验证的令牌验证器
     token_verifier=SimpleTokenVerifier(),
-    # Auth settings for RFC 9728 Protected Resource Metadata
+    # RFC 9728 受保护资源元数据的认证设置
     auth=AuthSettings(
-        issuer_url=AnyHttpUrl("https://auth.example.com"),  # Authorization Server URL
-        resource_server_url=AnyHttpUrl("http://localhost:3001"),  # This server's URL
+        issuer_url=AnyHttpUrl("https://auth.example.com"),  # 授权服务器 URL
+        resource_server_url=AnyHttpUrl("http://localhost:3001"),  # 当前服务器 URL
         required_scopes=["user"],
     ),
 )
 
 
 @mcp.tool()
-async def get_weather(city: str = "London") -> dict[str, str]:
-    """Get weather data for a city"""
+async def get_weather(city: str = "伦敦") -> dict[str, str]:
+    """获取城市天气数据"""
     return {
         "city": city,
         "temperature": "22",
-        "condition": "Partly cloudy",
+        "condition": "局部多云",
         "humidity": "65%",
     }
 
@@ -905,39 +851,37 @@ async def get_weather(city: str = "London") -> dict[str, str]:
 if __name__ == "__main__":
     mcp.run(transport="streamable-http")
 ```
-
-*Full example: [examples/snippets/servers/oauth\_server.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/oauth_server.py)*
+完整示例：[examples/snippets/servers/oauth\_server.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/oauth_server.py)
 
 <!-- /snippet-source -->
 
-For a complete example with separate Authorization Server and Resource Server implementations, see [`examples/servers/simple-auth/`](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples/servers/simple-auth/).
+如需包含独立的授权服务器和资源服务器实现的完整示例，请参见 [`examples/servers/simple-auth/`](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples/servers/simple-auth/)。
 
-**Architecture:**
+**架构：**
 
-* **Authorization Server (AS)**: Handles OAuth flows, user authentication, and token issuance
-* **Resource Server (RS)**: Your MCP server that validates tokens and serves protected resources
-* **Client**: Discovers AS through RFC 9728, obtains tokens, and uses them with the MCP server
+* **授权服务器 (AS)**：处理 OAuth 流程、用户认证和令牌发放
+* **资源服务器 (RS)**：你的 MCP 服务器，用于验证令牌并提供受保护的资源
+* **客户端**：通过 RFC 9728 发现 AS、获取令牌，并将令牌用于 MCP 服务器
 
-See [TokenVerifier](https://github.com/modelcontextprotocol/python-sdk/tree/main/src/mcp/server/auth/provider.py) for more details on implementing token validation.
+有关令牌验证的实现细节，请参见 [TokenVerifier](https://github.com/modelcontextprotocol/python-sdk/tree/main/src/mcp/server/auth/provider.py)。
 
-### FastMCP Properties
+### FastMCP 属性
 
-The FastMCP server instance accessible via `ctx.fastmcp` provides access to server configuration and metadata:
+可通过 `ctx.fastmcp` 访问的 FastMCP 服务器实例提供了对服务器配置和元数据的访问：
 
-* `ctx.fastmcp.name` - The server's name as defined during initialization
-* `ctx.fastmcp.instructions` - Server instructions/description provided to clients
-* `ctx.fastmcp.settings` - Complete server configuration object containing:
-  * `debug` - Debug mode flag
-  * `log_level` - Current logging level
-  * `host` and `port` - Server network configuration
-  * `mount_path`, `sse_path`, `streamable_http_path` - Transport paths
-  * `stateless_http` - Whether the server operates in stateless mode
-  * And other configuration options
-
+* `ctx.fastmcp.name` - 初始化时定义的服务器名称
+* `ctx.fastmcp.instructions` - 提供给客户端的服务器说明/描述
+* `ctx.fastmcp.settings` - 包含完整服务器配置的对象，包含以下内容：
+  * `debug` - 调试模式标志
+  * `log_level` - 当前日志记录级别
+  * `host` 和 `port` - 服务器网络配置
+  * `mount_path`、`sse_path`、`streamable_http_path` - 传输路径
+  * `stateless_http` - 服务器是否以无状态模式运行
+  * 以及其他配置选项
 ```python
 @mcp.tool()
 def server_info(ctx: Context) -> dict:
-    """Get information about the current server."""
+    """获取当前服务器的信息。"""
     return {
         "name": ctx.fastmcp.name,
         "instructions": ctx.fastmcp.instructions,
@@ -947,50 +891,46 @@ def server_info(ctx: Context) -> dict:
         "port": ctx.fastmcp.settings.port,
     }
 ```
+### 会话属性与方法
 
-### Session Properties and Methods
+通过 `ctx.session` 可以访问的会话对象提供了对客户端通信的高级控制：
 
-The session object accessible via `ctx.session` provides advanced control over client communication:
-
-* `ctx.session.client_params` - Client initialization parameters and declared capabilities
-* `await ctx.session.send_log_message(level, data, logger)` - Send log messages with full control
-* `await ctx.session.create_message(messages, max_tokens)` - Request LLM sampling/completion
-* `await ctx.session.send_progress_notification(token, progress, total, message)` - Direct progress updates
-* `await ctx.session.send_resource_updated(uri)` - Notify clients that a specific resource changed
-* `await ctx.session.send_resource_list_changed()` - Notify clients that the resource list changed
-* `await ctx.session.send_tool_list_changed()` - Notify clients that the tool list changed
-* `await ctx.session.send_prompt_list_changed()` - Notify clients that the prompt list changed
-
+* `ctx.session.client_params` - 客户端初始化参数及声明的能力
+* `await ctx.session.send_log_message(level, data, logger)` - 完全控制地发送日志消息
+* `await ctx.session.create_message(messages, max_tokens)` - 请求 LLM（大语言模型）采样或补全
+* `await ctx.session.send_progress_notification(token, progress, total, message)` - 直接发送进度更新
+* `await ctx.session.send_resource_updated(uri)` - 通知客户端特定资源已更改
+* `await ctx.session.send_resource_list_changed()` - 通知客户端资源列表已更改
+* `await ctx.session.send_tool_list_changed()` - 通知客户端工具列表已更改
+* `await ctx.session.send_prompt_list_changed()` - 通知客户端提示列表已更改
 ```python
 @mcp.tool()
 async def notify_data_update(resource_uri: str, ctx: Context) -> str:
-    """Update data and notify clients of the change."""
-    # Perform data update logic here
+    """更新数据并通知客户端数据已更改。"""
+    # 在此处执行数据更新逻辑
     
-    # Notify clients that this specific resource changed
+    # 通知客户端此特定资源已更改
     await ctx.session.send_resource_updated(AnyUrl(resource_uri))
     
-    # If this affects the overall resource list, notify about that too
+    # 如果这影响了整个资源列表，也通知资源列表已更改
     await ctx.session.send_resource_list_changed()
     
-    return f"Updated {resource_uri} and notified clients"
+    return f"已更新 {resource_uri} 并通知了客户端"
 ```
+### 请求上下文属性
 
-### Request Context Properties
+通过 `ctx.request_context` 可以访问到包含请求相关信息和资源的请求上下文：
 
-The request context accessible via `ctx.request_context` contains request-specific information and resources:
-
-* `ctx.request_context.lifespan_context` - Access to resources initialized during server startup
-  * Database connections, configuration objects, shared services
-  * Type-safe access to resources defined in your server's lifespan function
-* `ctx.request_context.meta` - Request metadata from the client including:
-  * `progressToken` - Token for progress notifications
-  * Other client-provided metadata
-* `ctx.request_context.request` - The original MCP request object for advanced processing
-* `ctx.request_context.request_id` - Unique identifier for this request
-
+* `ctx.request_context.lifespan_context` - 可访问在服务器启动期间初始化的资源
+  * 数据库连接、配置对象、共享服务
+  * 对服务器生命周期函数中定义的资源进行类型安全的访问
+* `ctx.request_context.meta` - 来自客户端的请求元数据，包括：
+  * `progressToken` - 用于进度通知的令牌
+  * 其他客户端提供的元数据
+* `ctx.request_context.request` - 原始的 MCP 请求对象，用于高级处理
+* `ctx.request_context.request_id` - 此请求的唯一标识符
 ```python
-# Example with typed lifespan context
+# 带有类型化生命周期上下文的示例
 @dataclass
 class AppContext:
     db: Database
@@ -998,150 +938,138 @@ class AppContext:
 
 @mcp.tool()
 def query_with_config(query: str, ctx: Context) -> str:
-    """Execute a query using shared database and configuration."""
-    # Access typed lifespan context
+    """使用共享的数据库和配置执行查询。"""
+    # 访问类型化的生命周期上下文
     app_ctx: AppContext = ctx.request_context.lifespan_context
     
-    # Use shared resources
+    # 使用共享资源
     connection = app_ctx.db
     settings = app_ctx.config
     
-    # Execute query with configuration
+    # 使用配置执行查询
     result = connection.execute(query, timeout=settings.query_timeout)
     return str(result)
 ```
+完整生命周期示例：[examples/snippets/servers/lifespan_example.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/lifespan_example.py)
 
-*Full lifespan example: [examples/snippets/servers/lifespan\_example.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/lifespan_example.py)*
+## 运行你的服务器
 
-## Running Your Server
+### 开发模式
 
-### Development Mode
-
-The fastest way to test and debug your server is with the MCP Inspector:
-
+测试和调试服务器的最快方式是使用 MCP Inspector：
 ```bash
 uv run mcp dev server.py
 
-# Add dependencies
+# 添加依赖
 uv run mcp dev server.py --with pandas --with numpy
 
-# Mount local code
+# 挂载本地代码
 uv run mcp dev server.py --with-editable .
 ```
+### Claude 桌面集成
 
-### Claude Desktop Integration
-
-Once your server is ready, install it in Claude Desktop:
-
+一旦服务器准备就绪，请将其安装到 Claude 桌面中：
 ```bash
 uv run mcp install server.py
 
-# Custom name
-uv run mcp install server.py --name "My Analytics Server"
+# 自定义名称
+uv run mcp install server.py --name "我的分析服务器"
 
-# Environment variables
+# 环境变量
 uv run mcp install server.py -v API_KEY=abc123 -v DB_URL=postgres://...
 uv run mcp install server.py -f .env
 ```
+### 直接执行
 
-### Direct Execution
-
-For advanced scenarios like custom deployments:
+对于自定义部署等高级场景：  
 
 <!-- snippet-source examples/snippets/servers/direct_execution.py -->
-
 ```python
-"""Example showing direct execution of an MCP server.
+"""示例展示如何直接执行一个MCP服务器。
 
-This is the simplest way to run an MCP server directly.
-cd to the `examples/snippets` directory and run:
+这是直接运行MCP服务器的最简单方式。
+请进入 `examples/snippets` 目录并运行以下命令之一：
     uv run direct-execution-server
-    or
+    或
     python servers/direct_execution.py
 """
 
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP("My App")
+mcp = FastMCP("我的应用")
 
 
 @mcp.tool()
 def hello(name: str = "World") -> str:
-    """Say hello to someone."""
-    return f"Hello, {name}!"
+    """向某人问好。"""
+    return f"你好，{name}！"
 
 
 def main():
-    """Entry point for the direct execution server."""
+    """直接执行服务器的入口点。"""
     mcp.run()
 
 
 if __name__ == "__main__":
     main()
 ```
-
-*Full example: [examples/snippets/servers/direct\_execution.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/direct_execution.py)*
+完整示例：[examples/snippets/servers/direct\_execution.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/direct_execution.py)
 
 <!-- /snippet-source -->
 
-Run it with:
-
+运行方式：
 ```bash
 python servers/direct_execution.py
-# or
+# 或者
 uv run mcp run servers/direct_execution.py
 ```
+请注意，`uv run mcp run` 或 `uv run mcp dev` 仅支持使用 FastMCP 的服务器，而不支持低层级服务器变体。
 
-Note that `uv run mcp run` or `uv run mcp dev` only supports server using FastMCP and not the low-level server variant.
+### 可流式传输的 HTTP 传输协议
 
-### Streamable HTTP Transport
-
-> **Note**: Streamable HTTP transport is superseding SSE transport for production deployments.
+> **注意**：可流式传输的 HTTP 传输协议正在取代面向生产部署的 SSE 传输协议。
 
 <!-- snippet-source examples/snippets/servers/streamable_config.py -->
-
 ```python
 """
-Run from the repository root:
+从仓库根目录运行：
     uv run examples/snippets/servers/streamable_config.py
 """
 
 from mcp.server.fastmcp import FastMCP
 
-# Stateful server (maintains session state)
+# 有状态服务器（维护会话状态）
 mcp = FastMCP("StatefulServer")
 
-# Other configuration options:
-# Stateless server (no session persistence)
+# 其他配置选项：
+# 无状态服务器（无会话持久化）
 # mcp = FastMCP("StatelessServer", stateless_http=True)
 
-# Stateless server (no session persistence, no sse stream with supported client)
+# 无状态服务器（无会话持久化，且不与支持的客户端建立 SSE 流）
 # mcp = FastMCP("StatelessServer", stateless_http=True, json_response=True)
 
 
-# Add a simple tool to demonstrate the server
+# 添加一个简单工具以演示服务器功能
 @mcp.tool()
 def greet(name: str = "World") -> str:
-    """Greet someone by name."""
-    return f"Hello, {name}!"
+    """通过名字问候某人。"""
+    return f"你好，{name}！"
 
 
-# Run server with streamable_http transport
+# 使用 streamable-http 传输协议运行服务器
 if __name__ == "__main__":
     mcp.run(transport="streamable-http")
 ```
-
-*Full example: [examples/snippets/servers/streamable\_config.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/streamable_config.py)*
+完整示例：[examples/snippets/servers/streamable_config.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/streamable_config.py)
 
 <!-- /snippet-source -->
 
-You can mount multiple FastMCP servers in a Starlette application:
+你可以在一个 Starlette 应用程序中挂载多个 FastMCP 服务器：
 
 <!-- snippet-source examples/snippets/servers/streamable_starlette_mount.py -->
-
 ```python
 """
-Run from the repository root:
+从仓库根目录运行：
     uvicorn examples.snippets.servers.streamable_starlette_mount:app --reload
 """
 
@@ -1152,27 +1080,27 @@ from starlette.routing import Mount
 
 from mcp.server.fastmcp import FastMCP
 
-# Create the Echo server
+# 创建 Echo 服务器
 echo_mcp = FastMCP(name="EchoServer", stateless_http=True)
 
 
 @echo_mcp.tool()
 def echo(message: str) -> str:
-    """A simple echo tool"""
+    """一个简单的回显工具"""
     return f"Echo: {message}"
 
 
-# Create the Math server
+# 创建 Math 服务器
 math_mcp = FastMCP(name="MathServer", stateless_http=True)
 
 
 @math_mcp.tool()
 def add_two(n: int) -> int:
-    """Tool to add two to the input"""
+    """用于将输入加二的工具"""
     return n + 2
 
 
-# Create a combined lifespan to manage both session managers
+# 创建一个组合的生命周期上下文管理器以管理两个会话管理器
 @contextlib.asynccontextmanager
 async def lifespan(app: Starlette):
     async with contextlib.AsyncExitStack() as stack:
@@ -1181,7 +1109,7 @@ async def lifespan(app: Starlette):
         yield
 
 
-# Create the Starlette app and mount the MCP servers
+# 创建 Starlette 应用并挂载 MCP 服务器
 app = Starlette(
     routes=[
         Mount("/echo", echo_mcp.streamable_http_app()),
@@ -1190,104 +1118,98 @@ app = Starlette(
     lifespan=lifespan,
 )
 ```
-
-*Full example: [examples/snippets/servers/streamable\_starlette\_mount.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/streamable_starlette_mount.py)*
+完整示例：[examples/snippets/servers/streamable\_starlette\_mount.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/streamable_starlette_mount.py)
 
 <!-- /snippet-source -->
 
-For low level server with Streamable HTTP implementations, see:
+关于使用可流式 HTTP 实现的底层服务器，请参见：
 
-* Stateful server: [`examples/servers/simple-streamablehttp/`](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples/servers/simple-streamablehttp/)
-* Stateless server: [`examples/servers/simple-streamablehttp-stateless/`](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples/servers/simple-streamablehttp-stateless/)
+* 有状态服务器：[`examples/servers/simple-streamablehttp/`](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples/servers/simple-streamablehttp/)
+* 无状态服务器：[`examples/servers/simple-streamablehttp-stateless/`](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples/servers/simple-streamablehttp-stateless/)
 
-The streamable HTTP transport supports:
+可流式 HTTP 传输支持以下功能：
 
-* Stateful and stateless operation modes
-* Resumability with event stores
-* JSON or SSE response formats
-* Better scalability for multi-node deployments
+* 有状态和无状态操作模式
+* 使用事件存储实现可恢复性
+* JSON 或 SSE 响应格式
+* 在多节点部署中具备更好的可扩展性
 
-### Mounting to an Existing ASGI Server
+### 挂载到现有的 ASGI 服务器
 
-By default, SSE servers are mounted at `/sse` and Streamable HTTP servers are mounted at `/mcp`. You can customize these paths using the methods described below.
+默认情况下，SSE 服务器挂载在 `/sse` 路径，而可流式 HTTP 服务器挂载在 `/mcp` 路径。你可以通过以下方法自定义这些路径。
 
-For more information on mounting applications in Starlette, see the [Starlette documentation](https://www.starlette.io/routing/#submounting-routes).
+有关在 Starlette 中挂载应用的更多信息，请参阅 [Starlette 文档](https://www.starlette.io/routing/#submounting-routes)。
 
-#### SSE servers
+#### SSE 服务器
 
-> **Note**: SSE transport is being superseded by [Streamable HTTP transport](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http).
+> **注意**：SSE 传输正被 [Streamable HTTP 传输](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http) 所取代。
 
-You can mount the SSE server to an existing ASGI server using the `sse_app` method. This allows you to integrate the SSE server with other ASGI applications.
-
+你可以使用 `sse_app` 方法将 SSE 服务器挂载到现有的 ASGI 服务器。这允许你将 SSE 服务器与其他 ASGI 应用集成。
 ```python
 from starlette.applications import Starlette
 from starlette.routing import Mount, Host
 from mcp.server.fastmcp import FastMCP
 
 
-mcp = FastMCP("My App")
+mcp = FastMCP("我的应用")
 
-# Mount the SSE server to the existing ASGI server
+# 将 SSE 服务器挂载到现有的 ASGI 服务器上
 app = Starlette(
     routes=[
         Mount('/', app=mcp.sse_app()),
     ]
 )
 
-# or dynamically mount as host
+# 或者作为主机动态挂载
 app.router.routes.append(Host('mcp.acme.corp', app=mcp.sse_app()))
 ```
-
-When mounting multiple MCP servers under different paths, you can configure the mount path in several ways:
-
+当在不同的路径下挂载多个MCP服务器时，可以通过以下几种方式配置挂载路径：
 ```python
 from starlette.applications import Starlette
 from starlette.routing import Mount
 from mcp.server.fastmcp import FastMCP
 
-# Create multiple MCP servers
+# 创建多个 MCP 服务器
 github_mcp = FastMCP("GitHub API")
-browser_mcp = FastMCP("Browser")
+browser_mcp = FastMCP("浏览器")
 curl_mcp = FastMCP("Curl")
-search_mcp = FastMCP("Search")
+search_mcp = FastMCP("搜索")
 
-# Method 1: Configure mount paths via settings (recommended for persistent configuration)
+# 方法 1：通过设置配置挂载路径（推荐用于持久化配置）
 github_mcp.settings.mount_path = "/github"
 browser_mcp.settings.mount_path = "/browser"
 
-# Method 2: Pass mount path directly to sse_app (preferred for ad-hoc mounting)
-# This approach doesn't modify the server's settings permanently
+# 方法 2：将挂载路径直接传递给 sse_app（推荐用于临时挂载）
+# 此方法不会永久修改服务器的设置
 
-# Create Starlette app with multiple mounted servers
+# 创建包含多个已挂载服务器的 Starlette 应用
 app = Starlette(
     routes=[
-        # Using settings-based configuration
+        # 使用基于设置的配置
         Mount("/github", app=github_mcp.sse_app()),
         Mount("/browser", app=browser_mcp.sse_app()),
-        # Using direct mount path parameter
+        # 使用直接指定挂载路径的参数
         Mount("/curl", app=curl_mcp.sse_app("/curl")),
         Mount("/search", app=search_mcp.sse_app("/search")),
     ]
 )
 
-# Method 3: For direct execution, you can also pass the mount path to run()
+# 方法 3：对于直接执行的情况，也可以将挂载路径传递给 run()
 if __name__ == "__main__":
     search_mcp.run(transport="sse", mount_path="/search")
 ```
+关于在 Starlette 中挂载应用的更多信息，请参见 [Starlette 文档](https://www.starlette.io/routing/#submounting-routes)。
 
-For more information on mounting applications in Starlette, see the [Starlette documentation](https://www.starlette.io/routing/#submounting-routes).
+## 高级用法
 
-## Advanced Usage
+### 低级服务器
 
-### Low-Level Server
-
-For more control, you can use the low-level server implementation directly. This gives you full access to the protocol and allows you to customize every aspect of your server, including lifecycle management through the lifespan API:
+如果你需要更多控制权，可以直接使用低级服务器实现。这将让你完全访问协议，并允许你自定义服务器的各个方面，包括通过 lifespan API 管理生命周期：
 
 <!-- snippet-source examples/snippets/servers/lowlevel/lifespan.py -->
-
 ```python
 """
-Run from the repository root:
+从仓库根目录运行:
     uv run examples/snippets/servers/lowlevel/lifespan.py
 """
 
@@ -1301,52 +1223,52 @@ from mcp.server.lowlevel import NotificationOptions, Server
 from mcp.server.models import InitializationOptions
 
 
-# Mock database class for example
+# 用于示例的模拟数据库类
 class Database:
-    """Mock database class for example."""
+    """模拟数据库类示例。"""
 
     @classmethod
     async def connect(cls) -> "Database":
-        """Connect to database."""
-        print("Database connected")
+        """连接到数据库。"""
+        print("数据库已连接")
         return cls()
 
     async def disconnect(self) -> None:
-        """Disconnect from database."""
-        print("Database disconnected")
+        """断开与数据库的连接。"""
+        print("数据库已断开连接")
 
     async def query(self, query_str: str) -> list[dict[str, str]]:
-        """Execute a query."""
-        # Simulate database query
-        return [{"id": "1", "name": "Example", "query": query_str}]
+        """执行查询。"""
+        # 模拟数据库查询
+        return [{"id": "1", "name": "示例", "query": query_str}]
 
 
 @asynccontextmanager
 async def server_lifespan(_server: Server) -> AsyncIterator[dict[str, Any]]:
-    """Manage server startup and shutdown lifecycle."""
-    # Initialize resources on startup
+    """管理服务器的启动和关闭生命周期。"""
+    # 启动时初始化资源
     db = await Database.connect()
     try:
         yield {"db": db}
     finally:
-        # Clean up on shutdown
+        # 关闭时清理资源
         await db.disconnect()
 
 
-# Pass lifespan to server
+# 将生命周期传递给服务器
 server = Server("example-server", lifespan=server_lifespan)
 
 
 @server.list_tools()
 async def handle_list_tools() -> list[types.Tool]:
-    """List available tools."""
+    """列出可用工具。"""
     return [
         types.Tool(
             name="query_db",
-            description="Query the database",
+            description="查询数据库",
             inputSchema={
                 "type": "object",
-                "properties": {"query": {"type": "string", "description": "SQL query to execute"}},
+                "properties": {"query": {"type": "string", "description": "要执行的SQL查询"}},
                 "required": ["query"],
             },
         )
@@ -1355,22 +1277,22 @@ async def handle_list_tools() -> list[types.Tool]:
 
 @server.call_tool()
 async def query_db(name: str, arguments: dict[str, Any]) -> list[types.TextContent]:
-    """Handle database query tool call."""
+    """处理数据库查询工具调用。"""
     if name != "query_db":
-        raise ValueError(f"Unknown tool: {name}")
+        raise ValueError(f"未知工具: {name}")
 
-    # Access lifespan context
+    # 访问生命周期上下文
     ctx = server.request_context
     db = ctx.lifespan_context["db"]
 
-    # Execute query
+    # 执行查询
     results = await db.query(arguments["query"])
 
-    return [types.TextContent(type="text", text=f"Query results: {results}")]
+    return [types.TextContent(type="text", text=f"查询结果: {results}")]
 
 
 async def run():
-    """Run the server with lifespan management."""
+    """运行带有生命周期管理的服务器。"""
     async with mcp.server.stdio.stdio_server() as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -1391,22 +1313,20 @@ if __name__ == "__main__":
 
     asyncio.run(run())
 ```
-
-*Full example: [examples/snippets/servers/lowlevel/lifespan.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/lowlevel/lifespan.py)*
+完整示例：[examples/snippets/servers/lowlevel/lifespan.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/lowlevel/lifespan.py)
 
 <!-- /snippet-source -->
 
-The lifespan API provides:
+生命周期（lifespan）API 提供了以下功能：
 
-* A way to initialize resources when the server starts and clean them up when it stops
-* Access to initialized resources through the request context in handlers
-* Type-safe context passing between lifespan and request handlers
+* 在服务器启动时初始化资源，并在其停止时清理这些资源
+* 通过请求上下文在处理程序中访问已初始化的资源
+* 在生命周期与请求处理程序之间进行类型安全的上下文传递
 
 <!-- snippet-source examples/snippets/servers/lowlevel/basic.py -->
-
 ```python
 """
-Run from the repository root:
+从仓库根目录运行：
 uv run examples/snippets/servers/lowlevel/basic.py
 """
 
@@ -1417,43 +1337,43 @@ import mcp.types as types
 from mcp.server.lowlevel import NotificationOptions, Server
 from mcp.server.models import InitializationOptions
 
-# Create a server instance
+# 创建一个服务器实例
 server = Server("example-server")
 
 
 @server.list_prompts()
 async def handle_list_prompts() -> list[types.Prompt]:
-    """List available prompts."""
+    """列出可用的提示词模板。"""
     return [
         types.Prompt(
             name="example-prompt",
-            description="An example prompt template",
-            arguments=[types.PromptArgument(name="arg1", description="Example argument", required=True)],
+            description="一个示例提示词模板",
+            arguments=[types.PromptArgument(name="arg1", description="示例参数", required=True)],
         )
     ]
 
 
 @server.get_prompt()
 async def handle_get_prompt(name: str, arguments: dict[str, str] | None) -> types.GetPromptResult:
-    """Get a specific prompt by name."""
+    """通过名称获取特定的提示词模板。"""
     if name != "example-prompt":
-        raise ValueError(f"Unknown prompt: {name}")
+        raise ValueError(f"未知的提示词模板: {name}")
 
-    arg1_value = (arguments or {}).get("arg1", "default")
+    arg1_value = (arguments or {}).get("arg1", "默认值")
 
     return types.GetPromptResult(
-        description="Example prompt",
+        description="示例提示词模板",
         messages=[
             types.PromptMessage(
                 role="user",
-                content=types.TextContent(type="text", text=f"Example prompt text with argument: {arg1_value}"),
+                content=types.TextContent(type="text", text=f"带有参数的示例提示词文本: {arg1_value}"),
             )
         ],
     )
 
 
 async def run():
-    """Run the basic low-level server."""
+    """运行基础的低级服务器。"""
     async with mcp.server.stdio.stdio_server() as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -1472,22 +1392,20 @@ async def run():
 if __name__ == "__main__":
     asyncio.run(run())
 ```
-
-*Full example: [examples/snippets/servers/lowlevel/basic.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/lowlevel/basic.py)*
+完整示例：[examples/snippets/servers/lowlevel/basic.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/lowlevel/basic.py)
 
 <!-- /snippet-source -->
 
-Caution: The `uv run mcp run` and `uv run mcp dev` tool doesn't support low-level server.
+注意：`uv run mcp run` 和 `uv run mcp dev` 工具不支持低级服务器。
 
-#### Structured Output Support
+#### 结构化输出支持
 
-The low-level server supports structured output for tools, allowing you to return both human-readable content and machine-readable structured data. Tools can define an `outputSchema` to validate their structured output:
+低级服务器支持工具的结构化输出，允许你同时返回人类可读的内容和机器可读的结构化数据。工具可以定义一个 `outputSchema` 来验证其结构化输出：
 
 <!-- snippet-source examples/snippets/servers/lowlevel/structured_output.py -->
-
 ```python
 """
-Run from the repository root:
+从仓库根目录运行:
     uv run examples/snippets/servers/lowlevel/structured_output.py
 """
 
@@ -1504,23 +1422,23 @@ server = Server("example-server")
 
 @server.list_tools()
 async def list_tools() -> list[types.Tool]:
-    """List available tools with structured output schemas."""
+    """列出具有结构化输出模式的可用工具。"""
     return [
         types.Tool(
             name="get_weather",
-            description="Get current weather for a city",
+            description="获取城市的当前天气",
             inputSchema={
                 "type": "object",
-                "properties": {"city": {"type": "string", "description": "City name"}},
+                "properties": {"city": {"type": "string", "description": "城市名称"}},
                 "required": ["city"],
             },
             outputSchema={
                 "type": "object",
                 "properties": {
-                    "temperature": {"type": "number", "description": "Temperature in Celsius"},
-                    "condition": {"type": "string", "description": "Weather condition"},
-                    "humidity": {"type": "number", "description": "Humidity percentage"},
-                    "city": {"type": "string", "description": "City name"},
+                    "temperature": {"type": "number", "description": "摄氏温度"},
+                    "condition": {"type": "string", "description": "天气状况"},
+                    "humidity": {"type": "number", "description": "湿度百分比"},
+                    "city": {"type": "string", "description": "城市名称"},
                 },
                 "required": ["temperature", "condition", "humidity", "city"],
             },
@@ -1530,28 +1448,27 @@ async def list_tools() -> list[types.Tool]:
 
 @server.call_tool()
 async def call_tool(name: str, arguments: dict[str, Any]) -> dict[str, Any]:
-    """Handle tool calls with structured output."""
+    """处理具有结构化输出的工具调用。"""
     if name == "get_weather":
         city = arguments["city"]
 
-        # Simulated weather data - in production, call a weather API
+        # 模拟的天气数据 - 在生产环境中，应调用天气API
         weather_data = {
             "temperature": 22.5,
-            "condition": "partly cloudy",
+            "condition": "部分多云",
             "humidity": 65,
-            "city": city,  # Include the requested city
+            "city": city,  # 包含请求的城市
         }
 
-        # low-level server will validate structured output against the tool's
-        # output schema, and additionally serialize it into a TextContent block
-        # for backwards compatibility with pre-2025-06-18 clients.
+        # 低级服务器将根据工具的输出模式验证结构化输出，
+        # 并且为了与2025-06-18之前的客户端向后兼容，还会将其序列化为TextContent块。
         return weather_data
     else:
-        raise ValueError(f"Unknown tool: {name}")
+        raise ValueError(f"未知工具: {name}")
 
 
 async def run():
-    """Run the structured output server."""
+    """运行结构化输出服务器。"""
     async with mcp.server.stdio.stdio_server() as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -1570,28 +1487,26 @@ async def run():
 if __name__ == "__main__":
     asyncio.run(run())
 ```
-
-*Full example: [examples/snippets/servers/lowlevel/structured\_output.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/lowlevel/structured_output.py)*
+完整示例: [examples/snippets/servers/lowlevel/structured\_output.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/lowlevel/structured_output.py)
 
 <!-- /snippet-source -->
 
-Tools can return data in three ways:
+工具可以通过三种方式返回数据：
 
-1. **Content only**: Return a list of content blocks (default behavior before spec revision 2025-06-18)
-2. **Structured data only**: Return a dictionary that will be serialized to JSON (Introduced in spec revision 2025-06-18)
-3. **Both**: Return a tuple of (content, structured\_data) preferred option to use for backwards compatibility
+1. **仅内容**：返回内容块列表（2025-06-18 版规范之前的默认行为）
+2. **仅结构化数据**：返回一个字典，该字典将被序列化为 JSON（在 2025-06-18 版规范中引入）
+3. **两者都有**：返回 (content, structured\_data) 元组，推荐用于向后兼容的选项
 
-When an `outputSchema` is defined, the server automatically validates the structured output against the schema. This ensures type safety and helps catch errors early.
+当定义了 `outputSchema` 时，服务器会自动根据该模式验证结构化输出。这可以确保类型安全并帮助尽早发现错误。
 
-### Writing MCP Clients
+### 编写 MCP 客户端
 
-The SDK provides a high-level client interface for connecting to MCP servers using various [transports](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports):
+SDK 提供了一个高级客户端接口，用于通过各种 [传输方式](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports) 连接到 MCP 服务器：
 
 <!-- snippet-source examples/snippets/clients/stdio_client.py -->
-
 ```python
 """
-cd to the `examples/snippets/clients` directory and run:
+进入 `examples/snippets/clients` 目录并运行：
     uv run client
 """
 
@@ -1604,24 +1519,24 @@ from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 from mcp.shared.context import RequestContext
 
-# Create server parameters for stdio connection
+# 为 stdio 连接创建服务器参数
 server_params = StdioServerParameters(
-    command="uv",  # Using uv to run the server
-    args=["run", "server", "fastmcp_quickstart", "stdio"],  # We're already in snippets dir
+    command="uv",  # 使用 uv 运行服务器
+    args=["run", "server", "fastmcp_quickstart", "stdio"],  # 我们已经在 snippets 目录中
     env={"UV_INDEX": os.environ.get("UV_INDEX", "")},
 )
 
 
-# Optional: create a sampling callback
+# 可选：创建一个采样回调
 async def handle_sampling_message(
     context: RequestContext[ClientSession, None], params: types.CreateMessageRequestParams
 ) -> types.CreateMessageResult:
-    print(f"Sampling request: {params.messages}")
+    print(f"采样请求: {params.messages}")
     return types.CreateMessageResult(
         role="assistant",
         content=types.TextContent(
             type="text",
-            text="Hello, world! from model",
+            text="你好，世界！来自模型",
         ),
         model="gpt-3.5-turbo",
         stopReason="endTurn",
@@ -1631,61 +1546,59 @@ async def handle_sampling_message(
 async def run():
     async with stdio_client(server_params) as (read, write):
         async with ClientSession(read, write, sampling_callback=handle_sampling_message) as session:
-            # Initialize the connection
+            # 初始化连接
             await session.initialize()
 
-            # List available prompts
+            # 列出可用的提示
             prompts = await session.list_prompts()
-            print(f"Available prompts: {[p.name for p in prompts.prompts]}")
+            print(f"可用提示: {[p.name for p in prompts.prompts]}")
 
-            # Get a prompt (greet_user prompt from fastmcp_quickstart)
+            # 获取一个提示（来自 fastmcp_quickstart 的 greet_user 提示）
             if prompts.prompts:
-                prompt = await session.get_prompt("greet_user", arguments={"name": "Alice", "style": "friendly"})
-                print(f"Prompt result: {prompt.messages[0].content}")
+                prompt = await session.get_prompt("greet_user", arguments={"name": "Alice", "style": "友好"})
+                print(f"提示结果: {prompt.messages[0].content}")
 
-            # List available resources
+            # 列出可用资源
             resources = await session.list_resources()
-            print(f"Available resources: {[r.uri for r in resources.resources]}")
+            print(f"可用资源: {[r.uri for r in resources.resources]}")
 
-            # List available tools
+            # 列出可用工具
             tools = await session.list_tools()
-            print(f"Available tools: {[t.name for t in tools.tools]}")
+            print(f"可用工具: {[t.name for t in tools.tools]}")
 
-            # Read a resource (greeting resource from fastmcp_quickstart)
+            # 读取一个资源（来自 fastmcp_quickstart 的 greeting 资源）
             resource_content = await session.read_resource(AnyUrl("greeting://World"))
             content_block = resource_content.contents[0]
             if isinstance(content_block, types.TextContent):
-                print(f"Resource content: {content_block.text}")
+                print(f"资源内容: {content_block.text}")
 
-            # Call a tool (add tool from fastmcp_quickstart)
+            # 调用一个工具（来自 fastmcp_quickstart 的 add 工具）
             result = await session.call_tool("add", arguments={"a": 5, "b": 3})
             result_unstructured = result.content[0]
             if isinstance(result_unstructured, types.TextContent):
-                print(f"Tool result: {result_unstructured.text}")
+                print(f"工具结果: {result_unstructured.text}")
             result_structured = result.structuredContent
-            print(f"Structured tool result: {result_structured}")
+            print(f"结构化工具结果: {result_structured}")
 
 
 def main():
-    """Entry point for the client script."""
+    """客户端脚本的入口点。"""
     asyncio.run(run())
 
 
 if __name__ == "__main__":
     main()
 ```
-
-*Full example: [examples/snippets/clients/stdio\_client.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/clients/stdio_client.py)*
+完整示例：[examples/snippets/clients/stdio\_client.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/clients/stdio_client.py)
 
 <!-- /snippet-source -->
 
-Clients can also connect using [Streamable HTTP transport](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http):
+客户端也可以使用[可流式 HTTP 传输](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http)进行连接：
 
 <!-- snippet-source examples/snippets/clients/streamable_basic.py -->
-
 ```python
 """
-Run from the repository root:
+从仓库根目录运行：
     uv run examples/snippets/clients/streamable_basic.py
 """
 
@@ -1696,38 +1609,36 @@ from mcp.client.streamable_http import streamablehttp_client
 
 
 async def main():
-    # Connect to a streamable HTTP server
+    # 连接到一个支持流的HTTP服务器
     async with streamablehttp_client("http://localhost:8000/mcp") as (
         read_stream,
         write_stream,
         _,
     ):
-        # Create a session using the client streams
+        # 使用客户端流创建一个会话
         async with ClientSession(read_stream, write_stream) as session:
-            # Initialize the connection
+            # 初始化连接
             await session.initialize()
-            # List available tools
+            # 列出可用的工具
             tools = await session.list_tools()
-            print(f"Available tools: {[tool.name for tool in tools.tools]}")
+            print(f"可用工具: {[tool.name for tool in tools.tools]}")
 
 
 if __name__ == "__main__":
     asyncio.run(main())
 ```
-
-*Full example: [examples/snippets/clients/streamable\_basic.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/clients/streamable_basic.py)*
+完整示例：[examples/snippets/clients/streamable_basic.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/clients/streamable_basic.py)
 
 <!-- /snippet-source -->
 
-### Client Display Utilities
+### 客户端显示工具
 
-When building MCP clients, the SDK provides utilities to help display human-readable names for tools, resources, and prompts:
+在构建 MCP 客户端时，SDK 提供了一些工具，用于显示工具、资源和提示词的人类可读名称：  
 
 <!-- snippet-source examples/snippets/clients/display_utilities.py -->
-
 ```python
 """
-cd to the `examples/snippets` directory and run:
+转到 `examples/snippets` 目录并运行：
     uv run display-utilities-client
 """
 
@@ -1738,87 +1649,85 @@ from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 from mcp.shared.metadata_utils import get_display_name
 
-# Create server parameters for stdio connection
+# 为 stdio 连接创建服务器参数
 server_params = StdioServerParameters(
-    command="uv",  # Using uv to run the server
+    command="uv",  # 使用 uv 运行服务器
     args=["run", "server", "fastmcp_quickstart", "stdio"],
     env={"UV_INDEX": os.environ.get("UV_INDEX", "")},
 )
 
 
 async def display_tools(session: ClientSession):
-    """Display available tools with human-readable names"""
+    """显示具有可读名称的可用工具"""
     tools_response = await session.list_tools()
 
     for tool in tools_response.tools:
-        # get_display_name() returns the title if available, otherwise the name
+        # get_display_name() 如果存在 title 则返回 title，否则返回 name
         display_name = get_display_name(tool)
-        print(f"Tool: {display_name}")
+        print(f"工具: {display_name}")
         if tool.description:
             print(f"   {tool.description}")
 
 
 async def display_resources(session: ClientSession):
-    """Display available resources with human-readable names"""
+    """显示具有可读名称的可用资源"""
     resources_response = await session.list_resources()
 
     for resource in resources_response.resources:
         display_name = get_display_name(resource)
-        print(f"Resource: {display_name} ({resource.uri})")
+        print(f"资源: {display_name} ({resource.uri})")
 
     templates_response = await session.list_resource_templates()
     for template in templates_response.resourceTemplates:
         display_name = get_display_name(template)
-        print(f"Resource Template: {display_name}")
+        print(f"资源模板: {display_name}")
 
 
 async def run():
-    """Run the display utilities example."""
+    """运行显示工具示例。"""
     async with stdio_client(server_params) as (read, write):
         async with ClientSession(read, write) as session:
-            # Initialize the connection
+            # 初始化连接
             await session.initialize()
 
-            print("=== Available Tools ===")
+            print("=== 可用工具 ===")
             await display_tools(session)
 
-            print("\n=== Available Resources ===")
+            print("\n=== 可用资源 ===")
             await display_resources(session)
 
 
 def main():
-    """Entry point for the display utilities client."""
+    """显示工具客户端的入口点。"""
     asyncio.run(run())
 
 
 if __name__ == "__main__":
     main()
 ```
-
-*Full example: [examples/snippets/clients/display\_utilities.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/clients/display_utilities.py)*
+完整示例：[examples/snippets/clients/display_utilities.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/clients/display_utilities.py)
 
 <!-- /snippet-source -->
 
-The `get_display_name()` function implements the proper precedence rules for displaying names:
+`get_display_name()` 函数实现了显示名称的正确优先级规则：
 
-* For tools: `title` > `annotations.title` > `name`
-* For other objects: `title` > `name`
+* 对于工具：`title` > `annotations.title` > `name`
+* 对于其他对象：`title` > `name`
 
-This ensures your client UI shows the most user-friendly names that servers provide.
+这可以确保你的客户端界面显示服务器提供的最符合用户习惯的名称。
 
-### OAuth Authentication for Clients
+### 客户端的 OAuth 认证
 
-The SDK includes [authorization support](https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization) for connecting to protected MCP servers:
+SDK 包含用于连接受保护 MCP 服务器的 [授权支持](https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization)：  
 
 <!-- snippet-source examples/snippets/clients/oauth_client.py -->
-
 ```python
 """
-Before running, specify running MCP RS server URL.
-To spin up RS server locally, see
+运行前，请指定正在运行的 MCP RS 服务器的 URL。
+如需在本地启动 RS 服务器，请参见
     examples/servers/simple-auth/README.md
 
-cd to the `examples/snippets` directory and run:
+请切换到 `examples/snippets` 目录下并运行：
     uv run oauth-client
 """
 
@@ -1834,45 +1743,45 @@ from mcp.shared.auth import OAuthClientInformationFull, OAuthClientMetadata, OAu
 
 
 class InMemoryTokenStorage(TokenStorage):
-    """Demo In-memory token storage implementation."""
+    """演示：内存中的令牌存储实现。"""
 
     def __init__(self):
         self.tokens: OAuthToken | None = None
         self.client_info: OAuthClientInformationFull | None = None
 
     async def get_tokens(self) -> OAuthToken | None:
-        """Get stored tokens."""
+        """获取已存储的令牌。"""
         return self.tokens
 
     async def set_tokens(self, tokens: OAuthToken) -> None:
-        """Store tokens."""
+        """存储令牌。"""
         self.tokens = tokens
 
     async def get_client_info(self) -> OAuthClientInformationFull | None:
-        """Get stored client information."""
+        """获取已存储的客户端信息。"""
         return self.client_info
 
     async def set_client_info(self, client_info: OAuthClientInformationFull) -> None:
-        """Store client information."""
+        """存储客户端信息。"""
         self.client_info = client_info
 
 
 async def handle_redirect(auth_url: str) -> None:
-    print(f"Visit: {auth_url}")
+    print(f"请访问: {auth_url}")
 
 
 async def handle_callback() -> tuple[str, str | None]:
-    callback_url = input("Paste callback URL: ")
+    callback_url = input("粘贴回调 URL: ")
     params = parse_qs(urlparse(callback_url).query)
     return params["code"][0], params.get("state", [None])[0]
 
 
 async def main():
-    """Run the OAuth client example."""
+    """运行 OAuth 客户端示例。"""
     oauth_auth = OAuthClientProvider(
         server_url="http://localhost:8001",
         client_metadata=OAuthClientMetadata(
-            client_name="Example MCP Client",
+            client_name="示例 MCP 客户端",
             redirect_uris=[AnyUrl("http://localhost:3000/callback")],
             grant_types=["authorization_code", "refresh_token"],
             response_types=["code"],
@@ -1888,10 +1797,10 @@ async def main():
             await session.initialize()
 
             tools = await session.list_tools()
-            print(f"Available tools: {[tool.name for tool in tools.tools]}")
+            print(f"可用工具: {[tool.name for tool in tools.tools]}")
 
             resources = await session.list_resources()
-            print(f"Available resources: {[r.uri for r in resources.resources]}")
+            print(f"可用资源: {[r.uri for r in resources.resources]}")
 
 
 def run():
@@ -1901,17 +1810,15 @@ def run():
 if __name__ == "__main__":
     run()
 ```
-
-*Full example: [examples/snippets/clients/oauth\_client.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/clients/oauth_client.py)*
+完整示例：[examples/snippets/clients/oauth\_client.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/clients/oauth_client.py)
 
 <!-- /snippet-source -->
 
-For a complete working example, see [`examples/clients/simple-auth-client/`](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples/clients/simple-auth-client/).
+如需完整的可运行示例，请参见 [`examples/clients/simple-auth-client/`](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples/clients/simple-auth-client/)。
 
-### Parsing Tool Results
+### 解析工具结果
 
-When calling tools through MCP, the `CallToolResult` object contains the tool's response in a structured format. Understanding how to parse this result is essential for properly handling tool outputs.
-
+通过 MCP 调用工具时，`CallToolResult` 对象以结构化的格式包含工具的响应。了解如何解析此结果对于正确处理工具输出至关重要。
 ```python
 """examples/snippets/clients/parsing_tool_results.py"""
 
@@ -1922,7 +1829,7 @@ from mcp.client.stdio import stdio_client
 
 
 async def parse_tool_results():
-    """Demonstrates how to parse different types of content in CallToolResult."""
+    """演示如何解析 CallToolResult 中不同类型的内容。"""
     server_params = StdioServerParameters(
         command="python", args=["path/to/mcp_server.py"]
     )
@@ -1931,42 +1838,42 @@ async def parse_tool_results():
         async with ClientSession(read, write) as session:
             await session.initialize()
 
-            # Example 1: Parsing text content
+            # 示例 1：解析文本内容
             result = await session.call_tool("get_data", {"format": "text"})
             for content in result.content:
                 if isinstance(content, types.TextContent):
-                    print(f"Text: {content.text}")
+                    print(f"文本: {content.text}")
 
-            # Example 2: Parsing structured content from JSON tools
+            # 示例 2：解析来自 JSON 工具的结构化内容
             result = await session.call_tool("get_user", {"id": "123"})
             if hasattr(result, "structuredContent") and result.structuredContent:
-                # Access structured data directly
+                # 直接访问结构化数据
                 user_data = result.structuredContent
-                print(f"User: {user_data.get('name')}, Age: {user_data.get('age')}")
+                print(f"用户: {user_data.get('name')}, 年龄: {user_data.get('age')}")
 
-            # Example 3: Parsing embedded resources
+            # 示例 3：解析嵌入资源
             result = await session.call_tool("read_config", {})
             for content in result.content:
                 if isinstance(content, types.EmbeddedResource):
                     resource = content.resource
                     if isinstance(resource, types.TextResourceContents):
-                        print(f"Config from {resource.uri}: {resource.text}")
+                        print(f"配置文件 {resource.uri}: {resource.text}")
                     elif isinstance(resource, types.BlobResourceContents):
-                        print(f"Binary data from {resource.uri}")
+                        print(f"二进制数据来自 {resource.uri}")
 
-            # Example 4: Parsing image content
+            # 示例 4：解析图像内容
             result = await session.call_tool("generate_chart", {"data": [1, 2, 3]})
             for content in result.content:
                 if isinstance(content, types.ImageContent):
-                    print(f"Image ({content.mimeType}): {len(content.data)} bytes")
+                    print(f"图像 ({content.mimeType}): {len(content.data)} 字节")
 
-            # Example 5: Handling errors
+            # 示例 5：处理错误
             result = await session.call_tool("failing_tool", {})
             if result.isError:
-                print("Tool execution failed!")
+                print("工具执行失败！")
                 for content in result.content:
                     if isinstance(content, types.TextContent):
-                        print(f"Error: {content.text}")
+                        print(f"错误: {content.text}")
 
 
 async def main():
@@ -1976,39 +1883,38 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 ```
+### MCP 原语
 
-### MCP Primitives
+MCP 协议定义了服务器可实现的三个核心原语：
 
-The MCP protocol defines three core primitives that servers can implement:
+| 原语       | 控制方式           | 描述                                           | 示例用法                   |
+| ---------- | ------------------ | ------------------------------------------------ | -------------------------- |
+| 提示(Prompts)   | 用户控制         | 由用户选择调用的交互式模板                      | 斜杠命令、菜单选项        |
+| 资源(Resources) | 应用程序控制     | 由客户端应用程序管理的上下文数据                | 文件内容、API 响应        |
+| 工具(Tools)    | 模型控制         | 向 LLM 暴露的、用于执行操作的函数               | API 调用、数据更新        |
 
-| Primitive | Control                | Description                                       | Example Use                  |
-| --------- | ---------------------- | ------------------------------------------------- | ---------------------------- |
-| Prompts   | User-controlled        | Interactive templates invoked by user choice      | Slash commands, menu options |
-| Resources | Application-controlled | Contextual data managed by the client application | File contents, API responses |
-| Tools     | Model-controlled       | Functions exposed to the LLM to take actions      | API calls, data updates      |
+### 服务器能力
 
-### Server Capabilities
+MCP 服务器在初始化期间声明其能力：
 
-MCP servers declare capabilities during initialization:
+| 能力         | 特性标志                  | 描述                         |
+| ------------ | -------------------------- | ---------------------------- |
+| `prompts`    | `listChanged`              | 提示模板管理                 |
+| `resources`  | `subscribe`<br/>`listChanged` | 资源暴露与更新               |
+| `tools`      | `listChanged`              | 工具发现与执行               |
+| `logging`    | -                          | 服务器日志配置               |
+| `completions`| -                          | 参数补全建议                 |
 
-| Capability    | Feature Flag                  | Description                     |
-| ------------- | ----------------------------- | ------------------------------- |
-| `prompts`     | `listChanged`                 | Prompt template management      |
-| `resources`   | `subscribe`<br/>`listChanged` | Resource exposure and updates   |
-| `tools`       | `listChanged`                 | Tool discovery and execution    |
-| `logging`     | -                             | Server logging configuration    |
-| `completions` | -                             | Argument completion suggestions |
+## 文档
 
-## Documentation
+* [模型上下文协议文档](https://modelcontextprotocol.io)
+* [模型上下文协议规范](https://spec.modelcontextprotocol.io)
+* [官方支持的服务器列表](https://github.com/modelcontextprotocol/servers)
 
-* [Model Context Protocol documentation](https://modelcontextprotocol.io)
-* [Model Context Protocol specification](https://spec.modelcontextprotocol.io)
-* [Officially supported servers](https://github.com/modelcontextprotocol/servers)
+## 贡献
 
-## Contributing
+我们热衷于支持各个经验水平的贡献者，并希望看到您参与这个项目。请参阅[贡献指南](https://github.com/modelcontextprotocol/python-sdk/tree/main/CONTRIBUTING.md)以了解如何开始。
 
-We are passionate about supporting contributors of all levels of experience and would love to see you get involved in the project. See the [contributing guide](https://github.com/modelcontextprotocol/python-sdk/tree/main/CONTRIBUTING.md) to get started.
+## 许可证
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+该项目基于 MIT 协议授权 —— 详情请参阅 LICENSE 文件。

@@ -1,45 +1,41 @@
 # MCP C# SDK
 
-[![NuGet preview version](https://img.shields.io/nuget/vpre/ModelContextProtocol.svg)](https://www.nuget.org/packages/ModelContextProtocol/absoluteLatest)
+[![NuGet 预览版本](https://img.shields.io/nuget/vpre/ModelContextProtocol.svg)](https://www.nuget.org/packages/ModelContextProtocol/absoluteLatest)
 
-The official C# SDK for the [Model Context Protocol](https://modelcontextprotocol.io/), enabling .NET applications, services, and libraries to implement and interact with MCP clients and servers. Please visit our [API documentation](https://modelcontextprotocol.github.io/csharp-sdk/api/ModelContextProtocol.html) for more details on available functionality.
+这是 [Model Context Protocol](https://modelcontextprotocol.io/) 的官方 C# SDK，允许 .NET 应用程序、服务和库实现并交互 MCP 客户端和服务端。有关可用功能的详细信息，请查看我们的 [API 文档](https://modelcontextprotocol.github.io/csharp-sdk/api/ModelContextProtocol.html)。
 
-## Packages
+## 包
 
-This SDK consists of three main packages:
+该 SDK 包含三个主要包：
 
-* **[ModelContextProtocol](https://www.nuget.org/packages/ModelContextProtocol/absoluteLatest)** [![NuGet preview version](https://img.shields.io/nuget/vpre/ModelContextProtocol.svg)](https://www.nuget.org/packages/ModelContextProtocol/absoluteLatest) - The main package with hosting and dependency injection extensions. This is the right fit for most projects that don't need HTTP server capabilities. This README serves as documentation for this package.
+* **[ModelContextProtocol](https://www.nuget.org/packages/ModelContextProtocol/absoluteLatest)** [![NuGet 预览版本](https://img.shields.io/nuget/vpre/ModelContextProtocol.svg)](https://www.nuget.org/packages/ModelContextProtocol/absoluteLatest) - 主包，包含托管和依赖注入扩展。这适用于大多数不需要 HTTP 服务端功能的项目。本 README 文件是该包的文档。
 
-* **[ModelContextProtocol.AspNetCore](https://www.nuget.org/packages/ModelContextProtocol.AspNetCore/absoluteLatest)** [![NuGet preview version](https://img.shields.io/nuget/vpre/ModelContextProtocol.AspNetCore.svg)](https://www.nuget.org/packages/ModelContextProtocol.AspNetCore/absoluteLatest) - The library for HTTP-based MCP servers. [Documentation](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/src/ModelContextProtocol.AspNetCore/README.md)
+* **[ModelContextProtocol.AspNetCore](https://www.nuget.org/packages/ModelContextProtocol.AspNetCore/absoluteLatest)** [![NuGet 预览版本](https://img.shields.io/nuget/vpre/ModelContextProtocol.AspNetCore.svg)](https://www.nuget.org/packages/ModelContextProtocol.AspNetCore/absoluteLatest) - 用于基于 HTTP 的 MCP 服务端。[文档](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/src/ModelContextProtocol.AspNetCore/README.md)
 
-* **[ModelContextProtocol.Core](https://www.nuget.org/packages/ModelContextProtocol.Core/absoluteLatest)** [![NuGet preview version](https://img.shields.io/nuget/vpre/ModelContextProtocol.Core.svg)](https://www.nuget.org/packages/ModelContextProtocol.Core/absoluteLatest) - For people who only need to use the client or low-level server APIs and want the minimum number of dependencies. [Documentation](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/src/ModelContextProtocol.Core/README.md)
+* **[ModelContextProtocol.Core](https://www.nuget.org/packages/ModelContextProtocol.Core/absoluteLatest)** [![NuGet 预览版本](https://img.shields.io/nuget/vpre/ModelContextProtocol.Core.svg)](https://www.nuget.org/packages/ModelContextProtocol.Core/absoluteLatest) - 适用于仅需使用客户端或低级服务端 API，并希望依赖项最少的用户。[文档](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/src/ModelContextProtocol.Core/README.md)
 
 > \[!NOTE]
-> This project is in preview; breaking changes can be introduced without prior notice.
+> 该项目处于预览阶段；可能会在不提前通知的情况下引入破坏性变更。
 
-## About MCP
+## 关于 MCP
 
-The Model Context Protocol (MCP) is an open protocol that standardizes how applications provide context to Large Language Models (LLMs). It enables secure integration between LLMs and various data sources and tools.
+模型上下文协议（MCP）是一项开放协议，用于标准化应用程序向大语言模型（LLM）提供上下文的方式。它支持 LLM 与各种数据源和工具之间的安全集成。
 
-For more information about MCP:
+关于 MCP 的更多信息：
 
-* [Official Documentation](https://modelcontextprotocol.io/)
-* [Protocol Specification](https://spec.modelcontextprotocol.io/)
-* [GitHub Organization](https://github.com/modelcontextprotocol)
+* [官方文档](https://modelcontextprotocol.io/)
+* [协议规范](https://spec.modelcontextprotocol.io/)
+* [GitHub 组织](https://github.com/modelcontextprotocol)
 
-## Installation
+## 安装
 
-To get started, install the package from NuGet
-
+要开始使用，请从 NuGet 安装包
 ```
 dotnet add package ModelContextProtocol --prerelease
 ```
+## 开始使用（客户端）
 
-## Getting Started (Client)
-
-To get started writing a client, the `McpClientFactory.CreateAsync` method is used to instantiate and connect an `IMcpClient`
-to a server. Once you have an `IMcpClient`, you can interact with it, such as to enumerate all available tools and invoke tools.
-
+要开始编写客户端，可以使用 `McpClientFactory.CreateAsync` 方法来实例化并连接一个 `IMcpClient` 到服务器。一旦获得 `IMcpClient`，就可以与其进行交互，例如枚举所有可用工具并调用工具。
 ```csharp
 var clientTransport = new StdioClientTransport(new StdioClientTransportOptions
 {
@@ -50,51 +46,69 @@ var clientTransport = new StdioClientTransport(new StdioClientTransportOptions
 
 var client = await McpClientFactory.CreateAsync(clientTransport);
 
-// Print the list of tools available from the server.
+// 打印服务器提供的工具列表。
 foreach (var tool in await client.ListToolsAsync())
 {
     Console.WriteLine($"{tool.Name} ({tool.Description})");
 }
 
-// Execute a tool (this would normally be driven by LLM tool invocations).
+// 执行一个工具（这通常由LLM工具调用驱动）。
 var result = await client.CallToolAsync(
     "echo",
     new Dictionary<string, object?>() { ["message"] = "Hello MCP!" },
     cancellationToken:CancellationToken.None);
 
-// echo always returns one and only one text content object
+// echo 总是返回一个且仅一个文本内容对象
 Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
 ```
+你可以在[samples](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/samples)目录中找到展示如何在LLM SDK中使用`ModelContextProtocol`的示例，也可以参考[tests](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/tests/ModelContextProtocol.Tests)项目获取更多示例。未来还将添加更多示例和文档。
 
-You can find samples demonstrating how to use ModelContextProtocol with an LLM SDK in the [samples](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/samples) directory, and also refer to the [tests](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/tests/ModelContextProtocol.Tests) project for more examples. Additional examples and documentation will be added as in the near future.
+客户端可以连接到任意MCP服务器，而不局限于使用本库创建的服务器。该协议被设计为与服务器无关（server-agnostic），因此你可以使用本库连接到任意兼容的服务器。
 
-Clients can connect to any MCP server, not just ones created using this library. The protocol is designed to be server-agnostic, so you can use this library to connect to any compliant server.
-
-Tools can be easily exposed for immediate use by `IChatClient`s, because `McpClientTool` inherits from `AIFunction`.
-
+工具可以被轻松地暴露出来，供`IChatClient`立即使用，因为`McpClientTool`继承自`AIFunction`。
 ```csharp
-// Get available functions.
+// 获取可用的函数。
 IList<McpClientTool> tools = await client.ListToolsAsync();
 
-// Call the chat client using the tools.
+// 使用工具调用聊天客户端。
 IChatClient chatClient = ...;
 var response = await chatClient.GetResponseAsync(
-    "your prompt here",
+    "你的提示内容",
     new() { Tools = [.. tools] },
 ```
+## 入门（服务器）
 
-## Getting Started (Server)
-
-Here is an example of how to create an MCP server and register all tools from the current application.
-It includes a simple echo tool as an example (this is included in the same file here for easy of copy and paste, but it needn't be in the same file...
-the employed overload of `WithTools` examines the current assembly for classes with the `McpServerToolType` attribute, and registers all methods with the
-`McpTool` attribute as tools.)
-
+以下是如何创建一个MCP服务器并注册当前应用程序中所有工具的示例。  
+其中包含了一个简单的echo工具作为示例（这个示例被包含在同一个文件中是为了方便复制和粘贴，但其实它并不需要和主文件放在同一位置……  
+所使用的`WithTools`重载方法会检查当前程序集内带有`McpServerToolType`特性的类，并将其中带有`McpTool`特性的方法注册为工具。）
 ```
 dotnet add package ModelContextProtocol --prerelease
 dotnet add package Microsoft.Extensions.Hosting
 ```
+# 简介
 
+libmaxminddb 库提供了一个用于读取 MaxMind DB 文件的快速查找 API。MaxMind 提供了免费的 [GeoIP2 数据库](https://dev.maxmind.com/geoip/geoip2/geolite2/)，这些数据库使用 MaxMind DB 格式进行分发。此外，MaxMind 提供了一个[商业服务](https://www.maxmind.com/en/geoip2-services)。MaxMind DB 的设计也适用于其他 IP 数据库提供商。
+
+这个库支持在各种不同的平台上使用，包括 Linux、macOS、Solaris 和 Windows。
+
+## 支持的格式
+
+这个库支持 MaxMind DB 文件的读取。它不支持写入或创建这些文件。如果你需要创建 MaxMind DB 文件，请参阅我们的 [maxmind-db-writer](https://github.com/maxmind/maxminddb-writer) Perl 模块或 [maxmind-db-reader](https://github.com/maxmind/maxmind-db-writer) 模块的文档。
+
+## 要求
+
+* 一个标准的 C 编译器（支持 C89 或更新版本）
+* `libtool`
+* `autoconf`
+* `automake`
+* `make`
+* `pkg-config`（可选）
+* `curl`（用于运行测试）
+* `doxygen`（用于生成文档）
+
+## 安装
+
+请参阅我们的 [安装说明](INSTALL.md) 获取有关如何安装此库的详细信息。
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -105,7 +119,7 @@ using System.ComponentModel;
 var builder = Host.CreateApplicationBuilder(args);
 builder.Logging.AddConsole(consoleLogOptions =>
 {
-    // Configure all logs to go to stderr
+    // 配置所有日志输出到 stderr
     consoleLogOptions.LogToStandardErrorThreshold = LogLevel.Trace;
 });
 builder.Services
@@ -117,29 +131,24 @@ await builder.Build().RunAsync();
 [McpServerToolType]
 public static class EchoTool
 {
-    [McpServerTool, Description("Echoes the message back to the client.")]
+    [McpServerTool, Description("将消息回显给客户端。")]
     public static string Echo(string message) => $"hello {message}";
 }
 ```
-
-Tools can have the `IMcpServer` representing the server injected via a parameter to the method, and can use that for interaction with
-the connected client. Similarly, arguments may be injected via dependency injection. For example, this tool will use the supplied
-`IMcpServer` to make sampling requests back to the client in order to summarize content it downloads from the specified url via
-an `HttpClient` injected via dependency injection.
-
+工具可以通过方法的参数注入表示服务器的 `IMcpServer`，并使用它与已连接的客户端进行交互。同样，参数也可以通过依赖注入的方式被注入。例如，此工具将使用提供的 `IMcpServer` 向客户端发起采样请求，以总结其通过依赖注入的 `HttpClient` 从指定 URL 下载的内容。
 ```csharp
-[McpServerTool(Name = "SummarizeContentFromUrl"), Description("Summarizes content downloaded from a specific URI")]
+[McpServerTool(Name = "SummarizeContentFromUrl"), Description("对从特定 URI 下载的内容进行摘要")]
 public static async Task<string> SummarizeDownloadedContent(
     IMcpServer thisServer,
     HttpClient httpClient,
-    [Description("The url from which to download the content to summarize")] string url,
+    [Description("要从中下载内容并进行摘要的 URL")] string url,
     CancellationToken cancellationToken)
 {
     string content = await httpClient.GetStringAsync(url);
 
     ChatMessage[] messages =
     [
-        new(ChatRole.User, "Briefly summarize the following downloaded content:"),
+        new(ChatRole.User, "请简要总结以下下载的内容："),
         new(ChatRole.User, content),
     ];
     
@@ -149,24 +158,20 @@ public static async Task<string> SummarizeDownloadedContent(
         Temperature = 0.3f,
     };
 
-    return $"Summary: {await thisServer.AsSamplingChatClient().GetResponseAsync(messages, options, cancellationToken)}";
+    return $"摘要：{await thisServer.AsSamplingChatClient().GetResponseAsync(messages, options, cancellationToken)}";
 }
 ```
-
-Prompts can be exposed in a similar manner, using `[McpServerPrompt]`, e.g.
-
+提示也可以以类似的方式暴露出来，使用 `[McpServerPrompt]`，例如：
 ```csharp
 [McpServerPromptType]
-public static class MyPrompts
+public static class 我的提示
 {
-    [McpServerPrompt, Description("Creates a prompt to summarize the provided message.")]
-    public static ChatMessage Summarize([Description("The content to summarize")] string content) =>
-        new(ChatRole.User, $"Please summarize this content into a single sentence: {content}");
+    [McpServerPrompt, Description("创建一个提示，用于总结提供的消息。")]
+    public static ChatMessage 总结([Description("需要总结的内容")] string 内容) =>
+        new(ChatRole.User, $"请将此内容总结成一句话：{内容}");
 }
 ```
-
-More control is also available, with fine-grained control over configuring the server and how it should handle client requests. For example:
-
+还可以进行更细致的控制，包括对服务器配置以及其处理客户端请求方式的细粒度控制。例如：
 ```csharp
 using ModelContextProtocol;
 using ModelContextProtocol.Protocol;
@@ -188,14 +193,14 @@ McpServerOptions options = new()
                         new Tool
                         {
                             Name = "echo",
-                            Description = "Echoes the input back to the client.",
+                            Description = "将输入回显给客户端。",
                             InputSchema = JsonSerializer.Deserialize<JsonElement>("""
                                 {
                                     "type": "object",
                                     "properties": {
                                       "message": {
                                         "type": "string",
-                                        "description": "The input to echo back"
+                                        "description": "需要回显的输入内容"
                                       }
                                     },
                                     "required": ["message"]
@@ -211,7 +216,7 @@ McpServerOptions options = new()
                 {
                     if (request.Params.Arguments?.TryGetValue("message", out var message) is not true)
                     {
-                        throw new McpException("Missing required argument 'message'");
+                        throw new McpException("缺少必需的参数 'message'");
                     }
 
                     return ValueTask.FromResult(new CallToolResult
@@ -220,7 +225,7 @@ McpServerOptions options = new()
                     });
                 }
 
-                throw new McpException($"Unknown tool: '{request.Params?.Name}'");
+                throw new McpException($"未知的工具: '{request.Params?.Name}'");
             },
         }
     },
@@ -229,11 +234,10 @@ McpServerOptions options = new()
 await using IMcpServer server = McpServerFactory.Create(new StdioServerTransport("MyServer"), options);
 await server.RunAsync();
 ```
+## 致谢
 
-## Acknowledgements
+本库的起点是一个名为 [mcpdotnet](https://github.com/PederHP/mcpdotnet) 的项目，该项目由 [Peder Holdgaard Pedersen](https://github.com/PederHP) 发起。我们感谢 Peder 以及该仓库的其他贡献者所做的工作，他们为本库打下了坚实的基础。
 
-The starting point for this library was a project called [mcpdotnet](https://github.com/PederHP/mcpdotnet), initiated by [Peder Holdgaard Pedersen](https://github.com/PederHP). We are grateful for the work done by Peder and other contributors to that repository, which created a solid foundation for this library.
+## 许可证
 
-## License
-
-This project is licensed under the [MIT License](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/LICENSE).
+本项目采用 [MIT 许可证](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/LICENSE) 进行授权。

@@ -1,75 +1,72 @@
 # FastMCP
 
-A TypeScript framework for building [MCP](https://glama.ai/mcp) servers capable of handling client sessions.
+用于构建能够处理客户端会话的 [MCP](https://glama.ai/mcp) 服务器的 TypeScript 框架。
 
 > \[!NOTE]
 >
-> For a Python implementation, see [FastMCP](https://github.com/jlowin/fastmcp).
+> Python 实现请参见 [FastMCP](https://github.com/jlowin/fastmcp)。
 
-## Features
+## 功能特性
 
-* Simple Tool, Resource, Prompt definition
-* [Authentication](#authentication)
-* [Passing headers through context](#passing-headers-through-context)
-* [Sessions](#sessions)
-* [Image content](#returning-an-image)
-* [Audio content](#returning-an-audio)
-* [Embedded](#embedded-resources)
-* [Logging](#logging)
-* [Error handling](#errors)
-* [HTTP Streaming](#http-streaming) (with SSE compatibility)
-* [Stateless mode](#stateless-mode) for serverless deployments
-* CORS (enabled by default)
-* [Progress notifications](#progress)
-* [Streaming output](#streaming-output)
-* [Typed server events](#typed-server-events)
-* [Prompt argument auto-completion](#prompt-argument-auto-completion)
-* [Sampling](#requestsampling)
-* [Configurable ping behavior](#configurable-ping-behavior)
-* [Health-check endpoint](#health-check-endpoint)
-* [Roots](#roots-management)
-* CLI for [testing](#test-with-mcp-cli) and [debugging](#inspect-with-mcp-inspector)
+* 简单的工具、资源、提示定义
+* [身份验证](#authentication)
+* [通过上下文传递请求头](#passing-headers-through-context)
+* [会话](#sessions)
+* [图片内容](#returning-an-image)
+* [音频内容](#returning-an-audio)
+* [嵌入式](#embedded-resources)
+* [日志](#logging)
+* [错误处理](#errors)
+* [HTTP 流式传输](#http-streaming)（兼容 SSE）
+* [无状态模式](#stateless-mode) 用于无服务器部署
+* 默认启用 CORS
+* [进度通知](#progress)
+* [流式输出](#streaming-output)
+* [类型化服务器事件](#typed-server-events)
+* [提示参数自动补全](#prompt-argument-auto-completion)
+* [采样](#requestsampling)
+* [可配置的 ping 行为](#configurable-ping-behavior)
+* [健康检查端点](#health-check-endpoint)
+* [根目录](#roots-management)
+* CLI 用于 [测试](#test-with-mcp-cli) 和 [调试](#inspect-with-mcp-inspector)
 
-## When to use FastMCP over the official SDK?
+## 何时选择 FastMCP 而非官方 SDK？
 
-FastMCP is built on top of the official SDK.
+FastMCP 构建在官方 SDK 之上。
 
-The official SDK provides foundational blocks for building MCPs, but leaves many implementation details to you:
+官方 SDK 提供了构建 MCP 的基础模块，但许多实现细节需要你自己处理：
 
-* [Initiating and configuring](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L664-L744) all the server components
-* [Handling of connections](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L760-L850)
-* [Handling of tools](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L1303-L1498)
-* [Handling of responses](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L989-L1060)
-* [Handling of resources](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L1151-L1242)
-* Adding [prompts](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L760-L850), [resources](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L960-L962), [resource templates](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L964-L987)
-* Embedding [resources](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L1569-L1643), [image](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L51-L111) and [audio](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L113-L173) content blocks
+* [初始化与配置](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L664-L744) 所有服务器组件
+* [连接处理](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L760-L850)
+* [工具处理](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L1303-L1498)
+* [响应处理](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L989-L1060)
+* [资源处理](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L1151-L1242)
+* 添加 [提示](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L760-L850)、[资源](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L960-L962)、[资源模板](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L964-L987)
+* 嵌入 [资源](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L1569-L1643)、[图片](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L51-L111) 和 [音频](https://github.com/punkpeye/fastmcp/blob/06c2af7a3d7e3d8c638deac1964ce269ce8e518b/src/FastMCP.ts#L113-L173) 内容块
 
-FastMCP eliminates this complexity by providing an opinionated framework that:
+FastMCP 通过提供一套约定式框架，消除了上述复杂性：
 
-* Handles all the boilerplate automatically
-* Provides simple, intuitive APIs for common tasks
-* Includes built-in best practices and error handling
-* Lets you focus on your MCP's core functionality
+* 自动处理所有样板代码
+* 为常见任务提供简单直观的 API
+* 内置最佳实践和错误处理
+* 让你专注于 MCP 的核心功能
 
-**When to choose FastMCP:** You want to build MCP servers quickly without dealing with low-level implementation details.
+**选择 FastMCP 的场景：** 想快速构建 MCP 服务器，而不想处理底层实现细节。
 
-**When to use the official SDK:** You need maximum control or have specific architectural requirements. In this case, we encourage referencing FastMCP's implementation to avoid common pitfalls.
+**使用官方 SDK 的场景：** 需要最大控制权或有特定架构需求。此时建议参考 FastMCP 的实现，以避免常见陷阱。
 
-## Installation
-
+## 安装
 ```bash
 npm install fastmcp
 ```
+## 快速开始
 
-## Quickstart
-
-> \[!NOTE]
+> \[!NOTE\]
 >
-> There are many real-world examples of using FastMCP in the wild. See the [Showcase](#showcase) for examples.
-
+> 已有许多在现实场景中使用 FastMCP 的示例。请参见 [展示](#showcase) 获取相关示例。
 ```ts
 import { FastMCP } from "fastmcp";
-import { z } from "zod"; // Or any validation library that supports Standard Schema
+import { z } from "zod"; // 或者任何支持标准 Schema 的验证库
 
 const server = new FastMCP({
   name: "My Server",
@@ -78,7 +75,7 @@ const server = new FastMCP({
 
 server.addTool({
   name: "add",
-  description: "Add two numbers",
+  description: "将两个数字相加",
   parameters: z.object({
     a: z.number(),
     b: z.number(),
@@ -92,11 +89,9 @@ server.start({
   transportType: "stdio",
 });
 ```
+*就是这样！* 你现在拥有了一个可用的 MCP 服务器。
 
-*That's it!* You have a working MCP server.
-
-You can test the server in terminal with:
-
+你可以在终端中用以下命令测试服务器：
 ```bash
 git clone https://github.com/punkpeye/fastmcp.git
 cd fastmcp
@@ -104,24 +99,22 @@ cd fastmcp
 pnpm install
 pnpm build
 
-# Test the addition server example using CLI:
+# 使用 CLI 测试加法服务器示例：
 npx fastmcp dev src/examples/addition.ts
-# Test the addition server example using MCP Inspector:
+# 使用 MCP Inspector 测试加法服务器示例：
 npx fastmcp inspect src/examples/addition.ts
 ```
+如果你正在寻找一个样板仓库来构建自己的 MCP 服务器，请查看 [fastmcp-boilerplate](https://github.com/punkpeye/fastmcp-boilerplate)。
 
-If you are looking for a boilerplate repository to build your own MCP server, check out [fastmcp-boilerplate](https://github.com/punkpeye/fastmcp-boilerplate).
+### 远程服务器选项
 
-### Remote Server Options
+FastMCP 支持多种远程通信传输方式，允许通过网络访问托管在远程机器上的 MCP。
 
-FastMCP supports multiple transport options for remote communication, allowing an MCP hosted on a remote machine to be accessed over the network.
+#### HTTP 流式传输
 
-#### HTTP Streaming
+[HTTP 流式传输](https://www.cloudflare.com/learning/video/what-is-http-live-streaming/) 在支持它的环境中提供了比 SSE 更高效的替代方案，对于较大的负载可能具有更好的性能。
 
-[HTTP streaming](https://www.cloudflare.com/learning/video/what-is-http-live-streaming/) provides a more efficient alternative to SSE in environments that support it, with potentially better performance for larger payloads.
-
-You can run the server with HTTP streaming support:
-
+你可以使用 HTTP 流式传输支持来运行服务器：
 ```ts
 server.start({
   transportType: "httpStream",
@@ -130,15 +123,13 @@ server.start({
   },
 });
 ```
+这将启动服务器，并在 `http://localhost:8080/mcp` 上监听 HTTP 流式连接。
 
-This will start the server and listen for HTTP streaming connections on `http://localhost:8080/mcp`.
+> **注意：** 你也可以通过 `httpStream.endpoint` 选项自定义端点路径（默认为 `/mcp`）。
 
-> **Note:** You can also customize the endpoint path using the `httpStream.endpoint` option (default is `/mcp`).
+你可以使用相应的客户端传输连接到这些服务器。
 
-You can connect to these servers using the appropriate client transport.
-
-For HTTP streaming connections:
-
+对于 HTTP 流式连接：
 ```ts
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 
@@ -158,9 +149,7 @@ const transport = new StreamableHTTPClientTransport(
 
 await client.connect(transport);
 ```
-
-For SSE connections:
-
+对于 SSE 连接：
 ```ts
 import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js";
 
@@ -178,20 +167,18 @@ const transport = new SSEClientTransport(new URL(`http://localhost:8080/sse`));
 
 await client.connect(transport);
 ```
+#### 无状态模式
 
-#### Stateless Mode
+FastMCP 支持 HTTP 流式传输的无状态操作，每个请求独立处理，无需维护持久会话。这非常适合无服务器环境、负载均衡部署或不需要会话状态的场景。
 
-FastMCP supports stateless operation for HTTP streaming, where each request is handled independently without maintaining persistent sessions. This is ideal for serverless environments, load-balanced deployments, or when session state isn't required.
+在无状态模式下：
 
-In stateless mode:
+* 服务器不会跟踪任何会话
+* 每个请求都会创建一个临时会话，响应后即被丢弃
+* 内存占用更低，扩展性更好
+* 完美适配无状态部署环境
 
-* No sessions are tracked on the server
-* Each request creates a temporary session that's discarded after the response
-* Reduced memory usage and better scalability
-* Perfect for stateless deployment environments
-
-You can enable stateless mode by adding the `stateless: true` option:
-
+你可以通过添加 `stateless: true` 选项来启用无状态模式：
 ```ts
 server.start({
   transportType: "httpStream",
@@ -201,46 +188,40 @@ server.start({
   },
 });
 ```
+> **注意：** 无状态模式仅在使用 HTTP 流式传输时可用。依赖持久会话的功能（如会话特定状态）在无状态模式下将不可用。
 
-> **Note:** Stateless mode is only available with HTTP streaming transport. Features that depend on persistent sessions (like session-specific state) will not be available in stateless mode.
-
-You can also enable stateless mode using CLI arguments or environment variables:
-
+你也可以通过 CLI 参数或环境变量启用无状态模式：
 ```bash
-# Via CLI argument
+# 通过 CLI 参数
 npx fastmcp dev src/server.ts --transport http-stream --port 8080 --stateless true
 
-# Via environment variable
+# 通过环境变量
 FASTMCP_STATELESS=true npx fastmcp dev src/server.ts
 ```
-
-The `/ready` health check endpoint will indicate when the server is running in stateless mode:
-
+`/ready` 健康检查端点将指示服务器何时以无状态模式运行：
 ```json
 {
-  "mode": "stateless",
+  "mode": "无状态",
   "ready": 1,
-  "status": "ready",
+  "status": "就绪",
   "total": 1
 }
 ```
+## 核心概念
 
-## Core Concepts
+### 工具
 
-### Tools
+MCP 中的[工具](https://modelcontextprotocol.io/docs/concepts/tools)允许服务器暴露可执行函数，客户端可以调用这些函数，LLM 也能利用它们来执行操作。
 
-[Tools](https://modelcontextprotocol.io/docs/concepts/tools) in MCP allow servers to expose executable functions that can be invoked by clients and used by LLMs to perform actions.
+FastMCP 使用 [Standard Schema](https://standardschema.dev) 规范来定义工具参数。这意味着只要你喜欢的模式验证库（如 Zod、ArkType 或 Valibot）实现了该规范，就可以直接使用。
 
-FastMCP uses the [Standard Schema](https://standardschema.dev) specification for defining tool parameters. This allows you to use your preferred schema validation library (like Zod, ArkType, or Valibot) as long as it implements the spec.
-
-**Zod Example:**
-
+**Zod 示例：**
 ```typescript
 import { z } from "zod";
 
 server.addTool({
   name: "fetch-zod",
-  description: "Fetch the content of a url (using Zod)",
+  description: "使用 Zod 获取 URL 的内容",
   parameters: z.object({
     url: z.string(),
   }),
@@ -249,15 +230,13 @@ server.addTool({
   },
 });
 ```
-
-**ArkType Example:**
-
+**ArkType 示例：**
 ```typescript
 import { type } from "arktype";
 
 server.addTool({
   name: "fetch-arktype",
-  description: "Fetch the content of a url (using ArkType)",
+  description: "使用 ArkType 获取 URL 的内容",
   parameters: type({
     url: "string",
   }),
@@ -266,17 +245,15 @@ server.addTool({
   },
 });
 ```
+**Valibot 示例：**
 
-**Valibot Example:**
-
-Valibot requires the peer dependency @valibot/to-json-schema.
-
+Valibot 需要对等依赖 @valibot/to-json-schema。
 ```typescript
 import * as v from "valibot";
 
 server.addTool({
   name: "fetch-valibot",
-  description: "Fetch the content of a url (using Valibot)",
+  description: "获取一个 url 的内容（使用 Valibot）",
   parameters: v.object({
     url: v.string(),
   }),
@@ -285,64 +262,56 @@ server.addTool({
   },
 });
 ```
+#### 无参数工具
 
-#### Tools Without Parameters
+创建不需要参数的工具时，你有两种选择：
 
-When creating tools that don't require parameters, you have two options:
+1. 完全省略 parameters 属性：
+```typescript
+server.addTool({
+  name: "sayHello",
+  description: "打招呼",
+  // 没有 parameters 属性
+  execute: async () => {
+    return "你好，世界！";
+  },
+});
+```
+2. 显式定义空参数：
+```typescript
+import { z } from "zod";
 
-1. Omit the parameters property entirely:
-
-   ```typescript
-   server.addTool({
-     name: "sayHello",
-     description: "Say hello",
-     // No parameters property
-     execute: async () => {
-       return "Hello, world!";
-     },
-   });
-   ```
-
-2. Explicitly define empty parameters:
-
-   ```typescript
-   import { z } from "zod";
-
-   server.addTool({
-     name: "sayHello",
-     description: "Say hello",
-     parameters: z.object({}), // Empty object
-     execute: async () => {
-       return "Hello, world!";
-     },
-   });
-   ```
-
+server.addTool({
+  name: "sayHello",
+  description: "打个招呼",
+  parameters: z.object({}), // 空对象
+  execute: async () => {
+    return "你好，世界！";
+  },
+});
+```
 > \[!NOTE]
 >
-> Both approaches are fully compatible with all MCP clients, including Cursor. FastMCP automatically generates the proper schema in both cases.
+> 这两种方法都与所有 MCP 客户端（包括 Cursor）完全兼容。FastMCP 会在两种情况下自动生成正确的架构。
 
-#### Tool Authorization
+#### 工具授权
 
-You can control which tools are available to authenticated users by adding an optional `canAccess` function to a tool's definition. This function receives the authentication context and should return `true` if the user is allowed to access the tool.
-
+你可以通过在工具定义中添加可选的 `canAccess` 函数来控制哪些工具可供已认证用户使用。该函数接收认证上下文，如果允许用户访问该工具，应返回 `true`。
 ```typescript
 server.addTool({
   name: "admin-tool",
-  description: "An admin-only tool",
+  description: "仅限管理员使用的工具",
   canAccess: (auth) => auth?.role === "admin",
-  execute: async () => "Welcome, admin!",
+  execute: async () => "欢迎，管理员！",
 });
 ```
+#### 返回字符串
 
-#### Returning a string
-
-`execute` can return a string:
-
+`execute` 可以返回一个字符串：
 ```js
 server.addTool({
   name: "download",
-  description: "Download a file",
+  description: "下载文件",
   parameters: z.object({
     url: z.string(),
   }),
@@ -351,13 +320,11 @@ server.addTool({
   },
 });
 ```
-
-The latter is equivalent to:
-
+后者等同于：
 ```js
 server.addTool({
   name: "download",
-  description: "Download a file",
+  description: "下载文件",
   parameters: z.object({
     url: z.string(),
   }),
@@ -366,46 +333,42 @@ server.addTool({
       content: [
         {
           type: "text",
-          text: "Hello, world!",
+          text: "你好，世界！",
         },
       ],
     };
   },
 });
 ```
+#### 返回列表
 
-#### Returning a list
-
-If you want to return a list of messages, you can return an object with a `content` property:
-
+如果你想返回消息列表，可以返回一个包含 `content` 属性的对象：
 ```js
 server.addTool({
   name: "download",
-  description: "Download a file",
+  description: "下载文件",
   parameters: z.object({
     url: z.string(),
   }),
   execute: async (args) => {
     return {
       content: [
-        { type: "text", text: "First message" },
-        { type: "text", text: "Second message" },
+        { type: "text", text: "第一条消息" },
+        { type: "text", text: "第二条消息" },
       ],
     };
   },
 });
 ```
+#### 返回图像
 
-#### Returning an image
-
-Use the `imageContent` to create a content object for an image:
-
+使用 `imageContent` 创建一个图像的内容对象：
 ```js
 import { imageContent } from "fastmcp";
 
 server.addTool({
   name: "download",
-  description: "Download a file",
+  description: "下载文件",
   parameters: z.object({
     url: z.string(),
   }),
@@ -414,17 +377,17 @@ server.addTool({
       url: "https://example.com/image.png",
     });
 
-    // or...
+    // 或者...
     // return imageContent({
     //   path: "/path/to/image.png",
     // });
 
-    // or...
+    // 或者...
     // return imageContent({
     //   buffer: Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=", "base64"),
     // });
 
-    // or...
+    // 或者...
     // return {
     //   content: [
     //     await imageContent(...)
@@ -433,21 +396,19 @@ server.addTool({
   },
 });
 ```
+`imageContent` 函数接受以下选项：
 
-The `imageContent` function takes the following options:
+* `url`：图片的 URL。
+* `path`：图片文件的路径。
+* `buffer`：以 buffer 形式表示的图片数据。
 
-* `url`: The URL of the image.
-* `path`: The path to the image file.
-* `buffer`: The image data as a buffer.
+必须且只能指定 `url`、`path` 或 `buffer` 中的一个。
 
-Only one of `url`, `path`, or `buffer` must be specified.
-
-The above example is equivalent to:
-
+上面的示例等同于：
 ```js
 server.addTool({
   name: "download",
-  description: "Download a file",
+  description: "下载文件",
   parameters: z.object({
     url: z.string(),
   }),
@@ -464,53 +425,47 @@ server.addTool({
   },
 });
 ```
+#### 可配置的 Ping 行为
 
-#### Configurable Ping Behavior
-
-FastMCP includes a configurable ping mechanism to maintain connection health. The ping behavior can be customized through server options:
-
+FastMCP 包含一个可配置的 ping 机制，用于保持连接健康。可以通过服务器选项自定义 ping 行为：
 ```ts
 const server = new FastMCP({
-  name: "My Server",
+  name: "我的服务器",
   version: "1.0.0",
   ping: {
-    // Explicitly enable or disable pings (defaults vary by transport)
+    // 显式启用或禁用 ping（默认值因传输方式而异）
     enabled: true,
-    // Configure ping interval in milliseconds (default: 5000ms)
+    // 配置 ping 间隔，单位为毫秒（默认：5000 毫秒）
     intervalMs: 10000,
-    // Set log level for ping-related messages (default: 'debug')
+    // 设置与 ping 相关的日志级别（默认：'debug'）
     logLevel: "debug",
   },
 });
 ```
+默认情况下，ping 行为会根据每种传输类型进行优化：
 
-By default, ping behavior is optimized for each transport type:
+* 为 SSE 和 HTTP 流式连接启用（这些连接受益于保活机制）
+* 为 `stdio` 连接禁用（通常不需要 ping）
 
-* Enabled for SSE and HTTP streaming connections (which benefit from keep-alive)
-* Disabled for `stdio` connections (where pings are typically unnecessary)
+这种可配置的方法有助于减少日志冗余，并针对不同使用场景优化性能。
 
-This configurable approach helps reduce log verbosity and optimize performance for different usage scenarios.
+### 健康检查端点
 
-### Health-check Endpoint
+当你使用 `httpStream` 传输运行 FastMCP 时，可以选择暴露一个简单的 HTTP 端点，返回纯文本响应，便于负载均衡器或容器编排进行存活检查。
 
-When you run FastMCP with the `httpStream` transport you can optionally expose a
-simple HTTP endpoint that returns a plain-text response useful for load-balancer
-or container orchestration liveness checks.
-
-Enable (or customise) the endpoint via the `health` key in the server options:
-
+通过服务器选项中的 `health` 键启用（或自定义）该端点：
 ```ts
 const server = new FastMCP({
-  name: "My Server",
+  name: "我的服务器",
   version: "1.0.0",
   health: {
-    // Enable / disable (default: true)
+    // 启用 / 禁用（默认：true）
     enabled: true,
-    // Body returned by the endpoint (default: 'ok')
+    // 端点返回的响应体（默认：'ok'）
     message: "healthy",
-    // Path that should respond (default: '/health')
+    // 应响应的路径（默认：'/health'）
     path: "/healthz",
-    // HTTP status code to return (default: 200)
+    // 返回的 HTTP 状态码（默认：200）
     status: 200,
   },
 });
@@ -520,69 +475,61 @@ await server.start({
   httpStream: { port: 8080 },
 });
 ```
-
-Now a request to `http://localhost:8080/healthz` will return:
-
+现在，对 `http://localhost:8080/healthz` 的请求将返回：
 ```
 HTTP/1.1 200 OK
 content-type: text/plain
 
-healthy
+健康
 ```
+当服务器使用 `stdio` 传输启动时，该端点将被忽略。
 
-The endpoint is ignored when the server is started with the `stdio` transport.
+#### 根目录管理
 
-#### Roots Management
-
-FastMCP supports [Roots](https://modelcontextprotocol.io/docs/concepts/roots) - Feature that allows clients to provide a set of filesystem-like root locations that can be listed and dynamically updated. The Roots feature can be configured or disabled in server options:
-
+FastMCP 支持 [根目录](https://modelcontextprotocol.io/docs/concepts/roots) —— 一项允许客户端提供一组类文件系统的根位置，并可以列出和动态更新的功能。可以在服务器选项中配置或禁用根目录功能：
 ```ts
 const server = new FastMCP({
   name: "My Server",
   version: "1.0.0",
   roots: {
-    // Set to false to explicitly disable roots support
+    // 设置为 false 以显式禁用 roots 支持
     enabled: false,
-    // By default, roots support is enabled (true)
+    // 默认情况下，roots 支持是启用的（true）
   },
 });
 ```
+这带来了以下好处：
 
-This provides the following benefits:
+* 更好地兼容可能不支持 Roots 的不同客户端
+* 连接到未实现 roots 能力的客户端时，减少错误日志
+* 对 MCP 服务器能力进行更明确的控制
+* 当 roots 功能不可用时，优雅降级
 
-* Better compatibility with different clients that may not support Roots
-* Reduced error logs when connecting to clients that don't implement roots capability
-* More explicit control over MCP server capabilities
-* Graceful degradation when roots functionality isn't available
-
-You can listen for root changes in your server:
-
+你可以在服务器中监听根目录的变化：
 ```ts
 server.on("connect", (event) => {
   const session = event.session;
 
-  // Access the current roots
-  console.log("Initial roots:", session.roots);
+  // 访问当前的根节点
+  console.log("初始根节点:", session.roots);
 
-  // Listen for changes to the roots
+  // 监听根节点的变化
   session.on("rootsChanged", (event) => {
-    console.log("Roots changed:", event.roots);
+    console.log("根节点已更改:", event.roots);
   });
 });
 ```
+当客户端不支持根目录，或者根目录功能被显式禁用时，这些操作会优雅地处理这种情况，而不会抛出错误。
 
-When a client doesn't support roots or when roots functionality is explicitly disabled, these operations will gracefully handle the situation without throwing errors.
+### 返回音频
 
-### Returning an audio
-
-Use the `audioContent` to create a content object for an audio:
-
+使用 `audioContent` 创建一个音频的内容对象：
 ```js
 import { audioContent } from "fastmcp";
 
 server.addTool({
   name: "download",
-  description: "Download a file",
+  description: "下载文件",
   parameters: z.object({
     url: z.string(),
   }),
@@ -591,17 +538,17 @@ server.addTool({
       url: "https://example.com/audio.mp3",
     });
 
-    // or...
+    // 或者...
     // return audioContent({
     //   path: "/path/to/audio.mp3",
     // });
 
-    // or...
+    // 或者...
     // return audioContent({
     //   buffer: Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=", "base64"),
     // });
 
-    // or...
+    // 或者...
     // return {
     //   content: [
     //     await audioContent(...)
@@ -610,21 +557,19 @@ server.addTool({
   },
 });
 ```
+`audioContent` 函数接受以下选项：
 
-The `audioContent` function takes the following options:
+* `url`：音频的 URL。
+* `path`：音频文件的路径。
+* `buffer`：以缓冲区形式提供的音频数据。
 
-* `url`: The URL of the audio.
-* `path`: The path to the audio file.
-* `buffer`: The audio data as a buffer.
+必须且只能指定 `url`、`path` 或 `buffer` 中的一个。
 
-Only one of `url`, `path`, or `buffer` must be specified.
-
-The above example is equivalent to:
-
+上面的示例等价于：
 ```js
 server.addTool({
   name: "download",
-  description: "Download a file",
+  description: "下载文件",
   parameters: z.object({
     url: z.string(),
   }),
@@ -641,15 +586,13 @@ server.addTool({
   },
 });
 ```
+#### 返回组合类型
 
-#### Return combination type
-
-You can combine various types in this way and send them back to AI
-
+你可以用这种方式组合多种类型，并将它们返回给 AI
 ```js
 server.addTool({
   name: "download",
-  description: "Download a file",
+  description: "下载文件",
   parameters: z.object({
     url: z.string(),
   }),
@@ -658,7 +601,7 @@ server.addTool({
       content: [
         {
           type: "text",
-          text: "Hello, world!",
+          text: "你好，世界！",
         },
         {
           type: "image",
@@ -674,7 +617,7 @@ server.addTool({
     };
   },
 
-  // or...
+  // 或者...
   // execute: async (args) => {
   //   const imgContent = await imageContent({
   //     url: "https://example.com/image.png",
@@ -686,7 +629,7 @@ server.addTool({
   //     content: [
   //       {
   //         type: "text",
-  //         text: "Hello, world!",
+  //         text: "你好，世界！",
   //       },
   //       imgContent,
   //       audContent,
@@ -695,11 +638,9 @@ server.addTool({
   // },
 });
 ```
+#### 自定义日志记录器
 
-#### Custom Logger
-
-FastMCP allows you to provide a custom logger implementation to control how the server logs messages. This is useful for integrating with existing logging infrastructure or customizing log formatting.
-
+FastMCP 允许你提供自定义的日志记录器实现，以控制服务器如何记录消息。这对于与现有日志基础设施集成或自定义日志格式非常有用。
 ```ts
 import { FastMCP, Logger } from "fastmcp";
 
@@ -726,77 +667,71 @@ class CustomLogger implements Logger {
 }
 
 const server = new FastMCP({
-  name: "My Server",
+  name: "我的服务器",
   version: "1.0.0",
   logger: new CustomLogger(),
 });
 ```
+参见 `src/examples/custom-logger.ts` 获取使用 Winston、Pino 以及基于文件的日志记录的示例。
 
-See `src/examples/custom-logger.ts` for examples with Winston, Pino, and file-based logging.
+#### 日志记录
 
-#### Logging
-
-Tools can log messages to the client using the `log` object in the context object:
-
+工具可以通过上下文对象中的 `log` 对象向客户端记录消息：
 ```js
 server.addTool({
   name: "download",
-  description: "Download a file",
+  description: "下载一个文件",
   parameters: z.object({
     url: z.string(),
   }),
   execute: async (args, { log }) => {
-    log.info("Downloading file...", {
+    log.info("正在下载文件...", {
       url,
     });
 
     // ...
 
-    log.info("Downloaded file");
+    log.info("文件已下载");
 
     return "done";
   },
 });
 ```
-
-The `log` object has the following methods:
+`log` 对象具有以下方法：
 
 * `debug(message: string, data?: SerializableValue)`
 * `error(message: string, data?: SerializableValue)`
 * `info(message: string, data?: SerializableValue)`
 * `warn(message: string, data?: SerializableValue)`
 
-#### Errors
+#### 错误
 
-The errors that are meant to be shown to the user should be thrown as `UserError` instances:
-
+面向用户的错误应以 `UserError` 实例的形式抛出：
 ```js
 import { UserError } from "fastmcp";
 
 server.addTool({
   name: "download",
-  description: "Download a file",
+  description: "下载文件",
   parameters: z.object({
     url: z.string(),
   }),
   execute: async (args) => {
     if (args.url.startsWith("https://example.com")) {
-      throw new UserError("This URL is not allowed");
+      throw new UserError("不允许访问此 URL");
     }
 
-    return "done";
+    return "完成";
   },
 });
 ```
+#### 进度
 
-#### Progress
-
-Tools can report progress by calling `reportProgress` in the context object:
-
+工具可以通过在上下文对象中调用 `reportProgress` 来报告进度：
 ```js
 server.addTool({
   name: "download",
-  description: "Download a file",
+  description: "下载文件",
   parameters: z.object({
     url: z.string(),
   }),
@@ -813,61 +748,59 @@ server.addTool({
       total: 100,
     });
 
-    return "done";
+    return "完成";
   },
 });
 ```
+#### 流式输出
 
-#### Streaming Output
+FastMCP 支持在工具仍在执行时流式传输部分结果，从而实现响应式 UI 和实时反馈。这在以下场景特别有用：
 
-FastMCP supports streaming partial results from tools while they're still executing, enabling responsive UIs and real-time feedback. This is particularly useful for:
+* 需要逐步生成内容的长时间运行操作  
+* 文本、图像或其他媒体的渐进式生成  
+* 用户可以从立即看到部分结果中受益的操作  
 
-* Long-running operations that generate content incrementally
-* Progressive generation of text, images, or other media
-* Operations where users benefit from seeing immediate partial results
-
-To enable streaming for a tool, add the `streamingHint` annotation and use the `streamContent` method:
-
+要为工具启用流式传输，请添加 `streamingHint` 注解并使用 `streamContent` 方法：
 ````js
 server.addTool({
   name: "generateText",
-  description: "Generate text incrementally",
+  description: "逐步生成文本",
   parameters: z.object({
     prompt: z.string(),
   }),
   annotations: {
-    streamingHint: true, // Signals this tool uses streaming
+    streamingHint: true, // 表示此工具使用流式传输
     readOnlyHint: true,
   },
   execute: async (args, { streamContent }) => {
-    // Send initial content immediately
-    await streamContent({ type: "text", text: "Starting generation...\n" });
+    // 立即发送初始内容
+    await streamContent({ type: "text", text: "开始生成...\n" });
 
-    // Simulate incremental content generation
+    // 模拟逐步生成内容
     const words = "The quick brown fox jumps over the lazy dog.".split(" ");
     for (const word of words) {
       await streamContent({ type: "text", text: word + " " });
-      await new Promise((resolve) => setTimeout(resolve, 300)); // Simulate delay
+      await new Promise((resolve) => setTimeout(resolve, 300)); // 模拟延迟
     }
 
-    // When using streamContent, you can:
-    // 1. Return void (if all content was streamed)
-    // 2. Return a final result (which will be appended to streamed content)
+    // 使用 streamContent 时，你可以：
+    // 1. 返回 void（如果所有内容都已流式传输）
+    // 2. 返回最终结果（将追加到已流式传输的内容）
 
-    // Option 1: All content was streamed, so return void
+    // 选项 1：所有内容已流式传输，因此返回 void
     return;
 
-    // Option 2: Return final content that will be appended
-    // return "Generation complete!";
+    // 选项 2：返回将追加的最终内容
+    // return "生成完成！";
   },
 });
 
-Streaming works with all content types (text, image, audio) and can be combined with progress reporting:
+流式传输适用于所有内容类型（文本、图像、音频），并可与进度报告结合使用：
 
 ```js
 server.addTool({
   name: "processData",
-  description: "Process data with streaming updates",
+  description: "处理数据并流式更新",
   parameters: z.object({
     datasetSize: z.number(),
   }),
@@ -878,74 +811,72 @@ server.addTool({
     const total = args.datasetSize;
 
     for (let i = 0; i < total; i++) {
-      // Report numeric progress
+      // 报告数值进度
       await reportProgress({ progress: i, total });
 
-      // Stream intermediate results
+      // 流式传输中间结果
       if (i % 10 === 0) {
         await streamContent({
           type: "text",
-          text: `Processed ${i} of ${total} items...\n`,
+          text: `已处理 ${i}/${total} 项...\n`,
         });
       }
 
       await new Promise((resolve) => setTimeout(resolve, 50));
     }
 
-    return "Processing complete!";
+    return "处理完成！";
   },
 });
 ````
 
-#### Tool Annotations
+#### 工具注解
 
-As of the MCP Specification (2025-03-26), tools can include annotations that provide richer context and control by adding metadata about a tool's behavior:
+根据 MCP 规范（2025-03-26），工具可以包含注解，通过添加关于工具行为的元数据来提供更丰富的上下文和控制：
 
 ```typescript
 server.addTool({
   name: "fetch-content",
-  description: "Fetch content from a URL",
+  description: "从 URL 获取内容",
   parameters: z.object({
     url: z.string(),
   }),
   annotations: {
-    title: "Web Content Fetcher", // Human-readable title for UI display
-    readOnlyHint: true, // Tool doesn't modify its environment
-    openWorldHint: true, // Tool interacts with external entities
+    title: "网页内容获取器", // 供 UI 显示的人类可读标题
+    readOnlyHint: true, // 工具不会修改其环境
+    openWorldHint: true, // 工具与外部实体交互
   },
   execute: async (args) => {
     return await fetchWebpageContent(args.url);
   },
 });
 ```
+可用的注解如下：
 
-The available annotations are:
+| 注解               | 类型    | 默认值  | 说明                                                                                                             |
+| :----------------- | :------ | :------ | :--------------------------------------------------------------------------------------------------------------- |
+| `title`            | string  | -       | 工具的人类可读标题，便于在 UI 中展示                                                                               |
+| `readOnlyHint`     | boolean | `false` | 若为 true，表示该工具不会修改其运行环境                                                                            |
+| `destructiveHint`  | boolean | `true`  | 若为 true，表示该工具可能执行破坏性更新（仅在 `readOnlyHint` 为 false 时才有意义）                                 |
+| `idempotentHint`   | boolean | `false` | 若为 true，表示用相同参数重复调用该工具不会产生额外效果（仅在 `readOnlyHint` 为 false 时才有意义）                 |
+| `openWorldHint`    | boolean | `true`  | 若为 true，表示该工具可能与“开放世界”中的外部实体交互                                                               |
 
-| Annotation        | Type    | Default | Description                                                                                                                          |
-| :---------------- | :------ | :------ | :----------------------------------------------------------------------------------------------------------------------------------- |
-| `title`           | string  | -       | A human-readable title for the tool, useful for UI display                                                                           |
-| `readOnlyHint`    | boolean | `false` | If true, indicates the tool does not modify its environment                                                                          |
-| `destructiveHint` | boolean | `true`  | If true, the tool may perform destructive updates (only meaningful when `readOnlyHint` is false)                                     |
-| `idempotentHint`  | boolean | `false` | If true, calling the tool repeatedly with the same arguments has no additional effect (only meaningful when `readOnlyHint` is false) |
-| `openWorldHint`   | boolean | `true`  | If true, the tool may interact with an "open world" of external entities                                                             |
+这些注解帮助客户端和 LLM 更好地理解如何使用这些工具，以及在调用它们时应预期发生什么。
 
-These annotations help clients and LLMs better understand how to use the tools and what to expect when calling them.
+### 资源
 
-### Resources
+[资源](https://modelcontextprotocol.io/docs/concepts/resources) 代表 MCP 服务器希望向客户端提供的任何类型的数据。可以包括：
 
-[Resources](https://modelcontextprotocol.io/docs/concepts/resources) represent any kind of data that an MCP server wants to make available to clients. This can include:
+* 文件内容
+* 截图和图片
+* 日志文件
+* 等等
 
-* File contents
-* Screenshots and images
-* Log files
-* And more
-
-Each resource is identified by a unique URI and can contain either text or binary data.
-
+每个资源通过唯一的 URI 标识，可以包含文本或二进制数据。
 ```ts
 server.addResource({
   uri: "file:///logs/app.log",
-  name: "Application Logs",
+  name: "应用程序日志",
   mimeType: "text/plain",
   async load() {
     return {
@@ -954,76 +885,70 @@ server.addResource({
   },
 });
 ```
-
 > \[!NOTE]
 >
-> `load` can return multiple resources. This could be used, for example, to return a list of files inside a directory when the directory is read.
+> `load` 可以返回多个资源。例如，当读取目录时，可以返回目录中的文件列表。
 >
 > ```ts
 > async load() {
 >   return [
 >     {
->       text: "First file content",
+>       text: "第一个文件的内容",
 >     },
 >     {
->       text: "Second file content",
+>       text: "第二个文件的内容",
 >     },
 >   ];
 > }
 > ```
 
-You can also return binary contents in `load`:
-
+你也可以在 `load` 中返回二进制内容：
 ```ts
 async load() {
   return {
-    blob: 'base64-encoded-data'
+    blob: 'base64编码的数据'
   };
 }
 ```
+### 资源模板
 
-### Resource templates
-
-You can also define resource templates:
-
+你还可以定义资源模板：
 ```ts
 server.addResourceTemplate({
   uriTemplate: "file:///logs/{name}.log",
-  name: "Application Logs",
+  name: "应用程序日志",
   mimeType: "text/plain",
   arguments: [
     {
       name: "name",
-      description: "Name of the log",
+      description: "日志名称",
       required: true,
     },
   ],
   async load({ name }) {
     return {
-      text: `Example log content for ${name}`,
+      text: `${name} 的示例日志内容`,
     };
   },
 });
 ```
+#### 资源模板参数自动补全
 
-#### Resource template argument auto-completion
-
-Provide `complete` functions for resource template arguments to enable automatic completion:
-
+为资源模板参数提供 `complete` 函数，以启用自动补全：
 ```ts
 server.addResourceTemplate({
   uriTemplate: "file:///logs/{name}.log",
-  name: "Application Logs",
+  name: "应用程序日志",
   mimeType: "text/plain",
   arguments: [
     {
       name: "name",
-      description: "Name of the log",
+      description: "日志名称",
       required: true,
       complete: async (value) => {
         if (value === "Example") {
           return {
-            values: ["Example Log"],
+            values: ["示例日志"],
           };
         }
 
@@ -1035,22 +960,20 @@ server.addResourceTemplate({
   ],
   async load({ name }) {
     return {
-      text: `Example log content for ${name}`,
+      text: `${name} 的示例日志内容`,
     };
   },
 });
 ```
+### 嵌入资源
 
-### Embedded Resources
+FastMCP 提供了一个便捷的 `embedded()` 方法，用于简化在工具响应中包含资源的过程。该功能可减少代码重复，并更轻松地在工具内部引用资源。
 
-FastMCP provides a convenient `embedded()` method that simplifies including resources in tool responses. This feature reduces code duplication and makes it easier to reference resources from within tools.
-
-#### Basic Usage
-
+#### 基本用法
 ```js
 server.addTool({
   name: "get_user_data",
-  description: "Retrieve user information",
+  description: "获取用户信息",
   parameters: z.object({
     userId: z.string(),
   }),
@@ -1066,16 +989,14 @@ server.addTool({
   },
 });
 ```
+#### 使用资源模板
 
-#### Working with Resource Templates
-
-The `embedded()` method works seamlessly with resource templates:
-
+`embedded()` 方法与资源模板无缝协作：
 ```js
-// Define a resource template
+// 定义一个资源模板
 server.addResourceTemplate({
   uriTemplate: "docs://project/{section}",
-  name: "Project Documentation",
+  name: "项目文档",
   mimeType: "text/markdown",
   arguments: [
     {
@@ -1085,19 +1006,19 @@ server.addResourceTemplate({
   ],
   async load(args) {
     const docs = {
-      "getting-started": "# Getting Started\n\nWelcome to our project!",
-      "api-reference": "# API Reference\n\nAuthentication is required.",
+      "getting-started": "# 入门指南\n\n欢迎来到我们的项目！",
+      "api-reference": "# API 参考\n\n需要身份验证。",
     };
     return {
-      text: docs[args.section] || "Documentation not found",
+      text: docs[args.section] || "未找到文档",
     };
   },
 });
 
-// Use embedded resources in a tool
+// 在工具中使用嵌入式资源
 server.addTool({
   name: "get_documentation",
-  description: "Retrieve project documentation",
+  description: "获取项目文档",
   parameters: z.object({
     section: z.enum(["getting-started", "api-reference"]),
   }),
@@ -1113,28 +1034,26 @@ server.addTool({
   },
 });
 ```
+#### 使用直接资源
 
-#### Working with Direct Resources
-
-It also works with directly defined resources:
-
+它也适用于直接定义的资源：
 ```js
-// Define a direct resource
+// 定义一个直接资源
 server.addResource({
   uri: "system://status",
-  name: "System Status",
+  name: "系统状态",
   mimeType: "text/plain",
   async load() {
     return {
-      text: "System operational",
+      text: "系统运行正常",
     };
   },
 });
 
-// Use in a tool
+// 在工具中使用
 server.addTool({
   name: "get_system_status",
-  description: "Get current system status",
+  description: "获取当前系统状态",
   parameters: z.object({}),
   execute: async () => {
     return {
@@ -1148,43 +1067,39 @@ server.addTool({
   },
 });
 ```
+### 提示词
 
-### Prompts
-
-[Prompts](https://modelcontextprotocol.io/docs/concepts/prompts) enable servers to define reusable prompt templates and workflows that clients can easily surface to users and LLMs. They provide a powerful way to standardize and share common LLM interactions.
-
+[提示词](https://modelcontextprotocol.io/docs/concepts/prompts) 使服务器能够定义可复用的提示模板和工作流，客户端可以轻松地向用户和 LLM 展示这些内容。它们为标准化和共享常见的 LLM 交互提供了一种强大方式。
 ```ts
 server.addPrompt({
   name: "git-commit",
-  description: "Generate a Git commit message",
+  description: "生成一条 Git 提交信息",
   arguments: [
     {
       name: "changes",
-      description: "Git diff or description of changes",
+      description: "Git diff 或变更描述",
       required: true,
     },
   ],
   load: async (args) => {
-    return `Generate a concise but descriptive commit message for these changes:\n\n${args.changes}`;
+    return `为这些变更生成一条简洁但具有描述性的提交信息：\n\n${args.changes}`;
   },
 });
 ```
+#### 提示词参数自动补全
 
-#### Prompt argument auto-completion
-
-Prompts can provide auto-completion for their arguments:
-
+提示词可以为其参数提供自动补全功能：
 ```js
 server.addPrompt({
   name: "countryPoem",
-  description: "Writes a poem about a country",
+  description: "写一首关于某个国家的诗",
   load: async ({ name }) => {
-    return `Hello, ${name}!`;
+    return `你好，${name}！`;
   },
   arguments: [
     {
       name: "name",
-      description: "Name of the country",
+      description: "国家名称",
       required: true,
       complete: async (value) => {
         if (value === "Germ") {
@@ -1201,40 +1116,36 @@ server.addPrompt({
   ],
 });
 ```
+#### 使用 `enum` 实现 Prompt 参数自动补全
 
-#### Prompt argument auto-completion using `enum`
-
-If you provide an `enum` array for an argument, the server will automatically provide completions for the argument.
-
+如果为某个参数提供了 `enum` 数组，服务器将自动为该参数提供补全。
 ```js
 server.addPrompt({
   name: "countryPoem",
-  description: "Writes a poem about a country",
+  description: "写一首关于某个国家的诗",
   load: async ({ name }) => {
-    return `Hello, ${name}!`;
+    return `你好，${name}！`;
   },
   arguments: [
     {
       name: "name",
-      description: "Name of the country",
+      description: "国家名称",
       required: true,
       enum: ["Germany", "France", "Italy"],
     },
   ],
 });
 ```
+### 身份验证
 
-### Authentication
-
-FastMCP supports session-based authentication, allowing you to secure your server and control access to its features.
+FastMCP 支持基于会话的身份验证，允许你保护服务器并控制对其功能的访问。
 
 > \[!NOTE]
-> For more granular control over which tools are available to authenticated users, see the [Tool Authorization](#tool-authorization) section.
+> 如需对经过身份验证的用户可使用的工具进行更精细的控制，请参阅 [工具授权](#tool-authorization) 部分。
 
-To enable authentication, provide an `authenticate` function in the server options. This function receives the incoming HTTP request and should return a promise that resolves with the authentication context.
+要启用身份验证，请在服务器选项中提供一个 `authenticate` 函数。该函数接收传入的 HTTP 请求，并应返回一个解析为身份验证上下文的 Promise。
 
-If authentication fails, the function should throw a `Response` object, which will be sent to the client.
-
+如果身份验证失败，该函数应抛出一个 `Response` 对象，该对象将被发送给客户端。
 ```ts
 const server = new FastMCP({
   name: "My Server",
@@ -1249,33 +1160,29 @@ const server = new FastMCP({
       });
     }
 
-    // Whatever you return here will be accessible in the `context.session` object.
+    // 此处返回的任何内容都将在 `context.session` 对象中可用。
     return {
       id: 1,
     };
   },
 });
 ```
-
-Now you can access the authenticated session data in your tools:
-
+现在你可以在工具中访问经过身份验证的会话数据：
 ```ts
 server.addTool({
   name: "sayHello",
   execute: async (args, { session }) => {
-    return `Hello, ${session.id}!`;
+    return `你好，${session.id}！`;
   },
 });
 ```
+#### 工具授权
 
-#### Tool Authorization
+你可以通过在工具定义中添加可选的 `canAccess` 函数来控制哪些工具可供已认证的用户使用。该函数接收认证上下文，如果允许用户访问该工具，应返回 `true`。
 
-You can control which tools are available to authenticated users by adding an optional `canAccess` function to a tool's definition. This function receives the authentication context and should return `true` if the user is allowed to access the tool.
+如果未提供 `canAccess`，则默认所有已认证用户均可访问该工具。如果服务器未配置任何认证，则所有工具对所有客户端都可用。
 
-If `canAccess` is not provided, the tool is accessible to all authenticated users by default. If no authentication is configured on the server, all tools are available to all clients.
-
-**Example:**
-
+**示例：**
 ```typescript
 const server = new FastMCP<{ role: "admin" | "user" }>({
   authenticate: async (request) => {
@@ -1288,29 +1195,27 @@ const server = new FastMCP<{ role: "admin" | "user" }>({
 
 server.addTool({
   name: "admin-dashboard",
-  description: "An admin-only tool",
-  // Only users with the 'admin' role can see and execute this tool
+  description: "仅限管理员使用的工具",
+  // 只有角色为 'admin' 的用户才能看到并执行此工具
   canAccess: (auth) => auth?.role === "admin",
   execute: async () => {
-    return "Welcome to the admin dashboard!";
+    return "欢迎进入管理员仪表板！";
   },
 });
 
 server.addTool({
   name: "public-info",
-  description: "A tool available to everyone",
+  description: "所有人都可以使用的工具",
   execute: async () => {
-    return "This is public information.";
+    return "这是公开信息。";
   },
 });
 ```
+在此示例中，只有使用 `admin` 角色进行身份验证的客户端才能列出或调用 `admin-dashboard` 工具。所有已认证用户均可使用 `public-info` 工具。
 
-In this example, only clients authenticating with the `admin` role will be able to list or call the `admin-dashboard` tool. The `public-info` tool will be available to all authenticated users.
+#### OAuth 支持
 
-#### OAuth Support
-
-FastMCP includes built-in support for OAuth discovery endpoints, supporting both **MCP Specification 2025-03-26** and **MCP Specification 2025-06-18** for OAuth integration. This makes it easy to integrate with OAuth authorization flows by providing standard discovery endpoints that comply with RFC 8414 (OAuth 2.0 Authorization Server Metadata) and RFC 9470 (OAuth 2.0 Protected Resource Metadata):
-
+FastMCP 内置支持 OAuth 发现端点，同时兼容 **MCP 规范 2025-03-26** 和 **MCP 规范 2025-06-18** 的 OAuth 集成。通过提供符合 RFC 8414（OAuth 2.0 授权服务器元数据）和 RFC 9470（OAuth 2.0 受保护资源元数据）的标准发现端点，可轻松集成 OAuth 授权流程。
 ```ts
 import { FastMCP } from "fastmcp";
 import { buildGetJwks } from "get-jwks";
@@ -1339,38 +1244,38 @@ const server = new FastMCP({
     if (!authHeader?.startsWith("Bearer ")) {
       throw new Response(null, {
         status: 401,
-        statusText: "Missing or invalid authorization header",
+        statusText: "缺失或无效的授权标头",
       });
     }
 
-    const token = authHeader.slice(7); // Remove 'Bearer ' prefix
+    const token = authHeader.slice(7); // 移除 'Bearer ' 前缀
 
-    // Validate OAuth JWT access token using OpenID Connect discovery
+    // 使用 OpenID Connect 发现验证 OAuth JWT 访问令牌
     try {
-      // TODO: Cache the discovery document to avoid repeated requests
-      // Discover OAuth/OpenID configuration from well-known endpoint
+      // TODO: 缓存发现文档以避免重复请求
+      // 从 well-known 端点发现 OAuth/OpenID 配置
       const discoveryUrl =
         "https://auth.example.com/.well-known/openid-configuration";
-      // Alternative: Use OAuth authorization server metadata endpoint
+      // 替代方案：使用 OAuth 授权服务器元数据端点
       // const discoveryUrl = 'https://auth.example.com/.well-known/oauth-authorization-server';
 
       const discoveryResponse = await fetch(discoveryUrl);
       if (!discoveryResponse.ok) {
-        throw new Error("Failed to fetch OAuth discovery document");
+        throw new Error("获取 OAuth 发现文档失败");
       }
 
       const config = await discoveryResponse.json();
       const jwksUri = config.jwks_uri;
       const issuer = config.issuer;
 
-      // Create JWKS client for token verification using discovered endpoint
+      // 使用发现的端点创建 JWKS 客户端以验证令牌
       const getJwks = buildGetJwks({
         jwksUrl: jwksUri,
         cache: true,
         rateLimit: true,
       });
 
-      // Create JWT verifier with JWKS and discovered issuer
+      // 使用 JWKS 和发现的颁发者创建 JWT 验证器
       const verify = fastJwt.createVerifier({
         key: async (token) => {
           const { header } = fastJwt.decode(token, { complete: true });
@@ -1385,62 +1290,60 @@ const server = new FastMCP({
         audience: "mcp://my-server",
       });
 
-      // Verify the JWT token
+      // 验证 JWT 令牌
       const payload = await verify(token);
 
       return {
         userId: payload.sub,
         scope: payload.scope,
         email: payload.email,
-        // Include other claims as needed
+        // 根据需要包含其他声明
       };
     } catch (error) {
       throw new Response(null, {
         status: 401,
-        statusText: "Invalid OAuth token",
+        statusText: "无效的 OAuth 令牌",
       });
     }
   },
 });
 ```
+此配置会自动暴露 OAuth 发现端点：
 
-This configuration automatically exposes OAuth discovery endpoints:
+* `/.well-known/oauth-authorization-server` - 授权服务器元数据（RFC 8414）
+* `/.well-known/oauth-protected-resource` - 受保护资源元数据（RFC 9470）
 
-* `/.well-known/oauth-authorization-server` - Authorization server metadata (RFC 8414)
-* `/.well-known/oauth-protected-resource` - Protected resource metadata (RFC 9470)
+对于 JWT 令牌验证，你可以使用诸如 [`get-jwks`](https://github.com/nearform/get-jwks) 和 [`@fastify/jwt`](https://github.com/fastify/fastify-jwt) 这类库来处理 OAuth JWT 令牌。
 
-For JWT token validation, you can use libraries like [`get-jwks`](https://github.com/nearform/get-jwks) and [`@fastify/jwt`](https://github.com/fastify/fastify-jwt) for OAuth JWT tokens.
+#### 通过上下文传递请求头
 
-#### Passing Headers Through Context
-
-If you are exposing your MCP server via HTTP, you may wish to allow clients to supply sensitive keys via headers, which can then be passed along to APIs that your tools interact with, allowing each client to supply their own API keys. This can be done by capturing the HTTP headers in the `authenticate` section and storing them in the session to be referenced by the tools later.
-
+如果你通过 HTTP 暴露 MCP 服务器，可能希望允许客户端通过请求头提供敏感密钥，然后将其传递给工具所调用的 API，从而使每个客户端都能提供自己的 API 密钥。这可以在 `authenticate` 部分捕获 HTTP 请求头，并将其存储在会话中，供后续工具引用。
 ```ts
 import { FastMCP } from "fastmcp";
 import { IncomingHttpHeaders } from "http";
 
-// Define the session data type
+// 定义会话数据类型
 interface SessionData {
   headers: IncomingHttpHeaders;
-  [key: string]: unknown; // Add index signature to satisfy Record<string, unknown>
+  [key: string]: unknown; // 添加索引签名以满足 Record<string, unknown>
 }
 
-// Create a server instance
+// 创建服务器实例
 const server = new FastMCP({
   name: "My Server",
   version: "1.0.0",
   authenticate: async (request: any): Promise<SessionData> => {
-    // Authentication logic
+    // 认证逻辑
     return {
       headers: request.headers,
     };
   },
 });
 
-// Tool to display HTTP headers
+// 用于显示 HTTP 头的工具
 server.addTool({
   name: "headerTool",
-  description: "Reads HTTP headers from the request",
+  description: "从请求中读取 HTTP 头",
   execute: async (args: any, context: any) => {
     const session = context.session as SessionData;
     const headers = session?.headers ?? {};
@@ -1454,7 +1357,7 @@ server.addTool({
   },
 });
 
-// Start the server
+// 启动服务器
 server.start({
   transportType: "httpStream",
   httpStream: {
@@ -1462,9 +1365,7 @@ server.start({
   },
 });
 ```
-
-A client that would connect to this may look something like this:
-
+连接到该服务器的客户端可能如下所示：
 ```ts
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -1488,7 +1389,7 @@ const client = new Client({
 (async () => {
   await client.connect(transport);
 
-  // Call a tool
+  // 调用工具
   const result = await client.callTool({
     name: "headerTool",
     arguments: {
@@ -1496,20 +1397,18 @@ const client = new Client({
     },
   });
 
-  console.log("Tool result:", result);
+  console.log("工具结果:", result);
 })().catch(console.error);
 ```
-
-What would show up in the console after the client runs is something like this:
-
+客户端运行后，在控制台中显示的内容大致如下：
 ```
-Tool result: {
+工具结果: {
   content: [
     {
       type: 'text',
       text: 'User-Agent: node\n' +
         'Authorization: Test 123\n' +
-        'All Headers: {\n' +
+        '所有头部: {\n' +
         '  "host": "localhost:8080",\n' +
         '  "connection": "keep-alive",\n' +
         '  "authorization": "Test 123",\n' +
@@ -1525,54 +1424,46 @@ Tool result: {
   ]
 }
 ```
+### 提供指令
 
-### Providing Instructions
-
-You can provide instructions to the server using the `instructions` option:
-
+你可以通过 `instructions` 选项向服务器提供指令：
 ```ts
 const server = new FastMCP({
-  name: "My Server",
+  name: "我的服务器",
   version: "1.0.0",
   instructions:
-    'Instructions describing how to use the server and its features.\n\nThis can be used by clients to improve the LLM\'s understanding of available tools, resources, etc. It can be thought of like a "hint" to the model. For example, this information MAY be added to the system prompt.',
+    '描述如何使用服务器及其功能的说明。\n\n客户端可以利用这些信息提升 LLM 对可用工具、资源等的理解。可以把它看作是给模型的“提示”。例如，这些信息可能会被添加到系统提示中。',
 });
 ```
+### 会话
 
-### Sessions
-
-The `session` object is an instance of `FastMCPSession` and it describes active client sessions.
-
+`session` 对象是 `FastMCPSession` 的一个实例，它描述了活动的客户端会话。
 ```ts
 server.sessions;
 ```
+我们为每个客户端连接分配一个新的服务器实例，以实现客户端与服务器之间的一对一通信。
 
-We allocate a new server instance for each client connection to enable 1:1 communication between a client and the server.
+### 类型化服务器事件
 
-### Typed server events
-
-You can listen to events emitted by the server using the `on` method:
-
+你可以使用 `on` 方法监听服务器发出的事件：
 ```ts
 server.on("connect", (event) => {
-  console.log("Client connected:", event.session);
+  console.log("客户端已连接:", event.session);
 });
 
 server.on("disconnect", (event) => {
-  console.log("Client disconnected:", event.session);
+  console.log("客户端已断开:", event.session);
 });
 ```
-
 ## `FastMCPSession`
 
-`FastMCPSession` represents a client session and provides methods to interact with the client.
+`FastMCPSession` 表示一个客户端会话，并提供与该客户端交互的方法。
 
-Refer to [Sessions](#sessions) for examples of how to obtain a `FastMCPSession` instance.
+有关如何获取 `FastMCPSession` 实例的示例，请参阅 [Sessions](#sessions)。
 
 ### `requestSampling`
 
-`requestSampling` creates a [sampling](https://modelcontextprotocol.io/docs/concepts/sampling) request and returns the response.
-
+`requestSampling` 创建一个 [sampling](https://modelcontextprotocol.io/docs/concepts/sampling) 请求并返回响应。
 ```ts
 await session.requestSampling({
   messages: [
@@ -1580,20 +1471,18 @@ await session.requestSampling({
       role: "user",
       content: {
         type: "text",
-        text: "What files are in the current directory?",
+        text: "当前目录下有哪些文件？",
       },
     },
   ],
-  systemPrompt: "You are a helpful file system assistant.",
+  systemPrompt: "你是一个有用的文件系统助手。",
   includeContext: "thisServer",
   maxTokens: 100,
 });
 ```
+#### 选项
 
-#### Options
-
-`requestSampling` accepts an optional second parameter for request options:
-
+`requestSampling` 接受一个可选的第二个参数，用于请求选项：
 ```ts
 await session.requestSampling(
   {
@@ -1602,116 +1491,100 @@ await session.requestSampling(
         role: "user",
         content: {
           type: "text",
-          text: "What files are in the current directory?",
+          text: "当前目录下有哪些文件？",
         },
       },
     ],
-    systemPrompt: "You are a helpful file system assistant.",
+    systemPrompt: "你是一个有用的文件系统助手。",
     includeContext: "thisServer",
     maxTokens: 100,
   },
   {
-    // Progress callback - called when progress notifications are received
+    // 进度回调——在收到进度通知时调用
     onprogress: (progress) => {
-      console.log(`Progress: ${progress.progress}/${progress.total}`);
+      console.log(`进度：${progress.progress}/${progress.total}`);
     },
 
-    // Abort signal for cancelling the request
+    // 用于取消请求的终止信号
     signal: abortController.signal,
 
-    // Request timeout in milliseconds (default: DEFAULT_REQUEST_TIMEOUT_MSEC)
+    // 请求超时时间，单位为毫秒（默认值：DEFAULT_REQUEST_TIMEOUT_MSEC）
     timeout: 30000,
 
-    // Whether progress notifications reset the timeout (default: false)
+    // 进度通知是否重置超时时间（默认值：false）
     resetTimeoutOnProgress: true,
 
-    // Maximum total timeout regardless of progress (no default)
+    // 最大总超时时间，无论进度如何（无默认值）
     maxTotalTimeout: 60000,
   },
 );
 ```
+**选项：**
 
-**Options:**
-
-* `onprogress?: (progress: Progress) => void` - Callback for progress notifications from the remote end
-* `signal?: AbortSignal` - Abort signal to cancel the request
-* `timeout?: number` - Request timeout in milliseconds
-* `resetTimeoutOnProgress?: boolean` - Whether progress notifications reset the timeout
-* `maxTotalTimeout?: number` - Maximum total timeout regardless of progress notifications
+* `onprogress?: (progress: Progress) => void` - 接收来自远端的进度通知的回调
+* `signal?: AbortSignal` - 用于取消请求的终止信号
+* `timeout?: number` - 请求超时时间，单位为毫秒
+* `resetTimeoutOnProgress?: boolean` - 进度通知是否重置超时
+* `maxTotalTimeout?: number` - 无论是否有进度通知，最大总超时时间
 
 ### `clientCapabilities`
 
-The `clientCapabilities` property contains the client capabilities.
-
+`clientCapabilities` 属性包含客户端的功能信息。
 ```ts
 session.clientCapabilities;
 ```
-
 ### `loggingLevel`
 
-The `loggingLevel` property describes the logging level as set by the client.
-
+`loggingLevel` 属性描述了由客户端设置的日志级别。
 ```ts
 session.loggingLevel;
 ```
-
 ### `roots`
 
-The `roots` property contains the roots as set by the client.
-
+`roots` 属性包含客户端设置的根目录。
 ```ts
 session.roots;
 ```
-
 ### `server`
 
-The `server` property contains an instance of MCP server that is associated with the session.
-
+`server` 属性包含与会话关联的 MCP 服务器实例。
 ```ts
 session.server;
 ```
+### 类型化会话事件
 
-### Typed session events
-
-You can listen to events emitted by the session using the `on` method:
-
+你可以使用 `on` 方法监听会话发出的事件：
 ```ts
 session.on("rootsChanged", (event) => {
-  console.log("Roots changed:", event.roots);
+  console.log("根目录已更改:", event.roots);
 });
 
 session.on("error", (event) => {
-  console.error("Error:", event.error);
+  console.error("错误:", event.error);
 });
 ```
+## 运行你的服务器
 
-## Running Your Server
+### 使用 `mcp-cli` 进行测试
 
-### Test with `mcp-cli`
-
-The fastest way to test and debug your server is with `fastmcp dev`:
-
+测试和调试服务器最快的方法是使用 `fastmcp dev`：
 ```bash
 npx fastmcp dev server.js
 npx fastmcp dev server.ts
 ```
+这将使用 [`mcp-cli`](https://github.com/wong2/mcp-cli) 在终端中运行你的服务器，以便测试和调试你的 MCP 服务器。
 
-This will run your server with [`mcp-cli`](https://github.com/wong2/mcp-cli) for testing and debugging your MCP server in the terminal.
+### 使用 `MCP Inspector` 检查
 
-### Inspect with `MCP Inspector`
-
-Another way is to use the official [`MCP Inspector`](https://modelcontextprotocol.io/docs/tools/inspector) to inspect your server with a Web UI:
-
+另一种方式是使用官方的 [`MCP Inspector`](https://modelcontextprotocol.io/docs/tools/inspector)，通过 Web UI 来检查你的服务器：
 ```bash
 npx fastmcp inspect server.ts
 ```
+## 常见问题
 
-## FAQ
+### 如何在 Claude Desktop 中使用？
 
-### How to use with Claude Desktop?
-
-Follow the guide <https://modelcontextprotocol.io/quickstart/user> and add the following configuration:
-
+按照指南 <https://modelcontextprotocol.io/quickstart/user> 操作，并添加以下配置：
 ```json
 {
   "mcpServers": {
@@ -1725,36 +1598,35 @@ Follow the guide <https://modelcontextprotocol.io/quickstart/user> and add the f
   }
 }
 ```
+### 如何在代理后运行 FastMCP？
 
-### How to run FastMCP behind a proxy?
+参考此 [issue](https://github.com/punkpeye/fastmcp/issues/25#issuecomment-3004568732) 查看使用 FastMCP 搭配 `express` 和 `http-proxy-middleware` 的示例。
 
-Refer to this [issue](https://github.com/punkpeye/fastmcp/issues/25#issuecomment-3004568732) for an example of using FastMCP with `express` and `http-proxy-middleware`.
-
-## Showcase
-
-> \[!NOTE]
->
-> If you've developed a server using FastMCP, please [submit a PR](https://github.com/punkpeye/fastmcp) to showcase it here!
+## 展示
 
 > \[!NOTE]
 >
-> If you are looking for a boilerplate repository to build your own MCP server, check out [fastmcp-boilerplate](https://github.com/punkpeye/fastmcp-boilerplate).
+> 如果你使用 FastMCP 开发了服务器，请 [提交 PR](https://github.com/punkpeye/fastmcp) 在此处展示！
 
-* [apinetwork/piapi-mcp-server](https://github.com/apinetwork/piapi-mcp-server) - generate media using Midjourney/Flux/Kling/LumaLabs/Udio/Chrip/Trellis
-* [domdomegg/computer-use-mcp](https://github.com/domdomegg/computer-use-mcp) - controls your computer
-* [LiterallyBlah/Dradis-MCP](https://github.com/LiterallyBlah/Dradis-MCP) – manages projects and vulnerabilities in Dradis
-* [Meeting-Baas/meeting-mcp](https://github.com/Meeting-Baas/meeting-mcp) - create meeting bots, search transcripts, and manage recording data
-* [drumnation/unsplash-smart-mcp-server](https://github.com/drumnation/unsplash-smart-mcp-server) – enables AI agents to seamlessly search, recommend, and deliver professional stock photos from Unsplash
-* [ssmanji89/halopsa-workflows-mcp](https://github.com/ssmanji89/halopsa-workflows-mcp) - HaloPSA Workflows integration with AI assistants
-* [aiamblichus/mcp-chat-adapter](https://github.com/aiamblichus/mcp-chat-adapter) – provides a clean interface for LLMs to use chat completion
-* [eyaltoledano/claude-task-master](https://github.com/eyaltoledano/claude-task-master) – advanced AI project/task manager powered by FastMCP
-* [cswkim/discogs-mcp-server](https://github.com/cswkim/discogs-mcp-server) - connects to the Discogs API for interacting with your music collection
-* [Panzer-Jack/feuse-mcp](https://github.com/Panzer-Jack/feuse-mcp) - Frontend Useful MCP Tools - Essential utilities for web developers to automate API integration and code generation
-* [sunra-ai/sunra-clients](https://github.com/sunra-ai/sunra-clients/tree/main/mcp-server) - Sunra.ai is a generative media platform built for developers, providing high-performance AI model inference capabilities.
-* [foxtrottwist/shortcuts-mcp](https://github.com/foxtrottwist/shortcuts-mcp) - connects Claude to macOS Shortcuts for system automation, app integration, and interactive workflows
+> \[!NOTE]
+>
+> 如果你正在寻找一个样板仓库来构建自己的 MCP 服务器，请查看 [fastmcp-boilerplate](https://github.com/punkpeye/fastmcp-boilerplate)。
 
-## Acknowledgements
+* [apinetwork/piapi-mcp-server](https://github.com/apinetwork/piapi-mcp-server) - 使用 Midjourney/Flux/Kling/LumaLabs/Udio/Chrip/Trellis 生成媒体
+* [domdomegg/computer-use-mcp](https://github.com/domdomegg/computer-use-mcp) - 控制你的电脑
+* [LiterallyBlah/Dradis-MCP](https://github.com/LiterallyBlah/Dradis-MCP) – 在 Dradis 中管理项目和漏洞
+* [Meeting-Baas/meeting-mcp](https://github.com/Meeting-Baas/meeting-mcp) - 创建会议机器人、搜索转录并管理录音数据
+* [drumnation/unsplash-smart-mcp-server](https://github.com/drumnation/unsplash-smart-mcp-server) – 让 AI 代理无缝搜索、推荐并从 Unsplash 获取专业库存照片
+* [ssmanji89/halopsa-workflows-mcp](https://github.com/ssmanji89/halopsa-workflows-mcp) - HaloPSA 工作流与 AI 助手的集成
+* [aiamblichus/mcp-chat-adapter](https://github.com/aiamblichus/mcp-chat-adapter) – 为 LLM 提供简洁的聊天补全接口
+* [eyaltoledano/claude-task-master](https://github.com/eyaltoledano/claude-task-master) – 由 FastMCP 驱动的先进 AI 项目/任务管理器
+* [cswkim/discogs-mcp-server](https://github.com/cswkim/discogs-mcp-server) - 连接 Discogs API 以与你的音乐收藏交互
+* [Panzer-Jack/feuse-mcp](https://github.com/Panzer-Jack/feuse-mcp) - 前端实用 MCP 工具 - 为 Web 开发者提供自动化 API 集成和代码生成的基本工具
+* [sunra-ai/sunra-clients](https://github.com/sunra-ai/sunra-clients/tree/main/mcp-server) - Sunra.ai 是一个面向开发者的生成式媒体平台，提供高性能的 AI 模型推理能力。
+* [foxtrottwist/shortcuts-mcp](https://github.com/foxtrottwist/shortcuts-mcp) - 将 Claude 连接到 macOS 快捷指令，实现系统自动化、应用集成和交互式工作流
 
-* FastMCP is inspired by the [Python implementation](https://github.com/jlowin/fastmcp) by [Jonathan Lowin](https://github.com/jlowin).
-* Parts of codebase were adopted from [LiteMCP](https://github.com/wong2/litemcp).
-* Parts of codebase were adopted from [Model Context protocolでSSEをやってみる](https://dev.classmethod.jp/articles/mcp-sse/).
+## 致谢
+
+* FastMCP 受到 [Jonathan Lowin](https://github.com/jlowin) 的 [Python 实现](https://github.com/jlowin/fastmcp) 的启发。
+* 部分代码来自 [LiteMCP](https://github.com/wong2/litemcp)。
+* 部分代码来自 [Model Context protocolでSSEをやってみる](https://dev.classmethod.jp/articles/mcp-sse/)。

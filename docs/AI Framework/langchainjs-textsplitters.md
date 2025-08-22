@@ -1,53 +1,40 @@
 # 🦜✂️ @langchain/textsplitters
 
-This package contains various implementations of LangChain.js text splitters, most commonly used as part of retrieval-augmented generation (RAG) pipelines.
+此包包含 LangChain.js 文本分割器的各种实现，最常用于检索增强生成 (RAG) 流水线中。
 
-## Installation
-
+## 安装
 ```bash npm2yarn
 npm install @langchain/textsplitters @langchain/core
 ```
+## 开发
 
-## Development
+要开发 `@langchain/textsplitters` 包，你需要遵循以下说明：
 
-To develop the `@langchain/textsplitters` package, you'll need to follow these instructions:
-
-### Install dependencies
-
+### 安装依赖项
 ```bash
 yarn install
 ```
-
-### Build the package
-
+### 构建包
 ```bash
 yarn build
 ```
-
-Or from the repo root:
-
+或者从仓库根目录执行：
 ```bash
 yarn build --filter=@langchain/textsplitters
 ```
+### 运行测试
 
-### Run tests
-
-Test files should live within a `tests/` file in the `src/` folder. Unit tests should end in `.test.ts` and integration tests should
-end in `.int.test.ts`:
-
+测试文件应位于 `src/` 文件夹内的 `tests/` 文件中。单元测试文件名应以 `.test.ts` 结尾，集成测试文件名应以 `.int.test.ts` 结尾：
 ```bash
 $ yarn test
 $ yarn test:int
 ```
+### 代码检查与格式化
 
-### Lint & Format
-
-Run the linter & formatter to ensure your code is up to standard:
-
+运行代码检查工具和格式化工具，以确保你的代码符合规范：
 ```bash
 yarn lint && yarn format
 ```
+### 添加新的入口点
 
-### Adding new entrypoints
-
-If you add a new file to be exported, either import & re-export from `src/index.ts`, or add it to the `entrypoints` field in the `config` variable located inside `langchain.config.js` and run `yarn build` to generate the new entrypoint.
+如果你添加了一个需要导出的新文件，可以选择从 `src/index.ts` 中导入并重新导出，或者将该文件添加到位于 `langchain.config.js` 中的 `config` 变量的 `entrypoints` 字段中，然后运行 `yarn build` 以生成新的入口点。

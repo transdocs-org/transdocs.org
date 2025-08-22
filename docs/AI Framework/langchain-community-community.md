@@ -1,38 +1,32 @@
-# 🦜️🧑‍🤝‍🧑 LangChain Community
+# 🦜️🧑‍🤝‍🧑 LangChain 社区
 
-[![Downloads](https://static.pepy.tech/badge/langchain_community/month)](https://pepy.tech/project/langchain_community)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![下载量](https://static.pepy.tech/badge/langchain_community/month)](https://pepy.tech/project/langchain_community)
+[![许可证: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Quick Install
-
+## 快速安装
 ```bash
 pip install langchain-community
 ```
+## 它是什么？
 
-## What is it?
+LangChain Community 包含第三方集成，这些集成实现了在 LangChain Core 中定义的基础接口，使得它们可以在任何 LangChain 应用程序中即插即用。
 
-LangChain Community contains third-party integrations that implement the base interfaces defined in LangChain Core, making them ready-to-use in any LangChain application.
+完整的文档请参阅 [API 参考](https://python.langchain.com/api_reference/community/index.html)。
 
-For full documentation see the [API reference](https://python.langchain.com/api_reference/community/index.html).
+![图表概述了 LangChain 框架的层级结构，展示了跨多个层级的互连组件。](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/svg/langchain_stack_112024.svg "LangChain 框架概览")
 
-![Diagram outlining the hierarchical organization of the LangChain framework, displaying the interconnected parts across multiple layers.](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/svg/langchain_stack_112024.svg "LangChain Framework Overview")
+## 📕 发布与版本控制
 
-## 📕 Releases & Versioning
+`langchain-community` 当前版本为 `0.0.x`
 
-`langchain-community` is currently on version `0.0.x`
+所有变更都将伴随补丁版本号的递增。
 
-All changes will be accompanied by a patch version increase.
+## 💁 贡献
 
-## 💁 Contributing
+作为一个处于快速开发阶段的开源项目，我们非常欢迎任何形式的贡献，无论是新增功能、改进基础设施，还是完善文档。
 
-As an open-source project in a rapidly developing field, we are extremely open to contributions, whether it be in the form of a new feature, improved infrastructure, or better documentation.
-
-For detailed information on how to contribute, see the [Contributing Guide](https://python.langchain.com/docs/contributing/).
+有关如何贡献的详细信息，请参阅 [贡献指南](https://python.langchain.com/docs/contributing/)。
 
 > \[!NOTE]
-> Contributing a new integration? LangChain has published a
-> [guide](https://python.langchain.com/docs/contributing/how_to/integrations/) on
-> implementing new `langchain-*` [integration packages](https://python.langchain.com/docs/concepts/architecture/#integration-packages)
-> and is recommending this in most cases to help decouple versioning and support
-> varied testing infrastructures. See [docs](https://python.langchain.com/docs/contributing/how_to/integrations/)
-> for details.
+> 想贡献一个新的集成？LangChain 已经发布了一个
+> [指南](https://python.langchain.com/docs/contributing/how_to/integrations/)，介绍了如何实现新的 `langchain-*` [集成包](https://python.langchain.com/docs/concepts/architecture/#integration-packages)，在大多数情况下推荐使用这种方式，以帮助解耦版本控制并支持多样化的测试基础设施。详细信息请参阅 [文档](https://python.langchain.com/docs/contributing/how_to/integrations/)。

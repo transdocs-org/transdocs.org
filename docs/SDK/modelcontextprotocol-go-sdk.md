@@ -2,58 +2,37 @@
 
 # MCP Go SDK v0.2.0
 
-[![Open in GitHub Codespaces](https://raw.githubusercontent.com/codespaces/badge.svg/refs/heads//)](https://codespaces.new/modelcontextprotocol/go-sdk)
+[![在 GitHub Codespaces 中打开](https://raw.githubusercontent.com/codespaces/badge.svg/refs/heads//)](https://codespaces.new/modelcontextprotocol/go-sdk)
 
-***BREAKING CHANGES***
+***重大变更***
 
-This version contains breaking changes.
-See the [release notes](https://github.com/modelcontextprotocol/go-sdk/releases/tag/v0.2.0) for details.
+此版本包含破坏性变更。
+详细信息请参阅[发布说明](https://github.com/modelcontextprotocol/go-sdk/releases/tag/v0.2.0)。
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/modelcontextprotocol/go-sdk)](https://pkg.go.dev/github.com/modelcontextprotocol/go-sdk)
 
-This repository contains an unreleased implementation of the official Go
-software development kit (SDK) for the Model Context Protocol (MCP).
+此仓库包含 Model Context Protocol (MCP) 官方 Go 软件开发工具包（SDK）的未发布实现。
 
-> \[!WARNING]
-> The SDK should be considered unreleased, and is currently unstable
-> and subject to breaking changes. Please test it out and file bug reports or API
-> proposals, but don't use it in real projects. See the issue tracker for known
-> issues and missing features. We aim to release a stable version of the SDK in
-> August, 2025.
+> \[!警告]
+> 该 SDK 尚未正式发布，目前处于不稳定状态，可能会发生破坏性更改。请进行测试并提交错误报告或 API 提案，但请勿在实际项目中使用。已知问题和缺失功能请参阅问题跟踪器。我们计划在 2025 年 8 月发布 SDK 的稳定版本。
 
-## Design
+## 设计
 
-The design doc for this SDK is at [design.md](https://github.com/modelcontextprotocol/go-sdk/tree/main/design/design.md), which was
-initially reviewed at
-[modelcontextprotocol/discussions/364](https://github.com/orgs/modelcontextprotocol/discussions/364).
+该 SDK 的设计文档位于 [design.md](https://github.com/modelcontextprotocol/go-sdk/tree/main/design/design.md)，最初在 [modelcontextprotocol/discussions/364](https://github.com/orgs/modelcontextprotocol/discussions/364) 进行了评审。
 
-Further design discussion should occur in
-[issues](https://github.com/modelcontextprotocol/go-sdk/issues) (for concrete
-proposals) or
-[discussions](https://github.com/modelcontextprotocol/go-sdk/discussions) for
-open-ended discussion. See [CONTRIBUTING.md](https://github.com/CONTRIBUTING.md) for details.
+进一步的设计讨论应在 [issues](https://github.com/modelcontextprotocol/go-sdk/issues)（针对具体提案）或 [discussions](https://github.com/modelcontextprotocol/go-sdk/discussions)（针对开放性讨论）中进行。详细信息请参阅 [CONTRIBUTING.md](https://github.com/CONTRIBUTING.md)。
 
-## Package documentation
+## 包文档
 
-The SDK consists of three importable packages:
+该 SDK 由三个可导入的包组成：
 
-* The
-  [`github.com/modelcontextprotocol/go-sdk/mcp`](https://pkg.go.dev/github.com/modelcontextprotocol/go-sdk/mcp)
-  package defines the primary APIs for constructing and using MCP clients and
-  servers.
-* The
-  [`github.com/modelcontextprotocol/go-sdk/jsonschema`](https://pkg.go.dev/github.com/modelcontextprotocol/go-sdk/jsonschema)
-  package provides an implementation of [JSON
-  Schema](https://json-schema.org/), used for MCP tool input and output schema.
-* The
-  [`github.com/modelcontextprotocol/go-sdk/jsonrpc`](https://pkg.go.dev/github.com/modelcontextprotocol/go-sdk/jsonrpc) package is for users implementing
-  their own transports.
+* [`github.com/modelcontextprotocol/go-sdk/mcp`](https://pkg.go.dev/github.com/modelcontextprotocol/go-sdk/mcp) 包定义了用于构建和使用 MCP 客户端和服务器的主要 API。
+* [`github.com/modelcontextprotocol/go-sdk/jsonschema`](https://pkg.go.dev/github.com/modelcontextprotocol/go-sdk/jsonschema) 包提供了 [JSON Schema](https://json-schema.org/) 的实现，用于 MCP 工具的输入和输出模式定义。
+* [`github.com/modelcontextprotocol/go-sdk/jsonrpc`](https://pkg.go.dev/github.com/modelcontextprotocol/go-sdk/jsonrpc) 包供需要实现自定义传输协议的用户使用。
 
-## Example
+## 示例
 
-In this example, an MCP client communicates with an MCP server running in a
-sidecar process:
-
+在此示例中，MCP 客户端与运行在 sidecar 进程中的 MCP 服务器通信：
 ```go
 package main
 
@@ -68,10 +47,10 @@ import (
 func main() {
 	ctx := context.Background()
 
-	// Create a new client, with no features.
+	// 创建一个没有任何功能的新客户端。
 	client := mcp.NewClient(&mcp.Implementation{Name: "mcp-client", Version: "v1.0.0"}, nil)
 
-	// Connect to a server over stdin/stdout
+	// 通过标准输入/输出连接到服务器。
 	transport := &mcp.CommandTransport{Command: exec.Command("myserver")}
 	session, err := client.Connect(ctx, transport, nil)
 	if err != nil {
@@ -79,27 +58,24 @@ func main() {
 	}
 	defer session.Close()
 
-	// Call a tool on the server.
+	// 在服务器上调用工具。
 	params := &mcp.CallToolParams{
 		Name:      "greet",
 		Arguments: map[string]any{"name": "you"},
 	}
 	res, err := session.CallTool(ctx, params)
 	if err != nil {
-		log.Fatalf("CallTool failed: %v", err)
+		log.Fatalf("调用工具失败: %v", err)
 	}
 	if res.IsError {
-		log.Fatal("tool failed")
+		log.Fatal("工具调用失败")
 	}
 	for _, c := range res.Content {
 		log.Print(c.(*mcp.TextContent).Text)
 	}
 }
 ```
-
-Here's an example of the corresponding server component, which communicates
-with its client over stdin/stdout:
-
+以下是相应的服务器组件示例，它通过 stdin/stdout 与客户端进行通信：
 ```go
 package main
 
@@ -116,35 +92,27 @@ type HiParams struct {
 
 func SayHi(ctx context.Context, req *mcp.ServerRequest[*mcp.CallToolParamsFor[HiParams]]) (*mcp.CallToolResultFor[any], error) {
 	return &mcp.CallToolResultFor[any]{
-		Content: []mcp.Content{&mcp.TextContent{Text: "Hi " + req.Params.Arguments.Name}},
+		Content: []mcp.Content{&mcp.TextContent{Text: "你好，" + req.Params.Arguments.Name}},
 	}, nil
 }
 
 func main() {
-	// Create a server with a single tool.
+	// 创建一个包含单个工具的服务器。
 	server := mcp.NewServer(&mcp.Implementation{Name: "greeter", Version: "v1.0.0"}, nil)
 
-	mcp.AddTool(server, &mcp.Tool{Name: "greet", Description: "say hi"}, SayHi)
-	// Run the server over stdin/stdout, until the client disconnects
+	mcp.AddTool(server, &mcp.Tool{Name: "greet", Description: "打招呼"}, SayHi)
+	// 通过标准输入/输出运行服务器，直到客户端断开连接
 	if err := server.Run(context.Background(), &mcp.StdioTransport{}); err != nil {
 		log.Fatal(err)
 	}
 }
 ```
+[`examples/`](https://github.com/examples/) 目录中包含更多示例客户端和服务端。
 
-The [`examples/`](https://github.com/examples/) directory contains more example clients and servers.
+## 致谢
 
-## Acknowledgements
+一些现有的 Go MCP SDK 对本官方 SDK 的开发和设计提供了启发，尤其是由 Ed Zynda 编写的 [mcp-go](https://github.com/mark3labs/mcp-go)。我们感谢 Ed 以及 mcp-go 的其他贡献者，同时也感谢 [mcp-golang](https://github.com/metoro-io/mcp-golang) 和 [go-mcp](https://github.com/ThinkInAIXYZ/go-mcp) 等其他 SDK 的作者与贡献者。正是由于他们的努力，Go MCP 客户端和服务端才形成了繁荣的生态系统。
 
-Several existing Go MCP SDKs inspired the development and design of this
-official SDK, notably [mcp-go](https://github.com/mark3labs/mcp-go), authored
-by Ed Zynda. We are grateful to Ed as well as the other contributors to mcp-go,
-and to authors and contributors of other SDKs such as
-[mcp-golang](https://github.com/metoro-io/mcp-golang) and
-[go-mcp](https://github.com/ThinkInAIXYZ/go-mcp). Thanks to their work, there
-is a thriving ecosystem of Go MCP clients and servers.
+## 许可证
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/modelcontextprotocol/go-sdk/tree/main/LICENSE)
-file for details.
+本项目采用 MIT 许可证进行授权 —— 详情请参阅 [LICENSE](https://github.com/modelcontextprotocol/go-sdk/tree/main/LICENSE) 文件。

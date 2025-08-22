@@ -16,13 +16,13 @@ const readmesNav: DefaultTheme.NavItem = {
 }
 
 const nav: DefaultTheme.NavItem[] = [
-  { text: 'Home', link: '/' },
-  { text: 'Sites', link: '/sites' },
+  { text: '首页', link: '/' },
+  { text: '站点', link: '/sites' },
   readmesNav,
-  { text: 'Tags', link: '/tags' },
+  { text: '标签', link: '/tags' },
   {
-    text: 'About', items: [
-      { text: 'Update Strategy', link: '/update-strategy' }
+    text: '关于', items: [
+      { text: '更新策略', link: '/update-strategy' }
     ]
   },
 ]

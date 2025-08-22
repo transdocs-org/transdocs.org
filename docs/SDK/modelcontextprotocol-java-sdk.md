@@ -1,58 +1,54 @@
 # MCP Java SDK
 
-[![Build Status](https://raw.githubusercontent.com/modelcontextprotocol/java-sdk/actions/workflows/publish-snapshot.yml/badge.svg/refs/heads//)](https://github.com/modelcontextprotocol/java-sdk/actions/workflows/publish-snapshot.yml)
+[![构建状态](https://raw.githubusercontent.com/modelcontextprotocol/java-sdk/actions/workflows/publish-snapshot.yml/badge.svg/refs/heads//)](https://github.com/modelcontextprotocol/java-sdk/actions/workflows/publish-snapshot.yml)
 
-A set of projects that provide Java SDK integration for the [Model Context Protocol](https://modelcontextprotocol.org/docs/concepts/architecture).
-This SDK enables Java applications to interact with AI models and tools through a standardized interface, supporting both synchronous and asynchronous communication patterns.
+一组提供 [Model Context Protocol](https://modelcontextprotocol.org/docs/concepts/architecture) Java SDK 集成的项目。
+该 SDK 允许 Java 应用程序通过标准化接口与 AI 模型和工具进行交互，支持同步和异步通信模式。
 
-## 📚 Reference Documentation
+## 📚 参考文档
 
-#### MCP Java SDK documentation
+#### MCP Java SDK 文档
 
-For comprehensive guides and SDK API documentation
+完整指南和 SDK API 文档
 
-* [Features](https://modelcontextprotocol.io/sdk/java/mcp-overview#features) - Overview the features provided by the Java MCP SDK
-* [Architecture](https://modelcontextprotocol.io/sdk/java/mcp-overview#architecture) - Java MCP SDK architecture overview.
-* [Java Dependencies / BOM](https://modelcontextprotocol.io/sdk/java/mcp-overview#dependencies) - Java dependencies and BOM.
-* [Java MCP Client](https://modelcontextprotocol.io/sdk/java/mcp-client) - Learn how to use the MCP client to interact with MCP servers.
-* [Java MCP Server](https://modelcontextprotocol.io/sdk/java/mcp-server) - Learn how to implement and configure a MCP servers.
+* [功能](https://modelcontextprotocol.io/sdk/java/mcp-overview#features) - Java MCP SDK 提供的功能概述
+* [架构](https://modelcontextprotocol.io/sdk/java/mcp-overview#architecture) - Java MCP SDK 架构概述
+* [Java 依赖 / BOM](https://modelcontextprotocol.io/sdk/java/mcp-overview#dependencies) - Java 依赖和 BOM
+* [Java MCP 客户端](https://modelcontextprotocol.io/sdk/java/mcp-client) - 学习如何使用 MCP 客户端与 MCP 服务器交互
+* [Java MCP 服务端](https://modelcontextprotocol.io/sdk/java/mcp-server) - 学习如何实现和配置 MCP 服务器
 
-#### Spring AI MCP documentation
+#### Spring AI MCP 文档
 
-[Spring AI MCP](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-overview.html) extends the MCP Java SDK with Spring Boot integration, providing both [client](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-client-boot-starter-docs.html) and [server](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) starters. Bootstrap your AI applications with MCP support using [Spring Initializer](https://start.spring.io).
+[Spring AI MCP](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-overview.html) 在 MCP Java SDK 的基础上扩展了 Spring Boot 集成，提供了 [客户端](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-client-boot-starter-docs.html) 和 [服务端](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) 启动器。使用 [Spring Initializer](https://start.spring.io) 快速搭建支持 MCP 的 AI 应用程序。
 
-## Development
+## 开发
 
-### Building from Source
-
+### 从源码构建
 ```bash
 ./mvnw clean install -DskipTests
 ```
+### 运行测试
 
-### Running Tests
-
-To run the tests you have to pre-install `Docker` and `npx`.
-
+要运行测试，你需要预先安装 `Docker` 和 `npx`。
 ```bash
 ./mvnw test
 ```
+## 贡献
 
-## Contributing
+欢迎贡献代码！
+请遵循 [贡献指南](https://github.com/modelcontextprotocol/java-sdk/tree/main/CONTRIBUTING.md)。
 
-Contributions are welcome!
-Please follow the [Contributing Guidelines](https://github.com/modelcontextprotocol/java-sdk/tree/main/CONTRIBUTING.md).
-
-## Team
+## 团队
 
 * Christian Tzolov
 * Dariusz Jędrzejczyk
 
-## Links
+## 相关链接
 
-* [GitHub Repository](https://github.com/modelcontextprotocol/java-sdk)
-* [Issue Tracker](https://github.com/modelcontextprotocol/java-sdk/issues)
-* [CI/CD](https://github.com/modelcontextprotocol/java-sdk/actions)
+* [GitHub 仓库](https://github.com/modelcontextprotocol/java-sdk)
+* [问题跟踪](https://github.com/modelcontextprotocol/java-sdk/issues)
+* [持续集成/持续部署 (CI/CD)](https://github.com/modelcontextprotocol/java-sdk/actions)
 
-## License
+## 许可证
 
-This project is licensed under the [MIT License](https://github.com/modelcontextprotocol/java-sdk/tree/main/LICENSE).
+该项目使用 [MIT 许可证](https://github.com/modelcontextprotocol/java-sdk/tree/main/LICENSE) 进行授权。

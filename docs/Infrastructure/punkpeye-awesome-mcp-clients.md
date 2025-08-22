@@ -1,25 +1,25 @@
-# Awesome MCP Clients [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+# 令人惊叹的MCP客户端 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 [![Discord](https://img.shields.io/discord/1312302100125843476?logo=discord\&label=discord)](https://glama.ai/mcp/discord)
 [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/mcp?style=flat\&logo=reddit\&label=subreddit)](https://www.reddit.com/r/mcp/)
 
-A curated list of awesome Model Context Protocol (MCP) clients.
+一个精心整理的令人惊叹的模型上下文协议（MCP）客户端列表。
 
-* [What is MCP?](#what-is-mcp)
-* [Community](#community)
-* [Clients](#clients)
-* [Servers](#servers)
+* [什么是MCP？](#what-is-mcp)
+* [社区](#community)
+* [客户端](#clients)
+* [服务器](#servers)
 
-## What is MCP?
+## 什么是MCP？
 
-[MCP](https://modelcontextprotocol.io/) is an open protocol that enables AI models to securely interact with local and remote resources through standardized server implementations. This list focuses on production-ready and experimental MCP clients that extend AI capabilities through file access, database connections, API integrations, and other contextual services.
+[MCP](https://modelcontextprotocol.io/) 是一种开放协议，使AI模型能够通过标准化的服务器实现安全地与本地和远程资源进行交互。本列表重点关注生产就绪和实验性的MCP客户端，这些客户端通过文件访问、数据库连接、API集成和其他上下文服务扩展了AI的能力。
 
-## Community
+## 社区
 
 * [r/mcp Reddit](https://www.reddit.com/r/mcp)
-* [Discord Server](https://glama.ai/mcp/discord)
+* [Discord服务器](https://glama.ai/mcp/discord)
 
-## Clients
+## 客户端
 
 * [Awesome MCP Clients ](#awesome-mcp-clients-)
   * [What is MCP?](#what-is-mcp)
@@ -29,7 +29,7 @@ A curated list of awesome Model Context Protocol (MCP) clients.
     * [5ire](#5ire)
     * [AIaW](#aiaw)
     * [BrowseWiz](#browsewiz)
-    * [CarrotAI](#CarrotAI)
+    * [CarrotAI](#carrotai)
     * [Chainlit](#chainlit)
     * [ChatMCP](#chatmcp)
     * [Cherry Studio](#cherry-studio)
@@ -71,7 +71,7 @@ A curated list of awesome Model Context Protocol (MCP) clients.
     * [Zed](#zed)
     * [MindPal](#mindpal)
     * [WhatsMCP](#whatsmcp)
-    * [Argo-LocalAI](#Argo-LocalAI)
+    * [Argo-LocalAI](#argo-localai)
     * [MCPCLIHost](#mcpclihost)
     * [Zin MCP Client](#zin-mcp-client)
   * [Servers](#servers)
@@ -80,22 +80,22 @@ A curated list of awesome Model Context Protocol (MCP) clients.
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/Lucassssss/eechat</td></tr>
-<tr><th align="left">Website</th><td>https://www.ee.chat/</td></tr>
-<tr><th align="left">License</th><td>Modified Apache 2.0</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">网站</th><td>https://www.ee.chat/</td></tr>
+<tr><th align="left">许可证</th><td>修改版 Apache 2.0</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-An open-source, cross-platform desktop application that seamlessly connects with full support for MCP, across Linux, macOS, and Windows.
+一个开源的、跨平台的桌面应用，无缝支持MCP，适用于Linux、macOS和Windows。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
-![example](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/eechat/mcp_main.png)
-![add-mcp](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/eechat/mcp_add.png)
-![mcp-env](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/eechat/mcp_bin.png)
+![示例](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/eechat/mcp_main.png)
+![添加MCP](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/eechat/mcp_add.png)
+![MCP环境](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/eechat/mcp_bin.png)
 
 </details>
 
@@ -103,18 +103,18 @@ An open-source, cross-platform desktop application that seamlessly connects with
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/nanbingxyz/5ire</td></tr>
-<tr><th align="left">Website</th><td>https://5ire.app/</td></tr>
-<tr><th align="left">License</th><td>Modified Apache 2.0 (non-commercial)</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">网站</th><td>https://5ire.app/</td></tr>
+<tr><th align="left">许可证</th><td>修改版 Apache 2.0（非商业用途）</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-5ire is a cross-platform desktop AI assistant, MCP client. It compatible with major service providers, supports local knowledge base and tools via model context protocol servers.
+5ire 是一个跨平台的桌面AI助手和MCP客户端。它兼容主要的服务提供商，支持通过模型上下文协议服务器使用本地知识库和工具。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 <https://github.com/user-attachments/assets/a27494c5-437d-481c-a25f-74cfa5a2bc45>
 
@@ -124,22 +124,22 @@ An open-source, cross-platform desktop application that seamlessly connects with
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/NitroRCr/AIaW</td></tr>
-<tr><th align="left">Website</th><td>https://aiaw.app/</td></tr>
-<tr><th align="left">License</th><td>BSD 3-Clause</td></tr>
-<tr><th align="left">Type</th><td>Web app</td></tr>
-<tr><th align="left">Platforms</th><td>Web</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Vue, TypeScript</td></tr>
+<tr><th align="left">网站</th><td>https://aiaw.app/</td></tr>
+<tr><th align="left">许可证</th><td>BSD 3-Clause</td></tr>
+<tr><th align="left">类型</th><td>网页应用</td></tr>
+<tr><th align="left">平台</th><td>Web</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Vue, TypeScript</td></tr>
 </table>
 
-AIaW is a cross-platform, full-featured and lightweight AI Chat client with full support for MCP.
+AIaW 是一个跨平台、功能齐全且轻量级的AI聊天客户端，全面支持MCP。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/aiaw/plugins.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/aiaw/dialog.png)
-![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/aiaw/dark.png) <img src="./screenshots/aiaw/mobile.png" width="400">
+![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/aiaw/dark.png) <img src="https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/aiaw/mobile.png" width="400">
 
 </details>
 
@@ -147,27 +147,27 @@ AIaW is a cross-platform, full-featured and lightweight AI Chat client with full
 
 <table>
 <tr><th align="left">GitHub</th><td>N/A</td></tr>
-<tr><th align="left">Website</th><td>https://browsewiz.com</td></tr>
-<tr><th align="left">License</th><td>Proprietary</td></tr>
-<tr><th align="left">Type</th><td>Browser extension</td></tr>
-<tr><th align="left">Platforms</th><td>Chromium-based desktop browsers</td></tr>
-<tr><th align="left">Pricing</th><td>Freemium</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">网站</th><td>https://browsewiz.com</td></tr>
+<tr><th align="left">许可证</th><td>专有</td></tr>
+<tr><th align="left">类型</th><td>浏览器扩展</td></tr>
+<tr><th align="left">平台</th><td>基于Chromium的桌面浏览器</td></tr>
+<tr><th align="left">价格</th><td>免费增值</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-BrowseWiz is a *customizable* AI Chat, AI Assistant and AI Agent for browser's side panel.
-It is a flexible tool that can help automate *your* workflows.
+BrowseWiz 是一个*可定制的*浏览器侧边栏AI聊天、AI助手和AI代理。
+它是一个灵活的工具，可以帮助自动化*你的*工作流程。
 
-**Key Features:**
+**主要功能：**
 
-* give AI access to contexts: files, active tab, YT video transcript, text selected on a page
-* manage collection of prompts, add 1-click prompt buttons
-* set and manage system instructions
-* bring your own key or model (OpenAI API-compatible)
-* add tools for agentic capabilities via webhooks/APIs + JSON schema or by providing MCP server URLs (supports streamable HTTP and SSE)
+* 让AI访问上下文：文件、活动标签、YouTube视频转录、页面上选中的文本
+* 管理提示集合，添加一键提示按钮
+* 设置和管理系统指令
+* 使用你自己的API密钥或模型（兼容OpenAI API）
+* 通过webhooks/APIs + JSON schema或提供MCP服务器URL添加代理功能（支持流式HTTP和SSE）
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/browsewiz/agent.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/browsewiz/mcp.png)
@@ -178,25 +178,25 @@ It is a flexible tool that can help automate *your* workflows.
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/Xingsandesu/CarrotAI</td></tr>
-<tr><th align="left">Website</th><td>https://jintongshu.com/solutions/agent/</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0<a href="https://raw.githubusercontent.com/Xingsandesu/CarrotAI/refs/heads/main/LICENSE">*</a></td></tr>
-<tr><th align="left">Type</th><td>Web app</td></tr>
-<tr><th align="left">Platforms</th><td>Web</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Dart, Python</td></tr>
+<tr><th align="left">网站</th><td>https://jintongshu.com/solutions/agent/</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0<a href="https://raw.githubusercontent.com/Xingsandesu/CarrotAI/refs/heads/main/LICENSE">*</a></td></tr>
+<tr><th align="left">类型</th><td>网页应用</td></tr>
+<tr><th align="left">平台</th><td>Web</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Dart, Python</td></tr>
 </table>
 
-CarrotAI is an advanced AI agent application that enables real-time streaming chat using Server-Sent Events (SSE) and Streamable HTTP, with seamless integration of the Model Control Protocol (MCP). It supports concurrent connections to multiple SSE MCP servers and offers a multilingual user interface in English, Chinese, and Japanese.
+CarrotAI 是一个高级AI代理应用，支持使用服务器发送事件（SSE）和可流式传输的HTTP进行实时流式聊天，并与模型控制协议（MCP）无缝集成。它支持同时连接多个SSE MCP服务器，并提供英文、中文和日文的多语言用户界面。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
-![chat](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/carrotai/carrotai_chat.png)
-![homepage](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/carrotai/carrotai_home.png)
-![seetings](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/carrotai/carrotai_settings.png)
-![app market](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/carrotai/carrotai_shop.png)
-![install app](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/carrotai/carrotai_env.png)
-![app installed](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/carrotai/carrotai_myapps.png)
+![聊天](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/carrotai/carrotai_chat.png)
+![主页](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/carrotai/carrotai_home.png)
+![设置](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/carrotai/carrotai_settings.png)
+![应用市场](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/carrotai/carrotai_shop.png)
+![安装应用](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/carrotai/carrotai_env.png)
+![应用已安装](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/carrotai/carrotai_myapps.png)
 
 </details>
 
@@ -204,22 +204,22 @@ CarrotAI is an advanced AI agent application that enables real-time streaming ch
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/chainlit/chainlit</td></tr>
-<tr><th align="left">Website</th><td>https://chainlit.io/</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0</td></tr>
-<tr><th align="left">Type</th><td>Web app</td></tr>
-<tr><th align="left">Platforms</th><td>Web</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Python</td></tr>
+<tr><th align="left">网站</th><td>https://chainlit.io/</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0</td></tr>
+<tr><th align="left">类型</th><td>网页应用</td></tr>
+<tr><th align="left">平台</th><td>Web</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Python</td></tr>
 </table>
 
-Chainlit is a python framework to build conversational AI apps with support for MCP.
+Chainlit 是一个支持MCP的Python框架，用于构建对话式AI应用。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
-![example](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/chainlit/example.png)
-![add-mcp](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/chainlit/add-mcp.png)
-![manage-mcps](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/chainlit/manage-mcps.png)
+![示例](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/chainlit/example.png)
+![添加MCP](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/chainlit/add-mcp.png)
+![管理MCP](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/chainlit/manage-mcps.png)
 
 </details>
 
@@ -227,18 +227,18 @@ Chainlit is a python framework to build conversational AI apps with support for 
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/daodao97/chatmcp</td></tr>
-<tr><th align="left">Website</th><td>-</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Dart</td></tr>
+<tr><th align="left">网站</th><td>-</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows、MacOS、Linux</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Dart</td></tr>
 </table>
 
-ChatMCP is an AI chat client implementing the Model Context Protocol (MCP).
+ChatMCP 是一个实现了模型上下文协议（Model Context Protocol，MCP）的 AI 聊天客户端。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/chatmcp/preview.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/chatmcp/settings.png)
@@ -249,29 +249,29 @@ ChatMCP is an AI chat client implementing the Model Context Protocol (MCP).
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/CherryHQ/cherry-studio</td></tr>
-<tr><th align="left">Website</th><td>https://cherry-ai.com</td></tr>
-<tr><th align="left">License</th><td><a href="https://github.com/CherryHQ/cherry-studio/blob/main/LICENSE">Apache 2.0 + Addendum Terms*</a></td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">官网</th><td>https://cherry-ai.com</td></tr>
+<tr><th align="left">许可证</th><td><a href="https://github.com/CherryHQ/cherry-studio/blob/main/LICENSE">Apache 2.0 + 附加条款*</a></td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows、MacOS、Linux</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-**Cherry Studio** is a desktop client that supports for multiple LLM providers, available on Windows, Mac and Linux.
+**Cherry Studio** 是一个桌面客户端，支持多个大语言模型（LLM）提供商，适用于 Windows、Mac 和 Linux 系统。
 
-**Feature:**
+**功能：**
 
-* **Multi-Model Support**: Integrates cloud (OpenAI, Gemini, Anthropic), web AI (Claude, Perplexity), and local models (Ollama, LM Studio).
-* **AI Assistants**: 300+ presets, custom creation, and multi-model parallel chats.
-* **Doc Processing**: Handles text/images/Office/PDF, WebDAV, Mermaid, and code highlighting.
-* **Productivity**: Global search, topic management, AI translation, drag-drop, mini-programs, and **MCP server**.
-* **UX**: Cross-platform (Win/Mac/Linux), plug-and-play, light/dark themes, transparent UI, full Markdown, and easy sharing.
+* **多模型支持**：集成云服务（OpenAI、Gemini、Anthropic）、网页 AI（Claude、Perplexity）和本地模型（Ollama、LM Studio）。
+* **AI 助手**：提供 300+ 预设模板，支持自定义创建和多模型并行聊天。
+* **文档处理**：支持文本/图像/Office/PDF、WebDAV、Mermaid 图表、代码高亮等格式。
+* **生产力工具**：全局搜索、话题管理、AI 翻译、拖放操作、小程序和 **MCP 服务器**。
+* **用户体验**：跨平台（Win/Mac/Linux）、即插即用、浅色/深色主题、透明 UI、完整 Markdown 支持和便捷分享功能。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
-![preview](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cherry-studio/preview.png)
-![settings](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cherry-studio/settings.png)
+![预览](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cherry-studio/preview.png)
+![设置](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cherry-studio/settings.png)
 
 </details>
 
@@ -279,18 +279,18 @@ ChatMCP is an AI chat client implementing the Model Context Protocol (MCP).
 
 <table>
 <tr><th align="left">GitHub</th><td>-</td></tr>
-<tr><th align="left">Website</th><td>https://claude.ai/download</td></tr>
-<tr><th align="left">License</th><td>Proprietary</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>-</td></tr>
+<tr><th align="left">官网</th><td>https://claude.ai/download</td></tr>
+<tr><th align="left">许可证</th><td>专有</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows、MacOS</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>-</td></tr>
 </table>
 
-The Claude desktop app brings Claude's capabilities directly to your computer, allowing for seamless integration with your workflow.
+Claude 桌面应用将 Claude 的功能直接带入您的计算机，使其与您的工作流程无缝集成。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/claude-desktop/claude-desktop.png)
 
@@ -300,18 +300,18 @@ The Claude desktop app brings Claude's capabilities directly to your computer, a
 
 <table>
 <tr><th align="left">GitHub</th><td>-</td></tr>
-<tr><th align="left">Website</th><td>https://claudemind.com/</td></tr>
-<tr><th align="left">License</th><td>Proprietary</td></tr>
-<tr><th align="left">Type</th><td>Desktop app, JetBrains extension</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS</td></tr>
-<tr><th align="left">Pricing</th><td>Per seat (from $29)</td></tr>
-<tr><th align="left">Programming Languages</th><td>-</td></tr>
+<tr><th align="left">官网</th><td>https://claudemind.com/</td></tr>
+<tr><th align="left">许可证</th><td>专有</td></tr>
+<tr><th align="left">类型</th><td>桌面应用、JetBrains 插件</td></tr>
+<tr><th align="left">平台</th><td>Windows、MacOS</td></tr>
+<tr><th align="left">定价</th><td>按席位计费（起价 $29）</td></tr>
+<tr><th align="left">编程语言</th><td>-</td></tr>
 </table>
 
-Experience Claude AI without limits. Use our desktop app for everyday AI assistance, or boost your coding productivity with our JetBrains plugin.
+无限制地体验 Claude AI。使用我们的桌面应用获得日常 AI 协助，或通过我们的 JetBrains 插件提升编码效率。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/claudemind/ClaudeMind_Desktop_Chat_History.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/claudemind/ClaudeMind_Desktop_NewChatPage.png)
@@ -323,18 +323,18 @@ Experience Claude AI without limits. Use our desktop app for everyday AI assista
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/cline/cline</td></tr>
-<tr><th align="left">Website</th><td>https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0</td></tr>
-<tr><th align="left">Type</th><td>VSCode extension</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">官网</th><td>https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0</td></tr>
+<tr><th align="left">类型</th><td>VSCode 扩展</td></tr>
+<tr><th align="left">平台</th><td>Windows、MacOS</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-Cline can handle complex software development tasks step-by-step. With tools that let him create & edit files, explore large projects, use the browser, and execute terminal commands (after you grant permission), he can assist you in ways that go beyond code completion or tech support. Cline can even use the Model Context Protocol (MCP) to create new tools and extend his own capabilities. While autonomous AI scripts traditionally run in sandboxed environments, this extension provides a human-in-the-loop GUI to approve every file change and terminal command, providing a safe and accessible way to explore the potential of agentic AI.
+Cline 可以逐步处理复杂的软件开发任务。它拥有创建和编辑文件、浏览大型项目、使用浏览器和执行终端命令（需您授权）等工具，其功能远远超出代码补全或技术支持的范畴。Cline 甚至可以通过模型上下文协议（MCP）创建新工具并扩展自身能力。虽然传统的自主 AI 脚本通常运行在沙箱环境中，但该扩展提供了一个人工参与的 GUI 界面，用于批准每个文件更改和终端命令，从而提供一种安全且易用的方式来探索智能代理 AI 的潜力。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cline/cline-demo.gif)
 
@@ -344,18 +344,18 @@ Cline can handle complex software development tasks step-by-step. With tools tha
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/amidabuddha/console-chat-gpt</td></tr>
-<tr><th align="left">Website</th><td>-</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>CLI</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Python</td></tr>
+<tr><th align="left">官网</th><td>-</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>命令行工具</td></tr>
+<tr><th align="left">平台</th><td>Windows、MacOS、Linux</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Python</td></tr>
 </table>
 
-Enjoy seamless interactions with ChatGPT, MistralAI, Claude by Anthropic, Grok by xAI, Gemini by Google and DeepSeek directly from your command line. Elevate your chat experience with efficiency and ease.
+直接从命令行与 ChatGPT、MistralAI、Anthropic 的 Claude、xAI 的 Grok、Google 的 Gemini 和 DeepSeek 进行无缝交互。提升您的聊天体验，更高效便捷地使用这些服务。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/console-chat-gpt/markdown_preview.gif)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/console-chat-gpt/python_for_loop.gif)
@@ -367,18 +367,18 @@ Enjoy seamless interactions with ChatGPT, MistralAI, Claude by Anthropic, Grok b
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/VikashLoomba/copilot-mcp</td></tr>
-<tr><th align="left">Website</th><td>-</td></tr>
-<tr><th align="left">License</th><td>GPL-v3</td></tr>
-<tr><th align="left">Type</th><td>VSCode Extension</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Any</td></tr>
+<tr><th align="left">官网</th><td>-</td></tr>
+<tr><th align="left">许可证</th><td>GPL-v3</td></tr>
+<tr><th align="left">类型</th><td>VSCode 扩展</td></tr>
+<tr><th align="left">平台</th><td>Windows、MacOS、Linux</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>任意</td></tr>
 </table>
 
-VSCode extension that acts as a Model Context Protocol (MCP) client, enabling integration between MCP servers and GitHub Copilot Chat
+该 VSCode 扩展作为模型上下文协议（MCP）客户端，可实现 MCP 服务器与 GitHub Copilot Chat 的集成。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/copilot-mcp/preview.png)
 
@@ -388,24 +388,24 @@ VSCode extension that acts as a Model Context Protocol (MCP) client, enabling in
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/getcursor/cursor</td></tr>
-<tr><th align="left">Website</th><td>https://cursor.com</td></tr>
-<tr><th align="left">License</th><td>Proprietary</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Freemium</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">官网</th><td>https://cursor.com</td></tr>
+<tr><th align="left">许可证</th><td>专有</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows、MacOS、Linux</td></tr>
+<tr><th align="left">定价</th><td>免费增值（Freemium）</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-Cursor is an AI-first code editor fork of VS Code that helps you code faster with built-in chat, edit, and debugging AI features. It supports MCP for enhanced AI capabilities and tool integration.
+Cursor 是一个以 AI 为核心的 VS Code 分支代码编辑器，通过内置的聊天、编辑和调试 AI 功能帮助您更快地编码。它支持 MCP 以增强 AI 功能和工具集成。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
-![Main Interface](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cursor/cursor.png)
-![Adding New MCP Server](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cursor/new-server.png)
-![Settings Interface](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cursor/settings.png)
-![Calling MCP Server](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cursor/calling.png)
-![MCP Server Response](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cursor/called.png)
+![主界面](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cursor/cursor.png)
+![添加新 MCP 服务器](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cursor/new-server.png)
+![设置界面](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cursor/settings.png)
+![调用 MCP 服务器](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cursor/calling.png)
+![MCP 服务器响应](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/cursor/called.png)
 
 </details>
 
@@ -413,18 +413,18 @@ Cursor is an AI-first code editor fork of VS Code that helps you code faster wit
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/continuedev/continue</td></tr>
-<tr><th align="left">Website</th><td>https://continue.dev/</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0</td></tr>
-<tr><th align="left">Type</th><td>VSCode extension, JetBrains extension</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">官网</th><td>https://continue.dev/</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0</td></tr>
+<tr><th align="left">类型</th><td>VSCode 扩展、JetBrains 扩展</td></tr>
+<tr><th align="left">平台</th><td>Windows、MacOS</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-Continue is the leading open-source AI code assistant. You can connect any models and any context to build custom autocomplete and chat experiences inside VS Code and JetBrains.
+Continue 是领先的开源 AI 代码助手。您可以连接任意模型和上下文，在 VS Code 和 JetBrains 中构建自定义的自动补全和聊天体验。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/continue/continue-demo.gif)
 
@@ -434,18 +434,18 @@ Continue is the leading open-source AI code assistant. You can connect any model
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/thinkinaixyz/deepchat</td></tr>
-<tr><th align="left">Website</th><td>https://deepchat.thinkinai.xyz/</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">官网</th><td>https://deepchat.thinkinai.xyz/</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows、MacOS、Linux</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-DeepChat is a cross-platform desktop AI assistant, MCP client. DeepChat brings the power of AI to your desktop with privacy and efficiency, making it your ideal companion for productive work.
+DeepChat 是一个跨平台的桌面端 AI 助手和 MCP 客户端。DeepChat 通过隐私保护和高效性能将 AI 的力量带到你的桌面，使其成为你高效工作的理想助手。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/deepchat/deepchat.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/deepchat/setting.png)
@@ -456,20 +456,20 @@ DeepChat is a cross-platform desktop AI assistant, MCP client. DeepChat brings t
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/cognitivecomputations/dolphin-mcp</td></tr>
-<tr><th align="left">Website</th><td>-</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>CLI, Python library</td></tr>
-<tr><th align="left">Platforms</th><td>Linux, Windows, MacOS</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Python</td></tr>
+<tr><th align="left">网站</th><td>-</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>CLI，Python 库</td></tr>
+<tr><th align="left">平台</th><td>Linux，Windows，MacOS</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Python</td></tr>
 </table>
 
-**Dolphin-MCP** is an open-source multi-server bridging client for MCP. It allows you to connect any MCP-compatible server any LLM (local or remote), enabling flexible tool usage and resource access in real-time.
+**Dolphin-MCP** 是一个开源的多服务器桥接 MCP 客户端。它允许你连接任意 MCP 兼容的服务器和任意 LLM（本地或远程），实现实时灵活的工具使用和资源访问。
 
 `pip install dolphin-mcp`
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/dolphin-mcp/dolphin-mcp.png)
 
@@ -479,25 +479,24 @@ DeepChat is a cross-platform desktop AI assistant, MCP client. DeepChat brings t
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/mario-andreschak/FLUJO</td></tr>
-<tr><th align="left">Website</th><td>flujo.orchestraight.co</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>Web app</td></tr>
-<tr><th align="left">Platforms</th><td>Web</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">网站</th><td>flujo.orchestraight.co</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>Web 应用</td></tr>
+<tr><th align="left">平台</th><td>Web</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-Think n8n + ChatGPT. **FLUJO** is a desktop application that integrates with MCP to provide a workflow-builder interface for AI interactions. Built with Next.js and React, it supports both online and offline (ollama) models, it manages API Keys and environment variables centrally and can install MCP Servers from GitHub. FLUJO has a ChatCompletions endpoint and flows can be executed from other AI applications like Cline, Roo or Claude.
+想象一下 n8n + ChatGPT。**FLUJO** 是一个与 MCP 集成的桌面应用，提供用于 AI 交互的工作流构建界面。它基于 Next.js 和 React 构建，支持在线和离线（ollama）模型，可集中管理 API 密钥和环境变量，并能从 GitHub 安装 MCP 服务器。FLUJO 提供 ChatCompletions 端点，工作流可以从其他 AI 应用程序（如 Cline、Roo 或 Claude）执行。
 
-* Environment & API Key Management
-* Model Management
-* MCP Server Integration
-* Workflow Orchestration
-* Chat Interface
+* 环境与 API 密钥管理
+* 模型管理
+* MCP 服务器集成
+* 工作流编排
+* 聊天界面
 
 <details>
-
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![image](https://github.com/user-attachments/assets/24e23174-4f1d-46e6-bf67-d40bec7135af)
 
@@ -523,24 +522,24 @@ Think n8n + ChatGPT. **FLUJO** is a desktop application that integrates with MCP
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/block/goose</td></tr>
-<tr><th align="left">Website</th><td>-</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0</td></tr>
-<tr><th align="left">Type</th><td>AI Agent</td></tr>
-<tr><th align="left">Platforms</th><td>MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Rust</td></tr>
+<tr><th align="left">网站</th><td>-</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0</td></tr>
+<tr><th align="left">类型</th><td>AI 代理</td></tr>
+<tr><th align="left">平台</th><td>MacOS，Linux</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Rust</td></tr>
 </table>
 
-Goose is a general-purpose AI agent that can dynamically plug into new extensions and learn how to use them. It solves higher-level problems using tools from multiple extensions and can interact with multiple extensions at once.
+Goose 是一个通用 AI 代理，可以动态连接新的扩展并学习如何使用它们。它使用多个扩展中的工具解决更高层次的问题，并可以同时与多个扩展交互。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![Goose Logo](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/goose/goose.png)
-![Custom Extension Chat](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/goose/custom-extension-chat.png)
-![Custom Extension Tools](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/goose/custom-extension-tools-9d440447ae99b18ae92819e652148abe.png)
-![Extension Settings](<https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/goose/extension settings.png>)
-![List Tools](<https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/goose/list tools.png>)
+![自定义扩展聊天](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/goose/custom-extension-chat.png)
+![自定义扩展工具](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/goose/custom-extension-tools-9d440447ae99b18ae92819e652148abe.png)
+![扩展设置](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/goose/extension%20settings.png)
+![列出工具](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/goose/list%20tools.png)
 
 </details>
 
@@ -548,21 +547,21 @@ Goose is a general-purpose AI agent that can dynamically plug into new extension
 
 <table>
 <tr><th align="left">GitHub</th><td>-</td></tr>
-<tr><th align="left">Website</th><td>https://glue.ai</td></tr>
-<tr><th align="left">License</th><td>-</td></tr>
-<tr><th align="left">Type</th><td>Web app, Desktop app, Mobile app</td></tr>
-<tr><th align="left">Platforms</th><td>Web, MacOS, Windows, Mobile</td></tr>
-<tr><th align="left">Pricing</th><td>$8/user/month</td></tr>
-<tr><th align="left">Programming Languages</th><td>-</td></tr>
+<tr><th align="left">网站</th><td>https://glue.ai</td></tr>
+<tr><th align="left">许可证</th><td>-</td></tr>
+<tr><th align="left">类型</th><td>Web 应用，桌面应用，移动应用</td></tr>
+<tr><th align="left">平台</th><td>Web，MacOS，Windows，移动设备</td></tr>
+<tr><th align="left">定价</th><td>$8/用户/月</td></tr>
+<tr><th align="left">编程语言</th><td>-</td></tr>
 </table>
 
-Glue is a full-featured, thread-first team chat platform with a built-in AI agent and support for MCP, enabling teams to leverage intelligent tools and insights. [Learn more.](https://glue.ai/labs)
+Glue 是一个功能齐全的、以线程为优先的团队聊天平台，内置 AI 代理并支持 MCP，使团队能够利用智能工具和洞察力。[了解更多](https://glue.ai/labs)
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![Glue MCP Hero](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/glue/glue-mcp-hero.jpg)
-![Glue Create Issue](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/glue/glue-create-issue.png)
+![Glue 创建问题](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/glue/glue-create-issue.png)
 
 </details>
 
@@ -570,18 +569,18 @@ Glue is a full-featured, thread-first team chat platform with a built-in AI agen
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/BigSweetPotatoStudio/HyperChat</td></tr>
-<tr><th align="left">Website</th><td>-</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0<a href="https://github.com/BigSweetPotatoStudio/HyperChat/blob/main/LICENSE">*</a></td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>JavaScript</td></tr>
+<tr><th align="left">网站</th><td>-</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0<a href="https://github.com/BigSweetPotatoStudio/HyperChat/blob/main/LICENSE">*</a></td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows，MacOS</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>JavaScript</td></tr>
 </table>
 
-HyperChat is an open Chat client that can use various LLM APIs to provide the best Chat experience and implement productivity tools through the MCP protocol.
+HyperChat 是一个开放的聊天客户端，可以使用各种 LLM API 提供最佳的聊天体验，并通过 MCP 协议实现生产力工具。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/hyperchat/image13.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/hyperchat/image21.png)
@@ -603,18 +602,18 @@ HyperChat is an open Chat client that can use various LLM APIs to provide the be
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/nick1udwig/kibitz</td></tr>
-<tr><th align="left">Website</th><td>https://kibi.tz</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>Mobile app, Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Mobile, Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">网站</th><td>https://kibi.tz</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>移动应用，桌面应用</td></tr>
+<tr><th align="left">平台</th><td>移动设备，Windows，MacOS，Linux</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-kibitiz is the free and open-source Replit. Minimally, it is a lightweight chat interface to the popular LLM APIs (Anthropic and OpenAI API formats supported). Experience automated tool loops: try asking your agent to use [wcgw](https://github.com/rusiaaman/wcgw) to make a change to a local repository, then fix linter and compiler errors, make a commit, and push to remote, all without user intervention! Even better, code on-the-go by setting up MCP servers on your laptop, then connecting from your mobile through [Kinode](https://github.com/kinode-dao/kinode).
+kibitiz 是 Replit 的免费开源替代品。最基础的功能，它是一个轻量级的聊天界面，支持流行的 LLM API（支持 Anthropic 和 OpenAI API 格式）。体验自动化的工具循环：试着让代理使用 [wcgw](https://github.com/rusiaaman/wcgw) 对本地仓库进行修改，然后修复 linter 和编译器错误，提交并推送到远程，全程无需用户干预！更棒的是，你可以通过在笔记本电脑上设置 MCP 服务器，然后通过 [Kinode](https://github.com/kinode-dao/kinode) 从移动设备连接，实现在移动中编写代码。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 <https://github.com/user-attachments/assets/3f8df448-1c81-4ff2-8598-c48283a4dc00>
 
@@ -624,74 +623,73 @@ kibitiz is the free and open-source Replit. Minimally, it is a lightweight chat 
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/danny-avila/LibreChat</td></tr>
-<tr><th align="left">Website</th><td>https://www.librechat.ai/</td></tr>
-<tr><th align="left">License</th><td>MIT license</td></tr>
-<tr><th align="left">Type</th><td>Web app</td></tr>
-<tr><th align="left">Platforms</th><td>-</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">网站</th><td>https://www.librechat.ai/</td></tr>
+<tr><th align="left">许可证</th><td>MIT 许可证</td></tr>
+<tr><th align="left">类型</th><td>Web 应用</td></tr>
+<tr><th align="left">平台</th><td>-</td></tr>
+<tr><th align="left">定价</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
-
-Enhanced ChatGPT Clone: Features Agents, Anthropic, AWS, OpenAI, Assistants API, Azure, Groq, o1, GPT-4o, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting.
+增强型 ChatGPT 克隆：支持 Agents、Anthropic、AWS、OpenAI、Assistants API、Azure、Groq、o1、GPT-4o、Mistral、OpenRouter、Vertex AI、Gemini、Artifacts、AI 模型切换、消息搜索、代码解释器、langchain、DALL-E-3、OpenAPI Actions、Functions、安全多用户认证、预设配置、支持自托管的开源项目。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/librechat/librechat.webp)
 
 </details>
 
-### MCP Chatbot
+### MCP 聊天机器人
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/3choff/mcp-chatbot</td></tr>
-<tr><th align="left">Website</th><td>-</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>CLI</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Python</td></tr>
+<tr><th align="left">官网</th><td>-</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>CLI</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Python</td></tr>
 </table>
 
-This chatbot example demonstrates how to integrate the Model Context Protocol (MCP) into a simple CLI chatbot. The implementation showcases MCP's flexibility by supporting multiple tools through MCP servers and is compatible with any LLM provider that follows OpenAI API standards.
+该聊天机器人示例演示了如何将模型上下文协议 (MCP) 集成到一个简单的 CLI 聊天机器人中。通过支持通过 MCP 服务器接入多个工具，展示了 MCP 的灵活性，并且兼容任何遵循 OpenAI API 标准的 LLM 提供商。
 
-### MCP CLI client
+### MCP CLI 客户端
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/adhikasp/mcp-client-cli</td></tr>
-<tr><th align="left">Website</th><td>-</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>CLI</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Python</td></tr>
+<tr><th align="left">官网</th><td>-</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>CLI</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Python</td></tr>
 </table>
 
-A simple CLI to run LLM prompt and implement MCP client.
+一个简单的 CLI 工具，用于运行 LLM 提示并实现 MCP 客户端。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/mcp-cli-client/usage.png)
 
 </details>
 
-### MCP Simple Slackbot
+### MCP 简易 Slack 机器人
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/sooperset/mcp-client-slackbot</td></tr>
-<tr><th align="left">Website</th><td>-</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>Slack Bot</td></tr>
-<tr><th align="left">Platforms</th><td>Slack</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Python</td></tr>
+<tr><th align="left">官网</th><td>-</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>Slack 机器人</td></tr>
+<tr><th align="left">平台</th><td>Slack</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Python</td></tr>
 </table>
 
-A simple Slack bot that uses LLMs and the Model Context Protocol (MCP) tools.
+一个使用 LLM 和模型上下文协议 (MCP) 工具的简易 Slack 机器人。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/mcp-simple-slackbot/demo.gif)
 
@@ -701,20 +699,20 @@ A simple Slack bot that uses LLMs and the Model Context Protocol (MCP) tools.
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/Abiorh001/mcp_omni_connect</td></tr>
-<tr><th align="left">Website</th><td>-</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>CLI</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Python</td></tr>
+<tr><th align="left">官网</th><td>-</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>CLI</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Python</td></tr>
 </table>
 
-A powerful universal CLI client for MCP Servers that provides seamless integration with multiple protocols, AI models, and tools through an intelligent interface.
+一个强大的通用 CLI 客户端，用于 MCP 服务器，通过智能接口提供与多种协议、AI 模型和工具的无缝集成。
 
-`uv add mcpomni-connect` or `pip install mcpomni-connect`
+`uv add mcpomni-connect` 或 `pip install mcpomni-connect`
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![mcp\_client\_new1](https://github.com/user-attachments/assets/9c4eb3df-d0d5-464c-8815-8f7415a47fce)
 
@@ -724,18 +722,18 @@ A powerful universal CLI client for MCP Servers that provides seamless integrati
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/srbhptl39/MCP-SuperAssistant</td></tr>
-<tr><th align="left">Website</th><td>https://mcpsuperassistant.ai/</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>Chrome Extenstion</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">官网</th><td>https://mcpsuperassistant.ai/</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>Chrome 扩展</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-Add MCP Capabilities to Chatgpt, Gemini, Grok, Google AI Studio, DeepSeek, AI Studio, OpenRouter, T3 Chat, Mistral and Github Copilot. This extension allows you to connect to any MCP server and use its tools, models, and capabilities directly from your browser without any API key required in these Chat Platforms.
+为 Chatgpt、Gemini、Grok、Google AI Studio、DeepSeek、AI Studio、OpenRouter、T3 Chat、Mistral 和 Github Copilot 添加 MCP 功能。该扩展允许你连接到任意 MCP 服务器，并直接从浏览器中使用其工具、模型和功能，无需在这些聊天平台中提供 API 密钥。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/mcp-superassistant/chatgpt.jpg)
 
@@ -745,18 +743,18 @@ Add MCP Capabilities to Chatgpt, Gemini, Grok, Google AI Studio, DeepSeek, AI St
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/evilsocket/nerve</td></tr>
-<tr><th align="left">Website</th><td>https://github.com/evilsocket/nerve</td></tr>
-<tr><th align="left">License</th><td>GPL3</td></tr>
-<tr><th align="left">Type</th><td>CLI</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Python</td></tr>
+<tr><th align="left">官网</th><td>https://github.com/evilsocket/nerve</td></tr>
+<tr><th align="left">许可证</th><td>GPL3</td></tr>
+<tr><th align="left">类型</th><td>CLI</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Python</td></tr>
 </table>
 
-Nerve is an ADK ( Agent Development Kit ) and CLI designed to be a simple yet powerful platform for creating and executing LLM-based agents fully integrated with MCP.
+Nerve 是一个 ADK（代理开发工具包）和 CLI，旨在成为一个简单而强大的平台，用于创建和执行完全集成 MCP 的基于 LLM 的代理。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 [![asciicast](https://asciinema.org/a/710433.svg)](https://asciinema.org/a/710433)
 
@@ -766,18 +764,18 @@ Nerve is an ADK ( Agent Development Kit ) and CLI designed to be a simple yet po
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/ChatGPTNextWeb/NextChat</td></tr>
-<tr><th align="left">Website</th><td>https://nextchat.club/</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>Web app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">官网</th><td>https://nextchat.club/</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>网页应用</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-Light and Fast AI Assistant, with Claude, DeepSeek, GPT4, Gemini Pro & MCP support.
+轻量且快速的 AI 助手，支持 Claude、DeepSeek、GPT4、Gemini Pro 及 MCP。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/ChatGPTNextWeb/NextChat/refs/heads/main/docs/images/cover.png)
 
@@ -787,18 +785,18 @@ Light and Fast AI Assistant, with Claude, DeepSeek, GPT4, Gemini Pro & MCP suppo
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/ggozad/oterm</td></tr>
-<tr><th align="left">Website</th><td>-</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>CLI</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Python</td></tr>
+<tr><th align="left">官网</th><td>-</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>CLI</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Python</td></tr>
 </table>
 
-A terminal client for Ollama, with support for MCP servers.
+Ollama 的终端客户端，支持 MCP 服务器。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/oterm/chat.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/oterm/mcp.svg)
@@ -809,18 +807,18 @@ A terminal client for Ollama, with support for MCP servers.
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/runbear-io</td></tr>
-<tr><th align="left">Website</th><td>https://runbear.io</td></tr>
-<tr><th align="left">License</th><td>Proprietary</td></tr>
-<tr><th align="left">Type</th><td>Slack, MS Teams, Discord app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Freemium</td></tr>
-<tr><th align="left">Programming Languages</th><td>-</td></tr>
+<tr><th align="left">官网</th><td>https://runbear.io</td></tr>
+<tr><th align="left">许可证</th><td>专有</td></tr>
+<tr><th align="left">类型</th><td>Slack、MS Teams、Discord 应用</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费增值</td></tr>
+<tr><th align="left">编程语言</th><td>-</td></tr>
 </table>
 
-No-code MCP clients for Slack, Microsoft Teams, and Discord with full support for MCP servers, connected knowledge sources, and custom instructions.
+适用于 Slack、Microsoft Teams 和 Discord 的无代码 MCP 客户端，全面支持 MCP 服务器、连接的知识源和自定义指令。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/runbear/slack-mcp-client.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/runbear/teams-mcp-client.png)
@@ -831,24 +829,24 @@ No-code MCP clients for Slack, Microsoft Teams, and Discord with full support fo
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/supercorp-ai/superinterface</td></tr>
-<tr><th align="left">Website</th><td>https://superinterface.ai</td></tr>
-<tr><th align="left">License</th><td>Proprietary</td></tr>
-<tr><th align="left">Type</th><td>Web app</td></tr>
-<tr><th align="left">Platforms</th><td>Web</td></tr>
-<tr><th align="left">Pricing</th><td>Freemium</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">官网</th><td>https://superinterface.ai</td></tr>
+<tr><th align="left">许可证</th><td>专有</td></tr>
+<tr><th align="left">类型</th><td>网页应用</td></tr>
+<tr><th align="left">平台</th><td>网页</td></tr>
+<tr><th align="left">价格</th><td>免费增值</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-Superinterface is AI infrastructure and a developer platform to build in-app AI assistants with support for MCP, interactive components, client-side function calling and more.
+Superinterface 是一个 AI 基础设施和开发者平台，用于构建内置 AI 助手，支持 MCP、交互组件、客户端函数调用等功能。
 
-Key features:
+主要特性：
 
-* Use tools from MCP servers in assistants embedded via React components or script tags
-* SSE transport support
-* Use any AI model from any AI provider (OpenAI, Anthropic, Ollama, others)
+* 在通过 React 组件或脚本标签嵌入的助手内使用来自 MCP 服务器的工具
+* 支持 SSE 传输
+* 使用来自任意 AI 提供商（OpenAI、Anthropic、Ollama 等）的 AI 模型
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/superinterface/mcp-chat.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/superinterface/interfaces.png)
@@ -862,42 +860,41 @@ Key features:
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/seekrays/seekchat</td></tr>
-<tr><th align="left">Website</th><td>https://seekrays.com/chat/</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">官网</th><td>https://seekrays.com/chat/</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-✨ A Sleek and Powerful AI Chat Desktop Application ✨
-
-SeekChat supports MCP tool execution, enabling AI to directly control your computer and perform various tasks. Easily automate file management, data analysis, code development, and more, turning AI into a truly intelligent assistant.
+✨ 一款简洁而强大的 AI 聊天桌面应用 ✨
+SeekChat 支持执行 MCP 工具，使 AI 能够直接控制您的计算机并执行各种任务。轻松自动化文件管理、数据分析、代码开发等操作，将 AI 变为真正智能的助手。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/seekchat/screenshot-chat.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/seekchat/screenshot-setting-mcp.png)
 
 </details>
 
-### Simple AI
+### 简单AI（Simple AI）
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/gcc3/simple-ai-chat</td></tr>
-<tr><th align="left">Website</th><td>https://simple-ai.io</td></tr>
-<tr><th align="left">License</th><td>Simple AI License</td></tr>
-<tr><th align="left">Type</th><td>Web/CLI</td></tr>
-<tr><th align="left">Platforms</th><td>Web/npm</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>JavaScript</td></tr>
+<tr><th align="left">官网</th><td>https://simple-ai.io</td></tr>
+<tr><th align="left">许可证</th><td>Simple AI License</td></tr>
+<tr><th align="left">类型</th><td>Web/CLI</td></tr>
+<tr><th align="left">平台</th><td>Web/npm</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>JavaScript</td></tr>
 </table>
 
-Simple AI (simple-ai-io) is a command-based web/cli application, supports MCP.
+简单AI（simple-ai-io）是一个基于命令的 Web/CLI 应用程序，支持 MCP。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/simple-ai-chat/mcp-settings.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/simple-ai-chat/fetch.png)
@@ -908,49 +905,49 @@ Simple AI (simple-ai-io) is a command-based web/cli application, supports MCP.
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/tambo-ai/tambo</td></tr>
-<tr><th align="left">Website</th><td>https://tambo.co</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>Web app</td></tr>
-<tr><th align="left">Platforms</th><td>Web</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">官网</th><td>https://tambo.co</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>Web 应用</td></tr>
+<tr><th align="left">平台</th><td>Web</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-[Tambo](https://tambo.co) is a platform for building custom chat experiences, with integrated custom user interface components.
+[Tambo](https://tambo.co) 是一个用于构建自定义聊天体验的平台，集成了自定义用户界面组件。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/tambo/chat-with-graph.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/tambo/client-side-mcp.png)
 
 </details>
 
-### Tester MCP Client
+### Tester MCP 客户端
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/apify/tester-mcp-client</td></tr>
-<tr><th align="left">Website</th><td>https://apify.com/jiri.spilka/tester-mcp-client</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0</td></tr>
-<tr><th align="left">Type</th><td>Web app</td></tr>
-<tr><th align="left">Platforms</th><td>Web</td></tr>
-<tr><th align="left">Pricing</th><td>Freemium</td></tr>
-<tr><th align="left">Programming Languages</th><td>JavaScript</td></tr>
+<tr><th align="left">官网</th><td>https://apify.com/jiri.spilka/tester-mcp-client</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0</td></tr>
+<tr><th align="left">类型</th><td>Web 应用</td></tr>
+<tr><th align="left">平台</th><td>Web</td></tr>
+<tr><th align="left">价格</th><td>免费增值（Freemium）</td></tr>
+<tr><th align="left">编程语言</th><td>JavaScript</td></tr>
 </table>
 
-A client that connects to any MCP server using Server-Sent Events (SSE) and displays conversations in a chat-like UI.\
-It is a standalone Apify Actor for testing MCP servers over SSE, with support for Authorization headers.\
-Built with plain JavaScript (old-school style) and hosted on Apify, it requires no setup to run.
+一个通过 Server-Sent Events (SSE) 连接到任意 MCP 服务器并在类似聊天的 UI 中展示对话的客户端。
+这是一个用于通过 SSE 测试 MCP 服务器的独立 Apify Actor，支持 Authorization 请求头。
+使用原生 JavaScript（传统方式）构建并托管在 Apify 上，无需任何设置即可运行。
 
-Key features:
+**主要功能：**
 
-* Connects to any MCP server via Server-Sent Events (SSE).
-* Works with the [Apify MCP Server](https://apify.com/apify/actors-mcp-server) to interact with one or more Apify [Actors](https://apify.com/store).
-* Dynamically utilizes tools based on context and user queries (if supported by the server).
-* Open-source—review, suggest improvements, or modify as needed.
+* 通过 Server-Sent Events (SSE) 连接到任意 MCP 服务器。
+* 可与 [Apify MCP 服务器](https://apify.com/apify/actors-mcp-server) 一起使用，与一个或多个 Apify [Actor](https://apify.com/store) 进行交互。
+* 根据上下文和用户查询动态使用工具（如果服务器支持）。
+* 开源 — 可审查、提出改进建议或按需修改。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/tester-mcp-client/setup.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/tester-mcp-client/chat-ui.png)
@@ -961,27 +958,27 @@ Key features:
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/runebookai/tome</td></tr>
-<tr><th align="left">Website</th><td>https://runebook.ai</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>MacOS</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Rust, Typescript</td></tr>
+<tr><th align="left">官网</th><td>https://runebook.ai</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>MacOS</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Rust, Typescript</td></tr>
 </table>
 
-Tome is an open source cross-platform desktop app designed for working with local LLMs and MCP servers. Tome manages your MCP servers so there's no fiddling with uv/npm or json files - connect it to Ollama, copy/paste some MCP servers, and chat with an MCP-powered model in seconds.
+Tome 是一个开源的跨平台桌面应用，专为使用本地 LLM 和 MCP 服务器设计。Tome 可管理您的 MCP 服务器，因此无需手动配置 uv/npm 或 JSON 文件 — 只需连接到 Ollama，复制粘贴一些 MCP 服务器地址，即可在几秒钟内与支持 MCP 的模型进行对话。
 
-**Key features:**
+**主要功能：**
 
-* MCP servers are managed by Tome so there is no need to install uv or npm or configure JSON
-* Users can quickly add or remove MCP servers via UI
-* Any tool-supported local model on Ollama is compatible
+* MCP 服务器由 Tome 管理，无需安装 uv/npm 或配置 JSON
+* 用户可通过界面快速添加或删除 MCP 服务器
+* 任何支持工具的本地 Ollama 模型都兼容
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
-![Chat](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/tome/chat.png)
-![MCP Servers](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/tome/mcp.png)
+![聊天界面](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/tome/chat.png)
+![MCP 服务器界面](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/tome/mcp.png)
 
 </details>
 
@@ -989,44 +986,44 @@ Tome is an open source cross-platform desktop app designed for working with loca
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/microsoft/vscode</td></tr>
-<tr><th align="left">Website</th><td>https://code.visualstudio.com/</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>Desktop app, Web app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux, Web</td></tr>
-<tr><th align="left">Pricing</th><td>Freemium (GitHub Copilot subscription)</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">官网</th><td>https://code.visualstudio.com/</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>桌面应用, Web 应用</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux, Web</td></tr>
+<tr><th align="left">价格</th><td>免费增值（GitHub Copilot 订阅）</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-VS Code integrates MCP with GitHub Copilot through [agent mode](https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode), allowing direct interaction with MCP-provided tools within your agentic coding workflow. Configure servers in Claude Desktop, workspace or user settings, with guided MCP installation and secure handling of keys in input variables to avoid leaking hard-coded keys.
+VS Code 通过 [代理模式](https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode) 将 MCP 与 GitHub Copilot 集成，允许在您的代理编码工作流中直接与 MCP 提供的工具交互。可在 Claude Desktop、工作区或用户设置中配置服务器，提供引导式的 MCP 安装和安全处理输入变量中的密钥以避免硬编码密钥泄露。
 
-**Key Features:**
+**主要功能：**
 
-* Support for stdio and server-sent events (SSE) transport
-* Per-session selection of tools per agent session for optimal performance
-* Easy server debugging with restart commands and output logging
-* Tool calls with editable inputs and always-allow toggle
-* Integration with existing VS Code extension system to register MCP servers from extensions
+* 支持 stdio 和 server-sent events (SSE) 传输协议
+* 每个代理会话可单独选择工具以获得最佳性能
+* 易于调试服务器，支持重启命令和输出日志
+* 支持可编辑输入参数的工具调用和始终允许切换
+* 与现有的 VS Code 扩展系统集成，支持通过扩展注册 MCP 服务器
 
 ### Windsurf
 
 <table>
 <tr><th align="left">GitHub</th><td>N/A</td></tr>
-<tr><th align="left">Website</th><td>https://codeium.com/windsurf</td></tr>
-<tr><th align="left">License</th><td>Proprietary</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Freemium</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">官网</th><td>https://codeium.com/windsurf</td></tr>
+<tr><th align="left">许可证</th><td>专有</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费增值（Freemium）</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-The first agentic IDE, and then some. The Windsurf Editor is where the work of developers and AI truly flow together, allowing for a coding experience that feels like literal magic.
+首款支持代理模式的 IDE，不仅如此。Windsurf 编辑器是开发者与 AI 真正协同工作的场所，带来如同魔法般流畅的编码体验。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
-![Main Interface](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/windsurf/windsurf.png)
-![Adding New MCP Server](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/windsurf/easy-add-mcp-servers.png)
-![Settings Interface](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/windsurf/settings-cascade-mcp.png)
+![主界面](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/windsurf/windsurf.png)
+![添加新 MCP 服务器](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/windsurf/easy-add-mcp-servers.png)
+![设置界面](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/windsurf/settings-cascade-mcp.png)
 
 </details>
 
@@ -1034,18 +1031,18 @@ The first agentic IDE, and then some. The Windsurf Editor is where the work of d
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/nbonamy/witsy</td></tr>
-<tr><th align="left">Website</th><td>https://witsyai.com</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Typescript, Vue</td></tr>
+<tr><th align="left">官网</th><td>https://witsyai.com</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Typescript, Vue</td></tr>
 </table>
 
-Witsy is an AI desktop assistant supporting models from all major providers and one keyboard shortcut away!
+Witsy 是一个 AI 桌面助手，支持所有主流提供商的模型，并可通过一个键盘快捷键随时调用！
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/witsy/main.jpg)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/witsy/mcp.jpg)
@@ -1056,18 +1053,18 @@ Witsy is an AI desktop assistant supporting models from all major providers and 
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/Enconvo</td></tr>
-<tr><th align="left">Website</th><td>https://enconvo.com</td></tr>
-<tr><th align="left">License</th><td>Proprietary</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td> MacOS </td></tr>
-<tr><th align="left">Pricing</th><td>Freemium</td></tr>
-<tr><th align="left">Programming Languages</th><td>Typescript, Python , Swift</td></tr>
+<tr><th align="left">官网</th><td>https://enconvo.com</td></tr>
+<tr><th align="left">许可证</th><td>专有</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>MacOS</td></tr>
+<tr><th align="left">价格</th><td>免费增值（Freemium）</td></tr>
+<tr><th align="left">编程语言</th><td>Typescript, Python, Swift</td></tr>
 </table>
 
-Enconvo is your AI Agent Launcher that revolutionizes productivity. With instant access, automate your daily tasks effortlessly. Our intelligent AI Agent system, powered by 150+ built-in tools and MCP support, learns and adapts to your workflow. Experience seamless automation and enhanced productivity with the most versatile AI assistant for macOS.
+Enconvo 是您的 AI 代理启动器，彻底革新您的工作效率。通过即时访问，轻松自动化日常任务。我们由 150+ 个内置工具和 MCP 支持驱动的智能 AI 代理系统，能够学习并适应您的工作流程。体验无缝的自动化和增强的生产力，成为 macOS 上最全能的 AI 助手。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/enconvo/agent_use_mcp.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/enconvo/mcp_config.png)
@@ -1078,22 +1075,22 @@ Enconvo is your AI Agent Launcher that revolutionizes productivity. With instant
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/luohy15/y-cli</td></tr>
-<tr><th align="left">Website</th><td>-</td></tr>
-<tr><th align="left">License</th><td>MIT</td></tr>
-<tr><th align="left">Type</th><td>CLI</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Python</td></tr>
+<tr><th align="left">官网</th><td>-</td></tr>
+<tr><th align="left">许可证</th><td>MIT</td></tr>
+<tr><th align="left">类型</th><td>命令行工具（CLI）</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Python</td></tr>
 </table>
 
-A tiny command-line interface chat application that brings AI conversations to your terminal. Features include chat data storage in JSONL files, interactive chat interface, support for multiple bot configurations compatible with OpenAI chat completion streaming format, Deepseek-r1 reasoning content support, and MCP client support with multiple server configurations.
+一个微型的命令行界面聊天应用，将AI对话带入你的终端。功能包括JSONL文件中的聊天数据存储、交互式聊天界面、支持多种兼容OpenAI聊天补全流式格式的机器人配置、Deepseek-r1推理内容支持，以及支持多个服务器配置的MCP客户端。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
-![Interactive Chat](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/y-cli/interactive-chat.png)
-![MCP Server Configurations](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/y-cli/multi-mcp-server.png)
-![MCP Demo](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/y-cli/mcp.gif)
+![交互式聊天](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/y-cli/interactive-chat.png)
+![MCP服务器配置](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/y-cli/multi-mcp-server.png)
+![MCP演示](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/y-cli/mcp.gif)
 
 </details>
 
@@ -1101,18 +1098,18 @@ A tiny command-line interface chat application that brings AI conversations to y
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/zed-industries/zed</td></tr>
-<tr><th align="left">Website</th><td>https://zed.dev/</td></tr>
-<tr><th align="left">License</th><td>GNU</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Rust</td></tr>
+<tr><th align="left">网站</th><td>https://zed.dev/</td></tr>
+<tr><th align="left">许可证</th><td>GNU</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Rust</td></tr>
 </table>
 
-Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.
+Zed是由Atom和Tree-sitter的创建者开发的高性能多人协作代码编辑器。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 <https://github.com/user-attachments/assets/95624731-5469-4b58-a21f-bbb31d9838fa>
 
@@ -1122,27 +1119,27 @@ Zed is a high-performance, multiplayer code editor from the creators of Atom and
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/mindpal-ai/mindpal</td></tr>
-<tr><th align="left">Website</th><td>https://mindpal.io</td></tr>
-<tr><th align="left">License</th><td>Proprietary</td></tr>
-<tr><th align="left">Type</th><td>Web app</td></tr>
-<tr><th align="left">Platforms</th><td>Web</td></tr>
-<tr><th align="left">Pricing</th><td>Freemium</td></tr>
-<tr><th align="left">Programming Languages</th><td>TypeScript</td></tr>
+<tr><th align="left">网站</th><td>https://mindpal.io</td></tr>
+<tr><th align="left">许可证</th><td>专有</td></tr>
+<tr><th align="left">类型</th><td>网页应用</td></tr>
+<tr><th align="left">平台</th><td>Web</td></tr>
+<tr><th align="left">价格</th><td>免费增值</td></tr>
+<tr><th align="left">编程语言</th><td>TypeScript</td></tr>
 </table>
 
-MindPal is a no-code platform for building and deploying AI agents and multi-agent workflows. It enables anyone without technical skills to create powerful AI automation solutions by connecting any AI model with any tool. Build complex workflows where multiple AI agents work together to accomplish tasks, with built-in support for MCP servers and tools.
+MindPal是一个用于构建和部署AI代理和多代理工作流的无代码平台。它使任何没有技术技能的人都能通过将任何AI模型与任何工具连接来创建强大的AI自动化解决方案。构建多个AI代理协同完成任务的复杂工作流，并内置对MCP服务器和工具的支持。
 
-Key features:
+主要功能：
 
-* No-code AI agent builder
-* Multi-agent workflow orchestration
-* Support for any AI model provider
-* MCP server integration
-* Visual workflow designer
-* Built-in tool marketplace
+* 无代码AI代理构建器
+* 多代理工作流编排
+* 支持任何AI模型提供商
+* MCP服务器集成
+* 可视化工作流设计器
+* 内置工具市场
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/mindpal/agent-config.jpg)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/mindpal/mcp-integration.jpg)
@@ -1153,18 +1150,18 @@ Key features:
 
 <table>
 <tr><th align="left">GitHub</th><td>N/A</td></tr>
-<tr><th align="left">Website</th><td>https://wassist.app/mcp/</td></tr>
-<tr><th align="left">License</th><td>Proprietary</td></tr>
-<tr><th align="left">Type</th><td>Mobile app</td></tr>
-<tr><th align="left">Platforms</th><td>WhatsApp</td></tr>
-<tr><th align="left">Pricing</th><td>Freemium</td></tr>
-<tr><th align="left">Programming Languages</th><td>N/A</td></tr>
+<tr><th align="left">网站</th><td>https://wassist.app/mcp/</td></tr>
+<tr><th align="left">许可证</th><td>专有</td></tr>
+<tr><th align="left">类型</th><td>移动应用</td></tr>
+<tr><th align="left">平台</th><td>WhatsApp</td></tr>
+<tr><th align="left">价格</th><td>免费增值</td></tr>
+<tr><th align="left">编程语言</th><td>N/A</td></tr>
 </table>
 
-WhatsMCP is a WhatsApp agent that allows you to interact with MCP servers. It is a simple and easy to use tool that allows you to interact with your AI stack from WhatsApp.
+WhatsMCP 是一个 WhatsApp 代理，允许你与 MCP 服务器进行交互。这是一个简单易用的工具，让你可以通过 WhatsApp 与你的 AI 系统进行交互。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/whatsmcp/main.png)
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/whatsmcp/whatsmcp.gif)
@@ -1175,39 +1172,39 @@ WhatsMCP is a WhatsApp agent that allows you to interact with MCP servers. It is
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/xark-argo/argo</td></tr>
-<tr><th align="left">Website</th><td>https://xark-argo.com</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Python/TypeScript</td></tr>
+<tr><th align="left">网站</th><td>https://xark-argo.com</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Python/TypeScript</td></tr>
 </table>
 
-Argo is a localized large model agent builder. Build agents with local & Cloud LLMs, RAG, MCP tools. Users can share these creations in our community, download AI agents from others.
+Argo 是一个本地化的大模型代理构建器。使用本地和云端的LLM、RAG和MCP工具构建代理。用户可以在我们的社区中分享这些创作，也可以下载他人的AI代理。
 
-Key features:
+主要功能：
 
-* Download opensource LLMs from ollama, huggingface or modelscope with one click.
-* Use local docs for RAG, sync with directories.
-* Support MCP tools.
-* Manage Agents with individual prompt, model, knowledge and MCP tools.
+* 一键从ollama、huggingface或modelscope下载开源LLM。
+* 使用本地文档进行RAG，与目录同步。
+* 支持MCP工具。
+* 通过单独的提示、模型、知识和MCP工具管理代理。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
-Agent Management
+代理管理
 
 ![image](https://github.com/user-attachments/assets/27d0650c-608a-434b-bb4e-f7e3d11f90dc)
 
-Model Management
+模型管理
 
 ![image](https://github.com/user-attachments/assets/e5581d80-09cd-469e-b26d-5c1c446b37dd)
 
-Knowledge Management
+知识管理
 
 ![image](https://github.com/user-attachments/assets/126e9ab9-a343-460c-9a9b-c2e94c58c356)
 
-MCP Management
+MCP管理
 
 ![image](https://github.com/user-attachments/assets/8cb04ffb-56bc-4a54-b719-ce944cf194da)
 
@@ -1219,18 +1216,18 @@ MCP Management
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/vincent-pli/mcp-cli-host</td></tr>
-<tr><th align="left">Website</th><td></td></tr>
-<tr><th align="left">License</th><td>Apache-2.0</td></tr>
-<tr><th align="left">Type</th><td>CLI</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Python</td></tr>
+<tr><th align="left">网站</th><td></td></tr>
+<tr><th align="left">许可证</th><td>Apache-2.0</td></tr>
+<tr><th align="left">类型</th><td>命令行工具</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Python</td></tr>
 </table>
 
-A CLI host application that enables Large Language Models (LLMs) to interact with external tools through the Model Context Protocol (MCP).
+一个CLI宿主应用程序，使大语言模型（LLMs）能够通过模型上下文协议（MCP）与外部工具交互。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
 ![](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/mcpclihost/console.png)
 
@@ -1240,24 +1237,24 @@ A CLI host application that enables Large Language Models (LLMs) to interact wit
 
 <table>
 <tr><th align="left">GitHub</th><td>https://github.com/zinja-coder/zin-mcp-client</td></tr>
-<tr><th align="left">Website</th><td>-</td></tr>
-<tr><th align="left">License</th><td>Apache 2.0</td></tr>
-<tr><th align="left">Type</th><td>Desktop app</td></tr>
-<tr><th align="left">Platforms</th><td>Windows, MacOS, Linux</td></tr>
-<tr><th align="left">Pricing</th><td>Free</td></tr>
-<tr><th align="left">Programming Languages</th><td>Python</td></tr>
+<tr><th align="left">网站</th><td>-</td></tr>
+<tr><th align="left">许可证</th><td>Apache 2.0</td></tr>
+<tr><th align="left">类型</th><td>桌面应用</td></tr>
+<tr><th align="left">平台</th><td>Windows, MacOS, Linux</td></tr>
+<tr><th align="left">价格</th><td>免费</td></tr>
+<tr><th align="left">编程语言</th><td>Python</td></tr>
 </table>
 
-Lightweight, Fast, Simple, CLI-Based MCP Client for STDIO MCP Servers, to fill the gap and provide bridge between your local LLMs running Ollama and MCP Servers. Specially crafted for Zin MCP Servers for reverse engineering.
+轻量级、快速、简单的基于CLI的MCP客户端，用于STDIO MCP服务器，填补空白，提供连接运行Ollama的本地LLM和MCP服务器之间的桥梁。专门为Zin MCP服务器进行逆向工程而打造。
 
 <details>
-<summary>Screenshots</summary>
+<summary>截图</summary>
 
-![example1](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/zin-mcp-client/zin_mcp_1.png)
-![example2](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/zin-mcp-client/zin_mcp_2.png)
+![示例1](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/zin-mcp-client/zin_mcp_1.png)
+![示例2](https://raw.githubusercontent.com/punkpeye/awesome-mcp-clients/refs/heads/main/screenshots/zin-mcp-client/zin_mcp_2.png)
 
 </details>
 
-## Servers
+## 服务器
 
-Looking for MCP servers? Check out the [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) repository.
+正在寻找MCP服务器？请查看 [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) 仓库。
