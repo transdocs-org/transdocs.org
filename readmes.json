@@ -1,0 +1,407 @@
+{
+  "readmes": [
+    {
+      "url": "https://github.com/binance/binance-connector-js/tree/master/clients/spot",
+      "name": "Binance Connector Js Spot",
+      "category": "API Client",
+      "categoryId": "API Client",
+      "tags": [
+        "Binance",
+        "JavaScript",
+        "Crypto",
+        "Spot Trading"
+      ],
+      "filename": "binance-connector-js-spot"
+    },
+    {
+      "url": "https://github.com/binance/binance-connector-python/tree/master/clients/spot",
+      "name": "Binance Connector Python Spot",
+      "category": "API Client",
+      "categoryId": "API Client",
+      "tags": [
+        "Binance",
+        "Python",
+        "Crypto",
+        "Spot Trading"
+      ],
+      "filename": "binance-connector-python-spot"
+    },
+    {
+      "url": "https://github.com/binance/binance-connector-python/tree/master/clients/margin_trading",
+      "name": "Binance Connector Python Margin Trading",
+      "category": "API Client",
+      "categoryId": "API Client",
+      "tags": [
+        "Binance",
+        "Python",
+        "Crypto",
+        "Margin Trading"
+      ],
+      "filename": "binance-connector-python-margin-trading"
+    },
+    {
+      "url": "https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading",
+      "name": "Binance Connector Js Margin Trading",
+      "category": "API Client",
+      "categoryId": "API Client",
+      "tags": [
+        "Binance",
+        "JavaScript",
+        "Crypto",
+        "Margin Trading"
+      ],
+      "filename": "binance-connector-js-margin-trading"
+    },
+    {
+      "url": "https://github.com/langchain-ai/langchainjs/tree/main/libs/langchain-community",
+      "name": "Langchainjs Community",
+      "category": "AI Framework",
+      "categoryId": "AI Framework",
+      "tags": [
+        "LangChain",
+        "JavaScript",
+        "LLM",
+        "AI"
+      ],
+      "filename": "langchainjs-community"
+    },
+    {
+      "url": "https://github.com/langchain-ai/langchain-community/tree/main/libs/community",
+      "name": "Langchain Community Community",
+      "category": "AI Framework",
+      "categoryId": "AI Framework",
+      "tags": [
+        "LangChain",
+        "Python",
+        "LLM",
+        "AI"
+      ],
+      "filename": "langchain-community-community"
+    },
+    {
+      "url": "https://github.com/json5/json5/tree/main",
+      "name": "json5",
+      "category": "Data Format",
+      "categoryId": "Data Format",
+      "tags": [
+        "JSON",
+        "JavaScript",
+        "Data",
+        "Parser"
+      ],
+      "filename": "json5"
+    },
+    {
+      "url": "https://github.com/websockets/ws/tree/master",
+      "name": "Websockets Ws",
+      "category": "Networking",
+      "categoryId": "Networking",
+      "tags": [
+        "WebSocket",
+        "Node.js",
+        "Networking"
+      ],
+      "filename": "websockets-ws"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/servers/tree/main",
+      "name": "Modelcontextprotocol Servers",
+      "category": "AI Framework",
+      "categoryId": "AI Framework",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "AI",
+        "Server"
+      ],
+      "filename": "modelcontextprotocol-servers"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/typescript-sdk/tree/main",
+      "name": "Modelcontextprotocol Typescript Sdk",
+      "category": "SDK",
+      "categoryId": "SDK",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "TypeScript",
+        "AI"
+      ],
+      "filename": "modelcontextprotocol-typescript-sdk"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/csharp-sdk/tree/main",
+      "name": "Modelcontextprotocol Csharp Sdk",
+      "category": "SDK",
+      "categoryId": "SDK",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "C#",
+        "AI"
+      ],
+      "filename": "modelcontextprotocol-csharp-sdk"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/kotlin-sdk/tree/main",
+      "name": "Modelcontextprotocol Kotlin Sdk",
+      "category": "SDK",
+      "categoryId": "SDK",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "Kotlin",
+        "AI"
+      ],
+      "filename": "modelcontextprotocol-kotlin-sdk"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/ruby-sdk/tree/main",
+      "name": "Modelcontextprotocol Ruby Sdk",
+      "category": "SDK",
+      "categoryId": "SDK",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "Ruby",
+        "AI"
+      ],
+      "filename": "modelcontextprotocol-ruby-sdk"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/swift-sdk/tree/main",
+      "name": "Modelcontextprotocol Swift Sdk",
+      "category": "SDK",
+      "categoryId": "SDK",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "Swift",
+        "AI"
+      ],
+      "filename": "modelcontextprotocol-swift-sdk"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/python-sdk/tree/main",
+      "name": "Modelcontextprotocol Python Sdk",
+      "category": "SDK",
+      "categoryId": "SDK",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "Python",
+        "AI"
+      ],
+      "filename": "modelcontextprotocol-python-sdk"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/rust-sdk/tree/main",
+      "name": "Modelcontextprotocol Rust Sdk",
+      "category": "SDK",
+      "categoryId": "SDK",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "Rust",
+        "AI"
+      ],
+      "filename": "modelcontextprotocol-rust-sdk"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/registry/tree/main",
+      "name": "Modelcontextprotocol Registry",
+      "category": "Infrastructure",
+      "categoryId": "Infrastructure",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "Registry",
+        "AI"
+      ],
+      "filename": "modelcontextprotocol-registry"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/go-sdk/tree/main",
+      "name": "Modelcontextprotocol Go Sdk",
+      "category": "SDK",
+      "categoryId": "SDK",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "Go",
+        "AI"
+      ],
+      "filename": "modelcontextprotocol-go-sdk"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/java-sdk/tree/main",
+      "name": "Modelcontextprotocol Java Sdk",
+      "category": "SDK",
+      "categoryId": "SDK",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "Java",
+        "AI"
+      ],
+      "filename": "modelcontextprotocol-java-sdk"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/use-mcp/tree/main",
+      "name": "Modelcontextprotocol Use Mcp",
+      "category": "AI Framework",
+      "categoryId": "AI Framework",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "JavaScript",
+        "AI"
+      ],
+      "filename": "modelcontextprotocol-use-mcp"
+    },
+    {
+      "url": "https://github.com/langchain-ai/langchainjs/tree/main/libs/langchain-mcp-adapters",
+      "name": "Langchainjs Mcp Adapters",
+      "category": "AI Framework",
+      "categoryId": "AI Framework",
+      "tags": [
+        "LangChain",
+        "JavaScript",
+        "MCP",
+        "AI"
+      ],
+      "filename": "langchainjs-mcp-adapters"
+    },
+    {
+      "url": "https://github.com/langchain-ai/langchainjs/tree/main/libs/langchain-mongodb",
+      "name": "Langchainjs Mongodb",
+      "category": "AI Framework",
+      "categoryId": "AI Framework",
+      "tags": [
+        "LangChain",
+        "JavaScript",
+        "MongoDB",
+        "AI"
+      ],
+      "filename": "langchainjs-mongodb"
+    },
+    {
+      "url": "https://github.com/langchain-ai/langchainjs/tree/main/libs/langchain-redis",
+      "name": "Langchainjs Redis",
+      "category": "AI Framework",
+      "categoryId": "AI Framework",
+      "tags": [
+        "LangChain",
+        "JavaScript",
+        "Redis",
+        "AI"
+      ],
+      "filename": "langchainjs-redis"
+    },
+    {
+      "url": "https://github.com/langchain-ai/langchainjs/tree/main/libs/langchain-scripts",
+      "name": "Langchainjs Scripts",
+      "category": "AI Framework",
+      "categoryId": "AI Framework",
+      "tags": [
+        "LangChain",
+        "JavaScript",
+        "Scripts",
+        "AI"
+      ],
+      "filename": "langchainjs-scripts"
+    },
+    {
+      "url": "https://github.com/langchain-ai/langchainjs/tree/main/libs/langchain-textsplitters",
+      "name": "Langchainjs Textsplitters",
+      "category": "AI Framework",
+      "categoryId": "AI Framework",
+      "tags": [
+        "LangChain",
+        "JavaScript",
+        "Text Processing",
+        "AI"
+      ],
+      "filename": "langchainjs-textsplitters"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/inspector/tree/main",
+      "name": "Modelcontextprotocol Inspector",
+      "category": "AI Framework",
+      "categoryId": "AI Framework",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "Inspector",
+        "AI"
+      ],
+      "filename": "modelcontextprotocol-inspector"
+    },
+    {
+      "url": "https://github.com/punkpeye/awesome-mcp-servers/blob/main",
+      "name": "punkpeye Awesome Mcp Servers",
+      "category": "Infrastructure",
+      "categoryId": "Infrastructure",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "Server",
+        "Registry"
+      ],
+      "filename": "punkpeye-awesome-mcp-servers"
+    },
+    {
+      "url": "https://github.com/punkpeye/awesome-mcp-clients/tree/main",
+      "name": "punkpeye Awesome Mcp Clients",
+      "category": "Infrastructure",
+      "categoryId": "Infrastructure",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "Client",
+        "Registry"
+      ],
+      "filename": "punkpeye-awesome-mcp-clients"
+    },
+    {
+      "url": "https://github.com/punkpeye/fastmcp/tree/main",
+      "name": "punkpeye Fastmcp",
+      "category": "Infrastructure",
+      "categoryId": "Infrastructure",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "Fast Implementation",
+        "Server"
+      ],
+      "filename": "punkpeye-fastmcp"
+    },
+    {
+      "url": "https://github.com/punkpeye/awesome-mcp-devtools/tree/main",
+      "name": "punkpeye Awesome Mcp Devtools",
+      "category": "Infrastructure",
+      "categoryId": "Infrastructure",
+      "tags": [
+        "MCP",
+        "Model Context Protocol",
+        "Developer Tools",
+        "Utilities"
+      ],
+      "filename": "punkpeye-awesome-mcp-devtools"
+    },
+    {
+      "url": "https://github.com/bennycode/trading-signals/blob/main",
+      "name": "bennycode Trading Signals",
+      "category": "Trading Tools",
+      "categoryId": "Trading Tools",
+      "tags": [
+        "Trading",
+        "Signals",
+        "JavaScript",
+        "Finance",
+        "Crypto"
+      ],
+      "filename": "bennycode-trading-signals"
+    }
+  ]
+}

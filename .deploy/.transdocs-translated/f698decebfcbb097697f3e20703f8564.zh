@@ -1,0 +1,68 @@
+{
+  "readmes": [
+    {
+      "url": "https://github.com/binance/binance-connector-js/tree/master/clients/spot",
+      "name": "Binance Connector Js 现货交易",
+      "category": "区块链",
+      "tags": [
+        "javascript",
+        "api",
+        "客户端"
+      ]
+    },
+    {
+      "url": "https://github.com/binance/binance-connector-python/tree/master/clients/spot",
+      "name": "Binance Connector Python 现货交易",
+      "category": "区块链",
+      "tags": [
+        "python",
+        "api",
+        "客户端"
+      ]
+    },
+    {
+      "url": "https://github.com/binance/binance-connector-python/tree/master/clients/margin_trading",
+      "name": "Binance Connector Python 杠杆交易",
+      "category": "区块链",
+      "tags": [
+        "python",
+        "api",
+        "客户端",
+        "杠杆交易"
+      ]
+    },
+    {
+      "url": "https://github.com/binance/binance-connector-js/tree/master/clients/margin-trading",
+      "name": "Binance Connector Js 杠杆交易",
+      "category": "区块链",
+      "tags": [
+        "javascript",
+        "api",
+        "客户端",
+        "杠杆交易"
+      ]
+    },
+    {
+      "url": "https://github.com/langchain-ai/langchainjs/tree/main/libs/langchain-community",
+      "name": "Langchainjs Langchain 社区",
+      "category": "人工智能",
+      "tags": [
+        "javascript",
+        "人工智能",
+        "langchain",
+        "库"
+      ]
+    },
+    {
+      "url": "https://github.com/langchain-ai/langchain-community/tree/main/libs/community",
+      "name": "Langchain 社区",
+      "category": "人工智能",
+      "tags": [
+        "python",
+        "人工智能",
+        "langchain",
+        "库"
+      ]
+    }
+  ]
+}

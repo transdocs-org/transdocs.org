@@ -1,0 +1,200 @@
+{
+  "transdocs.org": [
+    {
+      "filePath": "docs\\.vitepress\\config.mts",
+      "fileName": "config.mts",
+      "md5Hash": "0c9b720d884865fc05e7d43391e48457",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\docs\\.vitepress\\config.mts",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "0c9b720d884865fc05e7d43391e48457.zh",
+          "relativePath": "0c9b720d884865fc05e7d43391e48457.zh"
+        }
+      ]
+    },
+    {
+      "filePath": "docs\\ai\\Langchain-Community.md",
+      "fileName": "Langchain-Community.md",
+      "md5Hash": "35e2403c424f22f8db849911fe2f4cc1",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\docs\\ai\\Langchain-Community.md",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "35e2403c424f22f8db849911fe2f4cc1.zh",
+          "relativePath": "35e2403c424f22f8db849911fe2f4cc1.zh"
+        }
+      ]
+    },
+    {
+      "filePath": "docs\\ai\\Langchainjs-Community.md",
+      "fileName": "Langchainjs-Community.md",
+      "md5Hash": "c628fa8393788e9a1ff13532b1bd4140",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\docs\\ai\\Langchainjs-Community.md",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "c628fa8393788e9a1ff13532b1bd4140.zh",
+          "relativePath": "c628fa8393788e9a1ff13532b1bd4140.zh"
+        }
+      ]
+    },
+    {
+      "filePath": "docs\\blockchain\\Binance-Connector-Js-Margin-Trading.md",
+      "fileName": "Binance-Connector-Js-Margin-Trading.md",
+      "md5Hash": "28b647e3439e141fc7b6c6dceefe34c7",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\docs\\blockchain\\Binance-Connector-Js-Margin-Trading.md",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "28b647e3439e141fc7b6c6dceefe34c7.zh",
+          "relativePath": "28b647e3439e141fc7b6c6dceefe34c7.zh"
+        }
+      ]
+    },
+    {
+      "filePath": "docs\\blockchain\\Binance-Connector-Js-Spot.md",
+      "fileName": "Binance-Connector-Js-Spot.md",
+      "md5Hash": "d7be5d19957a79817f138c40f20edc64",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\docs\\blockchain\\Binance-Connector-Js-Spot.md",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "d7be5d19957a79817f138c40f20edc64.zh",
+          "relativePath": "d7be5d19957a79817f138c40f20edc64.zh"
+        }
+      ]
+    },
+    {
+      "filePath": "docs\\blockchain\\Binance-Connector-Python-Margin-Trading.md",
+      "fileName": "Binance-Connector-Python-Margin-Trading.md",
+      "md5Hash": "a8360054c23a6fdae189c00a0471eb77",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\docs\\blockchain\\Binance-Connector-Python-Margin-Trading.md",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "a8360054c23a6fdae189c00a0471eb77.zh",
+          "relativePath": "a8360054c23a6fdae189c00a0471eb77.zh"
+        }
+      ]
+    },
+    {
+      "filePath": "docs\\blockchain\\Binance-Connector-Python-Spot.md",
+      "fileName": "Binance-Connector-Python-Spot.md",
+      "md5Hash": "24f4d4cefeb3e2fd3440b3a975217143",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\docs\\blockchain\\Binance-Connector-Python-Spot.md",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "24f4d4cefeb3e2fd3440b3a975217143.zh",
+          "relativePath": "24f4d4cefeb3e2fd3440b3a975217143.zh"
+        }
+      ]
+    },
+    {
+      "filePath": "docs\\index.md",
+      "fileName": "index.md",
+      "md5Hash": "9cbdd998a4354e5b260745d93e21b600",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\docs\\index.md",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "9cbdd998a4354e5b260745d93e21b600.zh",
+          "relativePath": "9cbdd998a4354e5b260745d93e21b600.zh"
+        }
+      ]
+    },
+    {
+      "filePath": "docs\\readmes.md",
+      "fileName": "readmes.md",
+      "md5Hash": "08494a054deb23acb58fd6f53ae744d6",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\docs\\readmes.md",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "08494a054deb23acb58fd6f53ae744d6.zh",
+          "relativePath": "08494a054deb23acb58fd6f53ae744d6.zh"
+        }
+      ]
+    },
+    {
+      "filePath": "docs\\sites.md",
+      "fileName": "sites.md",
+      "md5Hash": "dd2fd81bd0d741abd73420654a998afd",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\docs\\sites.md",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "dd2fd81bd0d741abd73420654a998afd.zh",
+          "relativePath": "dd2fd81bd0d741abd73420654a998afd.zh"
+        }
+      ]
+    },
+    {
+      "filePath": "docs\\tag\\[tag].md",
+      "fileName": "[tag].md",
+      "md5Hash": "0a419be27ae5a9f0efd582a0abb87389",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\docs\\tag\\[tag].md",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "0a419be27ae5a9f0efd582a0abb87389.zh",
+          "relativePath": "0a419be27ae5a9f0efd582a0abb87389.zh"
+        }
+      ]
+    },
+    {
+      "filePath": "docs\\tags.md",
+      "fileName": "tags.md",
+      "md5Hash": "e7db4b905f1575129f9bd359e880a608",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\docs\\tags.md",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "e7db4b905f1575129f9bd359e880a608.zh",
+          "relativePath": "e7db4b905f1575129f9bd359e880a608.zh"
+        }
+      ]
+    },
+    {
+      "filePath": "docs\\update-strategy.md",
+      "fileName": "update-strategy.md",
+      "md5Hash": "7697dfb1b9ca55835fbef189c94397c7",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\docs\\update-strategy.md",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "7697dfb1b9ca55835fbef189c94397c7.zh",
+          "relativePath": "7697dfb1b9ca55835fbef189c94397c7.zh"
+        }
+      ]
+    },
+    {
+      "filePath": "readmes.json",
+      "fileName": "readmes.json",
+      "md5Hash": "92d1856622c9868588efcc6b7d8750f8",
+      "targetLanguage": "zh",
+      "sourceFileAbsolutePath": "C:\\Users\\22201\\Projects\\transdocs\\website\\.deploy\\.transdocs-repos\\transdocs.org\\readmes.json",
+      "translations": [
+        {
+          "language": "zh",
+          "fileName": "92d1856622c9868588efcc6b7d8750f8.zh",
+          "relativePath": "92d1856622c9868588efcc6b7d8750f8.zh"
+        }
+      ]
+    }
+  ]
+}

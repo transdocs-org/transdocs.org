@@ -1,0 +1,4 @@
+.transdocs-repos/
+.transdocs-logs/
+
+.env

@@ -1,0 +1,82 @@
+import { defineConfig } from 'vitepress'
+import type { DefaultTheme } from 'vitepress'
+import path from 'node:path'
+import { categories } from './common'
+
+const readmesNav: DefaultTheme.NavItem = {
+  text: 'Readmes',
+  items: categories.map(category => {
+    const { name, items, id } = category
+    const { filename } = items[0]
+    return {
+      text: name,
+      link: `/${id}/${filename}`
+    }
+  }),
+}
+
+const nav: DefaultTheme.NavItem[] = [
+  { text: '首页', link: '/' },
+  { text: '站点', link: '/sites' },
+  readmesNav,
+  { text: '标签', link: '/tags' },
+  {
+    text: '关于', items: [
+      { text: '更新策略', link: '/update-strategy' }
+    ]
+  },
+]
+
+const sidebar: DefaultTheme.Sidebar = categories.reduce((acc, category) => {
+  const { name, id, items } = category
+
+  acc[`/${id}/`] = [{
+    text: name,
+    items: items.map(item => {
+      return {
+        text: item.name,
+        link: `/${id}/${item.filename}`
+      }
+    })
+  }]
+
+  return acc
+}, {} as any)
+
+export default defineConfig({
+  title: "TransDocs - 译文",
+  description: "专注开源技术文档翻译，实时、快速、精准。",
+  themeConfig: {
+    logo: '/logo.png',
+    nav,
+    sidebar,
+    siteTitle: 'TransDocs',
+  },
+  lastUpdated: true,
+  lang: 'zh-CN',
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    [
+      'script',
+      {},
+      `var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?2fe1095387fd2f2c25892a4fde2f0cc2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();`
+    ]
+  ],
+  sitemap: {
+    hostname: 'https://transdocs.org'
+  },
+
+  vite: {
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'theme')
+      }
+    }
+  }
+})

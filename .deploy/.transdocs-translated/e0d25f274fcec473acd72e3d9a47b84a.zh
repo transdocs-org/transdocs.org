@@ -1,0 +1,42 @@
+import { defineConfig } from 'vitepress'
+import path from 'node:path'
+import { sanitizeFilename } from '../../src/utils'
+import _readmes from '../../readmes.json'
+
+const readmes = _readmes.readmes
+const categories = [...new Set(readmes.map(item => item.category))]
+
+// https://vitepress.dev/reference/site-config
+export default defineConfig({
+  title: "TransDocs",
+  description: "专注于精准翻译文档",
+  themeConfig: {
+    nav: [
+      { text: '首页', link: '/' },
+      ...categories.map(category => ({
+        text: category,
+        link: `/${category}/${sanitizeFilename(readmes.find(item => item.category === category)!.name)}`
+      }))
+    ],
+
+    sidebar: [
+    ],
+
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/transdocs-org/transdocs.org' }
+    ]
+  },
+  head: [
+    [
+      'script',
+      {},
+      `var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?2fe1095387fd2f2c25892a4fde2f0cc2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();`
+    ]
+  ]
+})

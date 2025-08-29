@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": [
+      "ES2020"
+    ],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "types": [
+      "node"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "theme/*"
+      ]
+    }
+  },
+  "include": [
+    "**/*/*.ts",
+    "**/*/*.vue",
+    "config.mts",
+    "common.ts",
+    "../../types.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
